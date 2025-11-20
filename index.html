@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shelter Alert – ניווט חכם למקלטים</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Shelter Alert – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה."
+  />
+
+  <!-- פונט עברי נעים לקריאה (לא חובה, אבל מוסיף יופי) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* בסיס כללי */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: "Heebo", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background-color: #f5f7fb;
+      color: #111827;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* קונטיינר ראשי */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: #ffffffcc;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 20px;
+      color: #111827;
+    }
+
+    .logo span {
+      color: #2563eb;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: #374151;
+      padding: 4px 0;
+    }
+
+    .nav-links a:hover {
+      color: #111827;
+    }
+
+    .btn-primary-sm {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #fff;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary-sm:hover {
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+      transform: translateY(-1px);
+    }
+
+    /* כפתור המבורגר למובייל */
+    .menu-toggle {
+      display: none;
+      font-size: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 40px 0 40px;
+      background: radial-gradient(
+          circle at top right,
+          rgba(37, 99, 235, 0.12),
+          transparent 60%
+        ),
+        #f5f7fb;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: #e0e7ff;
+      color: #4338ca;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: #4b5563;
+      margin-bottom: 20px;
+    }
+
+    .hero-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .hero-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .hero-list span.bullet {
+      margin-top: 3px;
+      font-size: 16px;
+      color: #10b981;
+    }
+
+    .hero-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hero-form input[type="email"] {
+      flex: 1 1 220px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .hero-form input[type="email"]:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb33;
+    }
+
+    .btn-primary-lg {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .btn-primary-lg:hover {
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .hero-image-wrapper {
+      border-radius: 24px;
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+      padding: 3px;
+      box-shadow: 0 20px 50px rgba(31, 41, 55, 0.18);
+    }
+
+    .hero-image-inner {
+      border-radius: 22px;
+      background-color: #020617;
+      padding: 12px;
+      color: #e5e7eb;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-map-placeholder {
+      flex: 1;
+      border-radius: 16px;
+      background: radial-gradient(
+          circle at top left,
+          rgba(59, 130, 246, 0.5),
+          transparent 55%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(129, 140, 248, 0.45),
+          transparent 55%
+        );
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-map-placeholder::before {
+      content: "תצוגת מפה + מקלטים קרובים (מוקאפ)";
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      font-size: 12px;
+      color: rgba(249, 250, 251, 0.9);
+    }
+
+    .hero-pill {
+      font-size: 12px;
+      color: #a5b4fc;
+    }
+
+    /* SECTION בסיסי */
+    section {
+      padding: 40px 0;
+    }
+
+    section h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    section p.section-intro {
+      font-size: 14px;
+      color: #4b5563;
+      margin-bottom: 20px;
+    }
+
+    /* הבעיה / המציאות */
+    .problem-section {
+      background-color: #eef2ff;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .problem-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 8px 20px rgba(148, 163, 184, 0.3);
+      font-size: 14px;
+    }
+
+    .problem-card-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .problem-emoji {
+      font-size: 20px;
+      margin-left: 4px;
+    }
+
+    /* פיצ'רים */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid #e5e7eb;
+      font-size: 14px;
+    }
+
+    .feature-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .feature-text {
+      color: #4b5563;
+    }
+
+    /* תמונות / הדמיות */
+    .screens-section {
+      background-color: #f9fafb;
+    }
+
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .screen-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 10px 24px rgba(148, 163, 184, 0.4);
+      font-size: 13px;
+    }
+
+    .screen-placeholder {
+      height: 200px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb22, #7c3aed33);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f2933;
+      font-size: 13px;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .screen-caption {
+      color: #4b5563;
+      text-align: center;
+    }
+
+    /* למי זה מיועד */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .audience-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid #e5e7eb;
+      font-size: 14px;
+    }
+
+    .audience-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* טופס בטא מורחב */
+    .beta-section {
+      background-color: #e0f2fe;
+    }
+
+    .beta-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.22);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .beta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 14px;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .form-group span.required {
+      color: #dc2626;
+      margin-right: 4px;
+    }
+
+    .form-group input,
+    .form-group select {
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+      outline: none;
+      background-color: #f9fafb;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb33;
+      background-color: #ffffff;
+    }
+
+    .beta-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .beta-note {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    /* FAQ */
+    .faq-section {
+      background-color: #f9fafb;
+    }
+
+    .faq-list {
+      margin-top: 12px;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 10px 14px;
+    }
+
+    details {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    details:last-of-type {
+      border-bottom: none;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 500;
+      color: #111827;
+      list-style: none;
+    }
+
+    summary::marker,
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details[open] summary {
+      color: #2563eb;
+    }
+
+    details p {
+      margin-top: 4px;
+      color: #4b5563;
+      padding-inline-start: 8px;
+      font-size: 13px;
+    }
+
+    /* פרטיות / אחריות */
+    .legal-card {
+      border-radius: 16px;
+      background: #111827;
+      color: #e5e7eb;
+      padding: 16px;
+      font-size: 13px;
+    }
+
+    .legal-card strong {
+      color: #fbbf24;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 16px 0;
+      font-size: 12px;
+      color: #6b7280;
+      background-color: #ffffff;
+      margin-top: 24px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: #4b5563;
+    }
+
+    .footer-links a:hover {
+      color: #111827;
+    }
+
+    /* RESPONSIVE – מובייל וטאבלט */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .hero-title {
+        font-size: 26px;
+      }
+
+      .hero-image-wrapper {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .problem-grid,
+      .features-grid,
+      .screens-grid,
+      .audience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .beta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-form input[type="email"],
+      .btn-primary-lg {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script>
+    // סקריפט קטן לפתיחת/סגירת תפריט במובייל (רק קוסמטי)
+    document.addEventListener("DOMContentLoaded", function () {
+      var toggle = document.getElementById("menu-toggle");
+      var nav = document.getElementById("nav-links");
+
+      if (!toggle || !nav) return;
+
+      toggle.addEventListener("click", function () {
+        var isOpen = nav.style.display === "flex";
+        nav.style.display = isOpen ? "none" : "flex";
+        nav.style.flexDirection = "column";
+        nav.style.gap = "8px";
+        nav.style.backgroundColor = "#ffffff";
+        nav.style.position = "absolute";
+        nav.style.top = "56px";
+        nav.style.right = "16px";
+        nav.style.padding = "12px 16px";
+        nav.style.borderRadius = "12px";
+        nav.style.boxShadow = "0 12px 32px rgba(15, 23, 42, 0.25)";
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        Shelter<span>Alert</span>
+      </div>
+
+      <nav>
+        <button id="menu-toggle" class="menu-toggle" aria-label="תפריט">
+          ☰
+        </button>
+        <div id="nav-links" class="nav-links">
+          <a href="#how-it-works">איך זה עובד</a>
+          <a href="#features">פיצ'רים</a>
+          <a href="#audience">למי זה מתאים?</a>
+          <a href="#faq">שאלות נפוצות</a>
+          <button
+            class="btn-primary-sm"
+            onclick="document.getElementById('beta-form').scrollIntoView({behavior: 'smooth'});"
+          >
+            אני רוצה להצטרף לבטא
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">
+            🧪 שלב בטא / קדם־חנות
+            <span>– מחפשים נבדקים מהשטח</span>
+          </div>
+
+          <h1 class="hero-title">
+            Shelter Alert – התרעה וניווט חכם למקלטים בזמן אזעקה
+          </h1>
+
+          <p class="hero-subtitle">
+            ברגעי חירום אין זמן לחפש. האפליקציה מזהה את מיקומך, מאתרת את
+            המקלטים הקרובים אליך, ומנווטת אותך בבירור – לפי אזור ההתגוננות
+            שלך.
+          </p>
+
+          <ul class="hero-list">
+            <li>
+              <span class="bullet">•</span>
+              <span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי.</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד – פחות רעש, יותר דיוק.</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>מצב תרגול – להתנסות מראש במסלול למקלט בסביבת הבית / העבודה.</span>
+            </li>
+          </ul>
+
+          <form
+            class="hero-form"
+            onsubmit="alert('זה רק דמו – צריך לחבר בהמשך לשירות טפסים או לשרת backend.'); return false;"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="הכניסו כתובת אימייל כדי לקבל גישה לבטא"
+              required
+            />
+            <button type="submit" class="btn-primary-lg">
+              אני רוצה להצטרף לבטא
+            </button>
+          </form>
+
+          <p class="hero-note">
+            לא נשלח ספאם. נקצה גישה לגרסת הבטא בהקדם האפשרי (Android / iOS),
+            ונעדכן אתכם במייל בלבד.
+          </p>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-image-inner">
+            <div class="hero-pill">מוקאפ • מסך מפת מקלטים בזמן אמת</div>
+            <div class="hero-map-placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- הבעיה -->
+    <section id="how-it-works" class="problem-section">
+      <div class="container">
+        <h2>מה קורה היום בזמן אזעקה?</h2>
+        <p class="section-intro">
+          ברגעים של אזעקה יש לחץ, רעש ובלבול. ברוב המקרים, אנשים שואלים
+          את עצמם שלוש שאלות פשוטות – בלי שיהיה להם כלי אחד ברור שנותן
+          תשובה:
+        </p>
+
+        <div class="problem-grid">
+          <div class="problem-card">
+            <div class="problem-card-title">
+              <span class="problem-emoji">🔍</span> איפה בכלל יש כאן מקלט?
+            </div>
+            <p>
+              לא תמיד יש שילוט ברור, לא תמיד זוכרים איפה חדר המדרגות הכי
+              קרוב, ובמיוחד אם נמצאים במקום לא מוכר – החוסר וודאות גדל.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-card-title">
+              <span class="problem-emoji">🧭</span> מה המסלול הכי מהיר?
+            </div>
+            <p>
+              יש כמה אפשרויות – חדר מדרגות, ממ&quot;ד, מקלט ציבורי. קשה לדעת
+              מה הכי קרוב, ומהו המסלול המהיר ביותר בזמן אמת.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-card-title">
+              <span class="problem-emoji">⏱</span> כמה זמן יש לי בכלל?
+            </div>
+            <p>
+              ההבדל בין אזורי התגוננות יכול להיות שניות קריטיות. בלי התאמה
+              לעיר ול־zone, קשה לדעת כמה זמן באמת יש להגיע למרחב המוגן.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- פיצ'רים -->
+    <section id="features">
+      <div class="container">
+        <h2>מה Shelter Alert עושה עבורך בזמן אמת?</h2>
+        <p class="section-intro">
+          האפליקציה מחברת בין נתוני אזעקות, אזורי התגוננות, מיקום GPS
+          ומסד נתונים של אלפי מקלטים – כדי לתת לך תמונה אחת ברורה.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📍</div>
+            <div class="feature-title">איתור מקלטים לפי GPS</div>
+            <div class="feature-text">
+              שימוש במיקום הנוכחי שלך וב־MongoDB עם אלפי מקלטים כדי להציג את
+              אלה שהכי קרובים אליך – כולל מרחק מדויק במטרים.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧭</div>
+            <div class="feature-title">ניווט מהיר למקלט</div>
+            <div class="feature-text">
+              בלחיצה אחת – מתעדכנים המקלטים הקרובים, נבנה מסלול, והאפליקציה
+              מציגה כיוון ברור למקלט הנבחר.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🛡</div>
+            <div class="feature-title">התאמת אזעקות לעיר ול־zone</div>
+            <div class="feature-text">
+              מיפוי לוגי של עיר → אזור התגוננות, וסינון אזעקות כך שרק
+              אזעקות הרלוונטיות לאזור שלך יפעילו את מנגנון האזעקה באפליקציה.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧪</div>
+            <div class="feature-title">מצב תרגול</div>
+            <div class="feature-text">
+              אפשרות להפעיל &quot;אזעקת תרגול&quot; ולראות מראש מה המסלול למקלט
+              הקרוב – בבית, במשרד, או בכל מקום אחר.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧾</div>
+            <div class="feature-title">היסטוריית אזעקות במכשיר</div>
+            <div class="feature-text">
+              האפליקציה שומרת לוג מקומי של האזעקות שזוהו במכשיר – בלי לשלוח
+              את היסטוריית השימוש שלך לשרת.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <div class="feature-title">ממשק פשוט בעברית</div>
+            <div class="feature-text">
+              מסך אחד ברור, אייקונים ברורים ו־UX נקי. בזמן אזעקה – אין מקום
+              ליותר מדי כפתורים.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- מסכי דמו -->
+    <section class="screens-section">
+      <div class="container">
+        <h2>איך זה נראה בפועל?</h2>
+        <p class="section-intro">
+          אלו מוקאפים / מסכי דוגמה מהאפליקציה. בהמשך ניתן יהיה להחליף כאן
+          לתמונות אמיתיות מה־build של Flutter.
+        </p>
+
+        <div class="screens-grid">
+          <div class="screen-card">
+            <div class="screen-placeholder">
+              מסך מפה – מיקום המשתמש + שני המקלטים הקרובים ביותר
+            </div>
+            <div class="screen-caption">מסך מפה ומקלטים קרובים</div>
+          </div>
+
+          <div class="screen-card">
+            <div class="screen-placeholder">
+              מסך ניווט – מרחק למקלט, כיוון, והנחיות בסיסיות
+            </div>
+            <div class="screen-caption">ניווט חי למקלט</div>
+          </div>
+
+          <div class="screen-card">
+            <div class="screen-placeholder">
+              מסך אזעקה / מצב תרגול – טיימר, עיר, אזור התגוננות
+            </div>
+            <div class="screen-caption">מצב אזעקה / תרגול</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- למי זה מיועד -->
+    <section id="audience">
+      <div class="container">
+        <h2>למי Shelter Alert מתאימה?</h2>
+        <p class="section-intro">
+          האפליקציה מיועדת גם לשימוש אישי, וגם כפלטפורמת פיילוט לגופים
+          עירוניים או מקצועיים.
+        </p>
+
+        <div class="audience-grid">
+          <div class="audience-card">
+            <div class="audience-title">תושבים פרטיים</div>
+            <p>
+              כל מי שרוצה לדעת שבזמן אזעקה יש לו כלי אחד ברור שמראה לאן
+              הולכים, כמה זה רחוק, וכמה זמן יש להתגונן.
+            </p>
+          </div>
+
+          <div class="audience-card">
+            <div class="audience-title">רשויות מקומיות / עיריות</div>
+            <p>
+              פיילוטים עירוניים, בדיקות שטח, והנגשת מידע נוסף לתושבים בצורה
+              דיגיטלית. ניתן ליצור קשר לשיתופי פעולה רחבים יותר.
+            </p>
+          </div>
+
+          <div class="audience-card">
+            <div class="audience-title">גורמי חירום / מקצוע</div>
+            <p>
+              מי שרוצה להכיר פתרון טכנולוגי חדש לניהול ניווט למרחבים מוגנים –
+              עם דגש על UX בזמן אמת ונתונים חיים מהשטח.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- טופס בטא -->
+    <section id="beta-form" class="beta-section">
+      <div class="container">
+        <div class="beta-card">
+          <h2>הצטרפות לגרסת הבטא / בדיקות שטח</h2>
+          <p class="section-intro">
+            האפליקציה נמצאת בשלב קדם־חנות (Android / iOS). השארת פרטים כאן
+            תאפשר לנו:
+          </p>
+          <ul class="hero-list">
+            <li>
+              <span class="bullet">•</span>
+              <span>לשלוח לך קישור להורדה כשגרסת הבטא תהיה מוכנה.</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>להזמין אותך, אם תרצה, להשתתף בפיילוט / בדיקות שטח.</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>להבין באילו ערים ואזורים יש ביקוש גבוה יותר.</span>
+            </li>
+          </ul>
+
+          <form
+            class="beta-grid"
+            onsubmit="alert('גם כאן – צריך לחבר לשרת או לשירות טפסים (כמו Formspree) בהמשך.'); return false;"
+          >
+            <div class="form-group">
+              <label for="email">
+                <span class="required">*</span> כתובת אימייל
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="example@domain.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="name">שם (לא חובה)</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="איך לפנות אליך?"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="city">עיר / ישוב</label>
+              <input
+                id="city"
+                name="city"
+                type="text"
+                placeholder="לדוגמה: יהוד, תל אביב, באר שבע"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="role">מי אתם?</label>
+              <select id="role" name="role">
+                <option value="">בחר...</option>
+                <option value="resident">תושב/ת פרטי/ת</option>
+                <option value="municipality">נציג/ת רשות / עירייה</option>
+                <option value="professional">גורם מקצוע בתחום החירום</option>
+                <option value="other">אחר</option>
+              </select>
+            </div>
+
+            <div class="beta-actions" style="grid-column: 1 / -1;">
+              <button type="submit" class="btn-primary-lg">
+                שלחו לי עדכון כשגרסת הבטא מוכנה
+              </button>
+              <p class="beta-note">
+                נשתמש בפרטים רק לצורך עדכונים על האפליקציה וגרסת הבטא.
+                לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- פרטיות / אחריות -->
+    <section>
+      <div class="container">
+        <div class="legal-card">
+          <p>
+            <strong>הבהרה:</strong> Shelter Alert אינה אפליקציה רשמית של פיקוד
+            העורף, צה״ל או כל גוף מדינתי אחר. יש לפעול תמיד לפי ההנחיות
+            הרשמיות של גורמי הביטחון, ולראות באפליקציה כלי עזר נוסף בלבד.
+          </p>
+          <p style="margin-top: 8px;">
+            המייל והמידע שתמסרו ישמשו רק לצורך יצירת קשר ועדכונים על האפליקציה.
+            לא נעשה שימוש בפרטים לצרכי פרסום חיצוני.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <h2>שאלות נפוצות</h2>
+        <div class="faq-list">
+          <details>
+            <summary>האם האפליקציה כבר זמינה בחנות?</summary>
+            <p>
+              כרגע האפליקציה בשלב קדם־חנות / בטא. המשמעות היא שאנחנו עדיין
+              בודקים, משפרים ומייצבים את המערכת. מי שנרשם כאן יקבל עדכון
+              כשגרסת בטא תהיה זמינה להורדה.
+            </p>
+          </details>
+
+          <details>
+            <summary>האם השימוש באפליקציה יהיה בתשלום?</summary>
+            <p>
+              בשלב הבטא השימוש מתוכנן להיות ללא עלות. בהמשך, חלק מהפיצ׳רים
+              המתקדמים עשויים להיות במסגרת מודלים שונים – אך המטרה היא להשאיר
+              את הליבה (התרעה + ניווט למקלט) נגישה ככל האפשר.
+            </p>
+          </details>
+
+          <details>
+            <summary>איך זה יעבוד ב־Android וב־iOS?</summary>
+            <p>
+              ב־Android ההפצה תעשה דרך Google Play (או קישור ישיר לבטא).
+              ב־iOS ההפצה תעשה באמצעות TestFlight ו/או App Store – בהתאם למצב
+              האישור מול Apple. מי שיישאיר מייל יקבל קישורים מתאימים לשתי
+              הפלטפורמות.
+            </p>
+          </details>
+
+          <details>
+            <summary>מה קורה עם הפרטים שאני משאיר?</summary>
+            <p>
+              הפרטים משמשים רק כדי לעדכן אותך כשיש גרסת בטא, ולנהל רשימת
+              מתעניינים. לא נשתף את המידע עם מפרסמים חיצוניים. ניתן לבקש בכל
+              רגע להסיר אותך מרשימת התפוצה.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© Shelter Alert – כל הזכויות שמורות.</div>
+      <div class="footer-links">
+        <a href="mailto:info@shelter-alert.com">צור קשר</a>
+        <a href="#beta-form">הצטרפות לבטא</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
