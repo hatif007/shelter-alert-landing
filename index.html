@@ -16,18 +16,6 @@
   />
 
   <style>
-    :root {
-      --primary: #ef4444;       /* אדום – RED ALERT */
-      --primary-dark: #b91c1c;
-      --primary-soft: #fee2e2;
-      --text-main: #111827;
-      --text-muted: #4b5563;
-      --bg-main: #f5f7fb;
-      --section-alt: #f9fafb;
-      --section-soft: #eef2ff;
-      --header-bg: #ffffffcc;
-    }
-
     /* בסיס כללי */
     * {
       box-sizing: border-box;
@@ -43,8 +31,8 @@
     body {
       font-family: "Heebo", system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", sans-serif;
-      background-color: var(--bg-main);
-      color: var(--text-main);
+      background-color: #f5f7fb;
+      color: #111827;
       line-height: 1.6;
     }
 
@@ -72,7 +60,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background-color: var(--header-bg);
+      background-color: #ffffffee;
       backdrop-filter: blur(8px);
       border-bottom: 1px solid #e5e7eb;
     }
@@ -82,37 +70,45 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 0;
+      gap: 12px;
     }
 
-    .logo {
+    .logo-wrapper {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 700;
-      font-size: 20px;
-      color: var(--text-main);
     }
 
-    .logo img {
-      width: 40px;
-      height: 40px;
+    .logo-image {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
     }
 
-    .logo-text-main {
-      color: var(--primary);
-      letter-spacing: 0.04em;
+    .logo-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .logo-text-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .logo-text-wrapper {
+    .logo-text {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      line-height: 1.1;
+    }
+
+    .logo-title {
+      font-weight: 800;
+      font-size: 20px;
+      color: #dc2626;
+      letter-spacing: 0.03em;
+    }
+
+    .logo-subtitle {
+      font-size: 13px;
+      color: #6b7280;
     }
 
     .nav-links {
@@ -128,13 +124,13 @@
     }
 
     .nav-links a:hover {
-      color: var(--text-main);
+      color: #111827;
     }
 
     .btn-primary-sm {
       padding: 8px 16px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
       color: #fff;
       font-size: 14px;
       border: none;
@@ -151,7 +147,7 @@
     /* כפתור המבורגר למובייל */
     .menu-toggle {
       display: none;
-      font-size: 22px;
+      font-size: 24px;
       background: none;
       border: none;
       cursor: pointer;
@@ -159,13 +155,13 @@
 
     /* HERO */
     .hero {
-      padding: 40px 0 40px;
+      padding: 32px 0 40px;
       background: radial-gradient(
           circle at top right,
-          rgba(248, 113, 113, 0.16),
+          rgba(248, 113, 113, 0.12),
           transparent 60%
         ),
-        var(--bg-main);
+        #fef2f2;
     }
 
     .hero-grid {
@@ -181,8 +177,8 @@
       gap: 8px;
       padding: 4px 10px;
       border-radius: 999px;
-      background-color: var(--primary-soft);
-      color: var(--primary-dark);
+      background-color: #fee2e2;
+      color: #b91c1c;
       font-size: 12px;
       margin-bottom: 12px;
     }
@@ -191,18 +187,18 @@
       font-size: 32px;
       font-weight: 800;
       margin-bottom: 12px;
-      color: var(--text-main);
+      color: #111827;
     }
 
     .hero-subtitle {
       font-size: 16px;
-      color: var(--text-muted);
-      margin-bottom: 20px;
+      color: #4b5563;
+      margin-bottom: 16px;
     }
 
     .hero-list {
       list-style: none;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .hero-list li {
@@ -220,11 +216,20 @@
       color: #16a34a;
     }
 
+    .hero-email-card {
+      background: #ffffff;
+      border-radius: 36px;
+      padding: 14px 18px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.15);
+      max-width: 520px;
+      margin-top: 8px;
+    }
+
     .hero-form {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     .hero-form input[type="email"] {
@@ -234,18 +239,19 @@
       border: 1px solid #d1d5db;
       font-size: 14px;
       outline: none;
-      background-color: #ffffff;
+      background-color: #f9fafb;
     }
 
     .hero-form input[type="email"]:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.3);
+      border-color: #ef4444;
+      box-shadow: 0 0 0 1px #fecaca;
+      background-color: #ffffff;
     }
 
     .btn-primary-lg {
       padding: 10px 20px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
       color: #fff;
       font-size: 14px;
       font-weight: 500;
@@ -256,7 +262,7 @@
     }
 
     .btn-primary-lg:hover {
-      box-shadow: 0 10px 24px rgba(248, 113, 113, 0.4);
+      box-shadow: 0 10px 24px rgba(248, 113, 113, 0.35);
       transform: translateY(-1px);
     }
 
@@ -266,32 +272,26 @@
     }
 
     .hero-image-wrapper {
-      border-radius: 24px;
+      border-radius: 28px;
       background: linear-gradient(135deg, #020617, #111827);
       padding: 3px;
-      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.4);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
     }
 
     .hero-image-inner {
-      border-radius: 22px;
+      border-radius: 24px;
       background-color: #020617;
       padding: 16px;
       color: #e5e7eb;
       min-height: 280px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      position: relative;
-    }
-
-    .hero-logo-big {
-      width: 96px;
-      height: 96px;
+      gap: 12px;
     }
 
     .hero-pill {
       font-size: 12px;
-      color: #a5b4fc;
+      color: #9ca3af;
     }
 
     .hero-map-placeholder {
@@ -299,20 +299,23 @@
       border-radius: 16px;
       background: radial-gradient(
           circle at top left,
-          rgba(239, 68, 68, 0.6),
+          rgba(248, 113, 113, 0.55),
           transparent 55%
         ),
         radial-gradient(
           circle at bottom right,
-          rgba(129, 140, 248, 0.45),
+          rgba(59, 130, 246, 0.45),
           transparent 55%
         );
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .hero-map-placeholder::before {
-      content: "תצוגת מפה + מקלטים קרובים (מוקאפ)";
+      content: "מוקאפ – מסך מפת מקלטים בזמן אמת";
       position: absolute;
       bottom: 12px;
       right: 12px;
@@ -328,18 +331,18 @@
     section h2 {
       font-size: 24px;
       margin-bottom: 12px;
-      color: var(--text-main);
+      color: #111827;
     }
 
     section p.section-intro {
       font-size: 14px;
-      color: var(--text-muted);
+      color: #4b5563;
       margin-bottom: 20px;
     }
 
     /* הבעיה / המציאות */
     .problem-section {
-      background-color: var(--section-soft);
+      background-color: #eef2ff;
     }
 
     .problem-grid {
@@ -391,16 +394,16 @@
     .feature-title {
       font-weight: 600;
       margin-bottom: 6px;
-      color: var(--text-main);
+      color: #111827;
     }
 
     .feature-text {
-      color: var(--text-muted);
+      color: #4b5563;
     }
 
     /* תמונות / הדמיות */
     .screens-section {
-      background-color: var(--section-alt);
+      background-color: #f9fafb;
     }
 
     .screens-grid {
@@ -421,7 +424,7 @@
     .screen-placeholder {
       height: 200px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #fecaca, #e5e7eb);
+      background: linear-gradient(135deg, #1d4ed833, #f9731622);
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -433,7 +436,7 @@
     }
 
     .screen-caption {
-      color: var(--text-muted);
+      color: #4b5563;
       text-align: center;
     }
 
@@ -488,7 +491,7 @@
 
     .form-group label {
       font-weight: 500;
-      color: var(--text-main);
+      color: #111827;
     }
 
     .form-group span.required {
@@ -508,8 +511,8 @@
 
     .form-group input:focus,
     .form-group select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.35);
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb33;
       background-color: #ffffff;
     }
 
@@ -528,7 +531,7 @@
 
     /* FAQ */
     .faq-section {
-      background-color: var(--section-alt);
+      background-color: #f9fafb;
     }
 
     .faq-list {
@@ -552,7 +555,7 @@
     summary {
       cursor: pointer;
       font-weight: 500;
-      color: var(--text-main);
+      color: #111827;
       list-style: none;
     }
 
@@ -562,12 +565,12 @@
     }
 
     details[open] summary {
-      color: var(--primary);
+      color: #2563eb;
     }
 
     details p {
       margin-top: 4px;
-      color: var(--text-muted);
+      color: #4b5563;
       padding-inline-start: 8px;
       font-size: 13px;
     }
@@ -613,7 +616,7 @@
     }
 
     .footer-links a:hover {
-      color: var(--text-main);
+      color: #111827;
     }
 
     /* RESPONSIVE – מובייל וטאבלט */
@@ -645,6 +648,12 @@
       .beta-grid {
         grid-template-columns: 1fr;
       }
+
+      .hero-email-card {
+        border-radius: 24px;
+        padding: 12px 14px;
+        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+      }
     }
 
     @media (max-width: 720px) {
@@ -665,30 +674,53 @@
       .btn-primary-lg {
         width: 100%;
       }
+
+      .header-inner {
+        padding-inline: 4px;
+      }
     }
   </style>
 
   <script>
-    // סקריפט קטן לפתיחת/סגירת תפריט במובייל (רק קוסמטי)
     document.addEventListener("DOMContentLoaded", function () {
       var toggle = document.getElementById("menu-toggle");
       var nav = document.getElementById("nav-links");
 
-      if (!toggle || !nav) return;
+      if (toggle && nav) {
+        toggle.addEventListener("click", function () {
+          var isOpen = nav.style.display === "flex";
+          nav.style.display = isOpen ? "none" : "flex";
+          nav.style.flexDirection = "column";
+          nav.style.gap = "8px";
+          nav.style.backgroundColor = "#ffffff";
+          nav.style.position = "absolute";
+          nav.style.top = "56px";
+          nav.style.right = "16px";
+          nav.style.padding = "12px 16px";
+          nav.style.borderRadius = "12px";
+          nav.style.boxShadow = "0 12px 32px rgba(15, 23, 42, 0.25)";
+        });
+      }
 
-      toggle.addEventListener("click", function () {
-        var isOpen = nav.style.display === "flex";
-        nav.style.display = isOpen ? "none" : "flex";
-        nav.style.flexDirection = "column";
-        nav.style.gap = "8px";
-        nav.style.backgroundColor = "#ffffff";
-        nav.style.position = "absolute";
-        nav.style.top = "56px";
-        nav.style.right = "16px";
-        nav.style.padding = "12px 16px";
-        nav.style.borderRadius = "12px";
-        nav.style.boxShadow = "0 12px 32px rgba(15, 23, 42, 0.25)";
-      });
+      // שדות נוספים כשזה לא "תושב פרטי"
+      var roleSelect = document.getElementById("role");
+      var orgGroup = document.getElementById("org-group");
+      var roleDescGroup = document.getElementById("role-desc-group");
+      var phoneGroup = document.getElementById("phone-group");
+
+      function updateExtraFields() {
+        if (!roleSelect) return;
+        var v = roleSelect.value;
+        var showExtra = v && v !== "resident";
+        if (orgGroup) orgGroup.style.display = showExtra ? "flex" : "none";
+        if (roleDescGroup) roleDescGroup.style.display = showExtra ? "flex" : "none";
+        if (phoneGroup) phoneGroup.style.display = showExtra ? "flex" : "none";
+      }
+
+      if (roleSelect) {
+        updateExtraFields();
+        roleSelect.addEventListener("change", updateExtraFields);
+      }
     });
   </script>
 </head>
@@ -697,11 +729,13 @@
   <!-- HEADER -->
   <header>
     <div class="container header-inner">
-      <div class="logo">
-        <img src="assets/red-alert-logo.png" alt="RED ALERT logo" />
-        <div class="logo-text-wrapper">
-          <span class="logo-text-main">RED ALERT</span>
-          <span class="logo-text-sub">Smart Shelter Navigation</span>
+      <div class="logo-wrapper">
+        <div class="logo-image">
+          <img src="assets/red-alert-logo.png" alt="RED ALERT logo" />
+        </div>
+        <div class="logo-text">
+          <div class="logo-title">RED ALERT</div>
+          <div class="logo-subtitle">ניווט חכם למקלטים</div>
         </div>
       </div>
 
@@ -760,35 +794,35 @@
             </li>
           </ul>
 
-          <!-- טופס HERO – מחובר ל-Formspree -->
-          <form
-            class="hero-form"
-            action="https://formspree.io/f/mankynal"
-            method="POST"
-          >
-            <input
-              type="email"
-              name="email"
-              placeholder="הכניסו כתובת אימייל כדי לקבל גישה לבטא"
-              required
-            />
-            <input type="hidden" name="_subject" value="RED ALERT – הרשמה לבטא (Hero)" />
-            <button type="submit" class="btn-primary-lg">
-              אני רוצה להצטרף לבטא
-            </button>
-          </form>
-
-          <p class="hero-note">
-            לא נשלח ספאם. נקצה גישה לגרסת הבטא בהקדם האפשרי (Android / iOS),
-            ונעדכן אתכם במייל בלבד.
-          </p>
+          <div class="hero-email-card">
+            <form
+              class="hero-form"
+              action="https://formspree.io/f/mankynal"
+              method="POST"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="הכניסו כתובת אימייל כדי לקבל גישה לבטא"
+                required
+              />
+              <button type="submit" class="btn-primary-lg">
+                אני רוצה להצטרף לבטא
+              </button>
+            </form>
+            <p class="hero-note">
+              לא נשלח ספאם. נקצה גישה לגרסת הבטא בהקדם האפשרי (Android / iOS),
+              ונעדכן אתכם במייל בלבד.
+            </p>
+          </div>
         </div>
 
         <div class="hero-image-wrapper">
           <div class="hero-image-inner">
-            <img src="assets/red-alert-logo.png" alt="RED ALERT logo" class="hero-logo-big" />
             <div class="hero-pill">מוקאפ • מסך מפת מקלטים בזמן אמת</div>
-            <div class="hero-map-placeholder"></div>
+            <div class="hero-map-placeholder">
+              <!-- כאן אפשר להחליף לתמונה אמיתית של מסך מהאפליקציה -->
+            </div>
           </div>
         </div>
       </div>
@@ -1000,18 +1034,17 @@
             </li>
           </ul>
 
-          <!-- טופס בטא – מחובר ל-Formspree -->
           <form
             class="beta-grid"
             action="https://formspree.io/f/mankynal"
             method="POST"
           >
             <div class="form-group">
-              <label for="email">
+              <label for="email-beta">
                 <span class="required">*</span> כתובת אימייל
               </label>
               <input
-                id="email"
+                id="email-beta"
                 name="email"
                 type="email"
                 required
@@ -1050,7 +1083,35 @@
               </select>
             </div>
 
-            <input type="hidden" name="_subject" value="RED ALERT – טופס בטא / בדיקות שטח" />
+            <div class="form-group" id="org-group" style="display:none;">
+              <label for="organization">שם הארגון / הרשות</label>
+              <input
+                id="organization"
+                name="organization"
+                type="text"
+                placeholder="לדוגמה: עיריית יהוד-מונוסון / מד&quot;א / משרד הביטחון"
+              />
+            </div>
+
+            <div class="form-group" id="role-desc-group" style="display:none;">
+              <label for="role_details">תפקיד / הקשר למערכת</label>
+              <input
+                id="role_details"
+                name="role_details"
+                type="text"
+                placeholder="לדוגמה: מנהל אגף ביטחון, קב&quot;ט יישוב, מתנדב כיתת כוננות"
+              />
+            </div>
+
+            <div class="form-group" id="phone-group" style="display:none;">
+              <label for="phone">טלפון ליצירת קשר (אופציונלי)</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="מספר טלפון לתיאום פיילוט / שיחה"
+              />
+            </div>
 
             <div class="beta-actions" style="grid-column: 1 / -1;">
               <button type="submit" class="btn-primary-lg">
