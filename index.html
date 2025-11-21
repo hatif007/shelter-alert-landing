@@ -2,11 +2,11 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>Shelter Alert – ניווט חכם למקלטים</title>
+  <title>RED ALERT – ניווט חכם למקלטים</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Shelter Alert – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה."
+    content="RED ALERT – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה."
   />
 
   <!-- פונט עברי נעים לקריאה (לא חובה, אבל מוסיף יופי) -->
@@ -82,6 +82,11 @@
       color: #2563eb;
     }
 
+    .logo-img {
+      height: 48px;
+      width: auto;
+    }
+
     .nav-links {
       display: flex;
       gap: 20px;
@@ -101,7 +106,7 @@
     .btn-primary-sm {
       padding: 8px 16px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      background: linear-gradient(135deg, #d90429, #7f1d1d);
       color: #fff;
       font-size: 14px;
       border: none;
@@ -111,7 +116,7 @@
     }
 
     .btn-primary-sm:hover {
-      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 8px 18px rgba(220, 38, 38, 0.25);
       transform: translateY(-1px);
     }
 
@@ -129,7 +134,7 @@
       padding: 40px 0 40px;
       background: radial-gradient(
           circle at top right,
-          rgba(37, 99, 235, 0.12),
+          rgba(220, 38, 38, 0.12),
           transparent 60%
         ),
         #f5f7fb;
@@ -148,8 +153,8 @@
       gap: 8px;
       padding: 4px 10px;
       border-radius: 999px;
-      background-color: #e0e7ff;
-      color: #4338ca;
+      background-color: #fee2e2;
+      color: #b91c1c;
       font-size: 12px;
       margin-bottom: 12px;
     }
@@ -204,14 +209,14 @@
     }
 
     .hero-form input[type="email"]:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 1px #2563eb33;
+      border-color: #d90429;
+      box-shadow: 0 0 0 1px #d9042933;
     }
 
     .btn-primary-lg {
       padding: 10px 20px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      background: linear-gradient(135deg, #d90429, #7f1d1d);
       color: #fff;
       font-size: 14px;
       font-weight: 500;
@@ -222,7 +227,7 @@
     }
 
     .btn-primary-lg:hover {
-      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 10px 24px rgba(220, 38, 38, 0.3);
       transform: translateY(-1px);
     }
 
@@ -233,7 +238,7 @@
 
     .hero-image-wrapper {
       border-radius: 24px;
-      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+      background: linear-gradient(135deg, #111827, #7f1d1d);
       padding: 3px;
       box-shadow: 0 20px 50px rgba(31, 41, 55, 0.18);
     }
@@ -254,12 +259,12 @@
       border-radius: 16px;
       background: radial-gradient(
           circle at top left,
-          rgba(59, 130, 246, 0.5),
+          rgba(248, 113, 113, 0.5),
           transparent 55%
         ),
         radial-gradient(
           circle at bottom right,
-          rgba(129, 140, 248, 0.45),
+          rgba(127, 29, 29, 0.45),
           transparent 55%
         );
       position: relative;
@@ -277,7 +282,7 @@
 
     .hero-pill {
       font-size: 12px;
-      color: #a5b4fc;
+      color: #fecaca;
     }
 
     /* SECTION בסיסי */
@@ -381,7 +386,7 @@
     .screen-placeholder {
       height: 200px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #2563eb22, #7c3aed33);
+      background: linear-gradient(135deg, #fecaca, #fee2e2);
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -658,7 +663,7 @@
   <header>
     <div class="container header-inner">
       <div class="logo">
-        Shelter<span>Alert</span>
+        <img src="assets/red-alert-logo.png" alt="RED ALERT" class="logo-img" />
       </div>
 
       <nav>
@@ -692,7 +697,7 @@
           </div>
 
           <h1 class="hero-title">
-            Shelter Alert – התרעה וניווט חכם למקלטים בזמן אזעקה
+            RED ALERT – התרעה וניווט חכם למקלטים בזמן אזעקה
           </h1>
 
           <p class="hero-subtitle">
@@ -718,7 +723,8 @@
 
           <form
             class="hero-form"
-            onsubmit="alert('זה רק דמו – צריך לחבר בהמשך לשירות טפסים או לשרת backend.'); return false;"
+            action="https://formspree.io/f/mankynal"
+            method="POST"
           >
             <input
               type="email"
@@ -726,6 +732,7 @@
               placeholder="הכניסו כתובת אימייל כדי לקבל גישה לבטא"
               required
             />
+            <input type="hidden" name="source" value="hero-form" />
             <button type="submit" class="btn-primary-lg">
               אני רוצה להצטרף לבטא
             </button>
@@ -793,7 +800,7 @@
     <!-- פיצ'רים -->
     <section id="features">
       <div class="container">
-        <h2>מה Shelter Alert עושה עבורך בזמן אמת?</h2>
+        <h2>מה RED ALERT עושה עבורך בזמן אמת?</h2>
         <p class="section-intro">
           האפליקציה מחברת בין נתוני אזעקות, אזורי התגוננות, מיקום GPS
           ומסד נתונים של אלפי מקלטים – כדי לתת לך תמונה אחת ברורה.
@@ -894,7 +901,7 @@
     <!-- למי זה מיועד -->
     <section id="audience">
       <div class="container">
-        <h2>למי Shelter Alert מתאימה?</h2>
+        <h2>למי RED ALERT מתאימה?</h2>
         <p class="section-intro">
           האפליקציה מיועדת גם לשימוש אישי, וגם כפלטפורמת פיילוט לגופים
           עירוניים או מקצועיים.
@@ -954,7 +961,8 @@
 
           <form
             class="beta-grid"
-            onsubmit="alert('גם כאן – צריך לחבר לשרת או לשירות טפסים (כמו Formspree) בהמשך.'); return false;"
+            action="https://formspree.io/f/mankynal"
+            method="POST"
           >
             <div class="form-group">
               <label for="email">
@@ -1019,7 +1027,7 @@
       <div class="container">
         <div class="legal-card">
           <p>
-            <strong>הבהרה:</strong> Shelter Alert אינה אפליקציה רשמית של פיקוד
+            <strong>הבהרה:</strong> RED ALERT אינה אפליקציה רשמית של פיקוד
             העורף, צה״ל או כל גוף מדינתי אחר. יש לפעול תמיד לפי ההנחיות
             הרשמיות של גורמי הביטחון, ולראות באפליקציה כלי עזר נוסף בלבד.
           </p>
@@ -1080,9 +1088,9 @@
   <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
-      <div>© Shelter Alert – כל הזכויות שמורות.</div>
+      <div>© RED ALERT – כל הזכויות שמורות.</div>
       <div class="footer-links">
-        <a href="mailto:info@shelter-alert.com">צור קשר</a>
+        <a href="mailto:yoav.barel1@gmail.com">צור קשר</a>
         <a href="#beta-form">הצטרפות לבטא</a>
       </div>
     </div>
