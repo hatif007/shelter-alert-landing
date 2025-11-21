@@ -2,14 +2,14 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>RED ALERT – התרעה וניווט חכם למקלטים</title>
+  <title>RED ALERT – ניווט חכם למקלטים בזמן אזעקה</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
     content="RED ALERT – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה."
   />
 
-  <!-- פונט עברי -->
+  <!-- פונט עברי נעים לקריאה -->
   <link
     href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap"
     rel="stylesheet"
@@ -30,7 +30,7 @@
 
     body {
       font-family: "Heebo", system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", sans-serif;
+        "Segoe UI", sans-serif;
       background-color: #f5f7fb;
       color: #111827;
       line-height: 1.6;
@@ -70,39 +70,35 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 0;
+      gap: 16px;
     }
 
-    .brand {
+    .logo {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .brand-logo {
-      width: 44px;
-      height: 44px;
+    .logo-img {
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      background: #020617;
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-name {
+    .logo-text-main {
       font-weight: 800;
       font-size: 20px;
-      letter-spacing: 0.08em;
-      color: #ef4444;
+      color: #b91c1c; /* RED ALERT */
     }
 
-    .brand-tagline {
+    .logo-text-sub {
       font-size: 12px;
-      color: #4b5563;
+      color: #6b7280;
+    }
+
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
     }
 
     .nav-links {
@@ -149,13 +145,13 @@
 
     /* HERO */
     .hero {
-      padding: 40px 0 40px;
+      padding: 32px 0 40px;
       background: radial-gradient(
-                circle at top right,
-                rgba(248, 113, 113, 0.18),
-                transparent 60%
-      ),
-      #fef2f2;
+          circle at top right,
+          rgba(37, 99, 235, 0.12),
+          transparent 60%
+        ),
+        #f5f7fb;
     }
 
     .hero-grid {
@@ -187,7 +183,7 @@
     .hero-subtitle {
       font-size: 16px;
       color: #4b5563;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .hero-list {
@@ -207,38 +203,41 @@
     .hero-list span.bullet {
       margin-top: 3px;
       font-size: 16px;
-      color: #16a34a;
+      color: #10b981;
     }
 
-    /* בועת המייל העליונה */
-    .hero-email-card {
-      max-width: 520px;
-      margin: 18px auto 0;
-      background: rgba(255,255,255,0.96);
-      border-radius: 32px;
-      padding: 14px 18px;
-      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.18);
-      border: 1px solid rgba(248, 113, 113, 0.25);
-    }
-
-    .hero-email-label {
-      font-size: 13px;
+    .hero-note {
+      font-size: 12px;
       color: #6b7280;
-      margin-bottom: 6px;
-      text-align: center;
+      margin-top: 6px;
     }
 
-    .hero-form {
+    /* בועת מייל קטנה */
+    .email-box {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 14px 14px 10px;
+      max-width: 420px;
+      margin-top: 8px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    }
+
+    .email-box-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .email-row {
       display: flex;
-      flex-wrap: wrap;
       gap: 8px;
       align-items: center;
-      justify-content: center;
     }
 
-    .hero-form input[type="email"] {
-      flex: 1 1 220px;
-      padding: 10px 12px;
+    .email-input {
+      flex: 1;
+      padding: 9px 12px;
       border-radius: 999px;
       border: 1px solid #d1d5db;
       font-size: 14px;
@@ -246,93 +245,80 @@
       background-color: #f9fafb;
     }
 
-    .hero-form input[type="email"]:focus {
-      border-color: #ef4444;
-      box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.45);
+    .email-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb33;
       background-color: #ffffff;
     }
 
-    .btn-primary-lg {
-      padding: 10px 24px;
+    .email-btn {
+      padding: 9px 16px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #ef4444, #b91c1c);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 500;
       border: none;
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
-    .btn-primary-lg:hover {
-      box-shadow: 0 10px 26px rgba(185, 28, 28, 0.35);
-      transform: translateY(-1px);
+    .email-btn:hover {
+      opacity: 0.95;
     }
 
-    .hero-note {
-      font-size: 12px;
+    .email-hint {
+      margin-top: 6px;
+      font-size: 11px;
       color: #6b7280;
-      margin-top: 8px;
-      text-align: center;
     }
 
     .hero-image-wrapper {
       border-radius: 24px;
-      background: linear-gradient(135deg, #020617, #111827);
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
       padding: 3px;
-      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.5);
+      box-shadow: 0 20px 50px rgba(31, 41, 55, 0.18);
     }
 
     .hero-image-inner {
       border-radius: 22px;
       background-color: #020617;
-      padding: 18px;
+      padding: 12px;
       color: #e5e7eb;
       min-height: 280px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 12px;
     }
 
     .hero-pill {
       font-size: 12px;
-      color: #e5e7eb;
-      opacity: 0.8;
+      color: #a5b4fc;
     }
 
     .hero-map-placeholder {
       flex: 1;
-      border-radius: 18px;
+      border-radius: 16px;
       background: radial-gradient(
-                  circle at top left,
-                  rgba(239, 68, 68, 0.45),
-                  transparent 55%
-      ),
-      radial-gradient(
-                  circle at bottom right,
-                  rgba(248, 250, 252, 0.25),
-                  transparent 55%
-      );
+          circle at top left,
+          rgba(59, 130, 246, 0.5),
+          transparent 55%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(129, 140, 248, 0.45),
+          transparent 55%
+        );
       position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-map-placeholder img {
-      width: 180px;
-      height: 180px;
-      object-fit: contain;
     }
 
     .hero-map-placeholder::before {
-      content: "מוקאפ • מסך מפת מקלטים בזמן אמת";
+      content: "תצוגת מפה + מקלטים קרובים (מוקאפ)";
       position: absolute;
-      bottom: 10px;
+      bottom: 12px;
       right: 12px;
-      font-size: 11px;
+      font-size: 12px;
       color: rgba(249, 250, 251, 0.9);
     }
 
@@ -437,12 +423,12 @@
     .screen-placeholder {
       height: 200px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #020617, #111827);
+      background: linear-gradient(135deg, #2563eb22, #7c3aed33);
       margin-bottom: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #f9fafb;
+      color: #1f2933;
       font-size: 13px;
       text-align: center;
       padding: 8px;
@@ -484,7 +470,7 @@
       border-radius: 20px;
       padding: 20px;
       box-shadow: 0 10px 30px rgba(59, 130, 246, 0.22);
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
     }
 
@@ -513,17 +499,21 @@
     }
 
     .form-group input,
-    .form-group select {
+    .form-group select,
+    .form-group textarea {
       padding: 8px 10px;
       border-radius: 10px;
       border: 1px solid #d1d5db;
       font-size: 14px;
       outline: none;
       background-color: #f9fafb;
+      font-family: inherit;
+      resize: vertical;
     }
 
     .form-group input:focus,
-    .form-group select:focus {
+    .form-group select:focus,
+    .form-group textarea:focus {
       border-color: #2563eb;
       box-shadow: 0 0 0 1px #2563eb33;
       background-color: #ffffff;
@@ -535,6 +525,24 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 10px;
+    }
+
+    .btn-primary-lg {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .btn-primary-lg:hover {
+      box-shadow: 0 10px 24px rgba(185, 28, 28, 0.3);
+      transform: translateY(-1px);
     }
 
     .beta-note {
@@ -672,31 +680,32 @@
         display: block;
       }
 
-      .hero-email-card {
-        max-width: 92%;
-        padding: 10px 12px;
-        border-radius: 22px;
-        box-shadow: 0 8px 22px rgba(15, 23, 42, 0.16);
+      .header-inner {
+        padding: 8px 0;
       }
 
-      .hero-email-label {
-        font-size: 12px;
+      .logo-text-sub {
+        display: none;
       }
 
-      .hero-form {
+      .email-row {
         flex-direction: column;
-        align-items: stretch;
       }
 
-      .hero-form input[type="email"],
-      .btn-primary-lg {
+      .email-btn {
         width: 100%;
+      }
+
+      .email-box {
+        max-width: 100%;
+        padding: 12px;
+        border-radius: 14px;
       }
     }
   </style>
 
   <script>
-    // תפריט במובייל
+    // תפריט מובייל
     document.addEventListener("DOMContentLoaded", function () {
       var toggle = document.getElementById("menu-toggle");
       var nav = document.getElementById("nav-links");
@@ -721,455 +730,481 @@
 </head>
 
 <body>
-<!-- HEADER -->
-<header>
-  <div class="container header-inner">
-    <div class="brand">
-      <div class="brand-logo">
-        <img src="assets/red-alert-logo.png" alt="RED ALERT logo" />
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <img src="assets/red-alert-logo.png" alt="לוגו RED ALERT" class="logo-img" />
+        <div class="logo-text-wrap">
+          <span class="logo-text-main">RED ALERT</span>
+          <span class="logo-text-sub">אפליקציה לניווט חכם למקלטים בזמן אזעקה</span>
+        </div>
       </div>
-      <div class="brand-text">
-        <div class="brand-name">RED ALERT</div>
-        <div class="brand-tagline">ניווט חכם למקלטים</div>
-      </div>
-    </div>
 
-    <nav>
-      <button id="menu-toggle" class="menu-toggle" aria-label="תפריט">
-        ☰
-      </button>
-      <div id="nav-links" class="nav-links">
-        <a href="#how-it-works">איך זה עובד</a>
-        <a href="#features">פיצ'רים</a>
-        <a href="#audience">למי זה מתאים?</a>
-        <a href="#faq">שאלות נפוצות</a>
-        <button
-          class="btn-primary-sm"
-          onclick="document.getElementById('beta-form').scrollIntoView({behavior: 'smooth'});"
-        >
-          אני רוצה להצטרף לבטא
+      <nav>
+        <button id="menu-toggle" class="menu-toggle" aria-label="תפריט">
+          ☰
         </button>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<!-- HERO -->
-<main>
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="hero-badge">
-          🧪 שלב בטא / קדם־חנות
-          <span>– מחפשים נבדקים מהשטח</span>
-        </div>
-
-        <h1 class="hero-title">
-          RED ALERT – התרעה וניווט חכם למקלטים בזמן אזעקה
-        </h1>
-
-        <p class="hero-subtitle">
-          ברגעי חירום אין זמן לחפש. האפליקציה מזהה את מיקומך, מאתרת את המקלטים הקרובים אליך,
-          ומנווטת אותך בבירור – לפי אזור ההתגוננות שלך.
-        </p>
-
-        <ul class="hero-list">
-          <li>
-            <span class="bullet">•</span>
-            <span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי.</span>
-          </li>
-          <li>
-            <span class="bullet">•</span>
-            <span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד – פחות רעש, יותר דיוק.</span>
-          </li>
-          <li>
-            <span class="bullet">•</span>
-            <span>מצב תרגול – להתנסות מראש במסלול למקלט בסביבת הבית / העבודה.</span>
-          </li>
-        </ul>
-
-        <!-- בועת מייל קטנה יותר -->
-        <div class="hero-email-card">
-          <div class="hero-email-label">
-            הכניסו כתובת אימייל כדי לקבל גישה לבטא
-          </div>
-          <form
-                  class="hero-form"
-                  action="https://formspree.io/f/mankynal"
-                  method="POST"
+        <div id="nav-links" class="nav-links">
+          <a href="#how-it-works">איך זה עובד</a>
+          <a href="#features">פיצ'רים</a>
+          <a href="#audience">למי זה מתאים?</a>
+          <a href="#faq">שאלות נפוצות</a>
+          <button
+            class="btn-primary-sm"
+            onclick="document.getElementById('beta-form').scrollIntoView({behavior: 'smooth'});"
           >
-            <input
-                    type="email"
-                    name="email"
-                    placeholder="example@domain.com"
-                    required
-            />
-            <button type="submit" class="btn-primary-lg">
-              אני רוצה להצטרף לבטא
-            </button>
-            <input type="hidden" name="_subject" value="RED ALERT – הרשמה לבטא (טופס עליון)" />
-          </form>
+            הצטרפות לבטא
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">
+            שלב בטא / קדם־חנות
+            <span>– מחפשים נבדקים מהשטח</span>
+          </div>
+
+          <h1 class="hero-title">
+            RED ALERT – התרעה וניווט חכם למקלטים בזמן אזעקה
+          </h1>
+
+          <p class="hero-subtitle">
+            ברגעי חירום אין זמן לחפש. RED ALERT מאתרת את מיקומך, מציגה את
+            המקלטים הקרובים אליך, ומנווטת אליהם – לפי אזור ההתגוננות שלך.
+          </p>
+
+          <ul class="hero-list">
+            <li>
+              <span class="bullet">•</span>
+              <span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי.</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד – פחות רעש, יותר דיוק.</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>מצב תרגול – להתנסות מראש במסלול למקלט בסביבת הבית / העבודה.</span>
+            </li>
+          </ul>
+
+          <!-- בועת מייל קטנה וממוקדת -->
+          <div class="email-box">
+            <form action="https://formspree.io/f/mankynal" method="POST">
+              <input type="hidden" name="form_name" value="hero_top" />
+              <div class="email-box-title">השאירו מייל לקבלת גישה לגרסת הבטא כשנהיה מוכנים</div>
+              <div class="email-row">
+                <input
+                  type="email"
+                  name="email"
+                  class="email-input"
+                  placeholder="example@domain.com"
+                  required
+                />
+                <button type="submit" class="email-btn">
+                  קבלו עדכון ראשון
+                </button>
+              </div>
+              <div class="email-hint">
+                נשלח עדכונים רק כשיש משהו חשוב. בלי ספאם.
+              </div>
+            </form>
+          </div>
+
           <p class="hero-note">
-            לא נשלח ספאם. נקצה גישה לגרסת הבטא בהקדם האפשרי (Android / iOS),
-            ונעדכן אתכם במייל בלבד.
+            גרסת בטא מתוכננת ל־Android ובהמשך גם ל־iOS. המייל ישמש רק לעדכונים על RED ALERT.
           </p>
         </div>
-      </div>
 
-      <div class="hero-image-wrapper">
-        <div class="hero-image-inner">
-          <div class="hero-pill">מוקאפ • מסך מפת מקלטים בזמן אמת</div>
-          <div class="hero-map-placeholder">
-            <img src="assets/red-alert-logo.png" alt="RED ALERT app mockup" />
+        <div class="hero-image-wrapper">
+          <div class="hero-image-inner">
+            <div class="hero-pill">מוקאפ • מסך מפת מקלטים בזמן אמת</div>
+            <div class="hero-map-placeholder"></div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- הבעיה -->
-  <section id="how-it-works" class="problem-section">
-    <div class="container">
-      <h2>מה קורה היום בזמן אזעקה?</h2>
-      <p class="section-intro">
-        ברגעים של אזעקה יש לחץ, רעש ובלבול. ברוב המקרים, אנשים שואלים
-        את עצמם שלוש שאלות פשוטות – בלי שיהיה להם כלי אחד ברור שנותן
-        תשובה:
-      </p>
-
-      <div class="problem-grid">
-        <div class="problem-card">
-          <div class="problem-card-title">
-            <span class="problem-emoji">🔍</span> איפה בכלל יש כאן מקלט?
-          </div>
-          <p>
-            לא תמיד יש שילוט ברור, לא תמיד זוכרים איפה חדר המדרגות הכי
-            קרוב, ובמיוחד אם נמצאים במקום לא מוכר – החוסר וודאות גדל.
-          </p>
-        </div>
-
-        <div class="problem-card">
-          <div class="problem-card-title">
-            <span class="problem-emoji">🧭</span> מה המסלול הכי מהיר?
-          </div>
-          <p>
-            יש כמה אפשרויות – חדר מדרגות, ממ&quot;ד, מקלט ציבורי. קשה לדעת
-            מה הכי קרוב, ומהו המסלול המהיר ביותר בזמן אמת.
-          </p>
-        </div>
-
-        <div class="problem-card">
-          <div class="problem-card-title">
-            <span class="problem-emoji">⏱</span> כמה זמן יש לי בכלל?
-          </div>
-          <p>
-            ההבדל בין אזורי התגוננות יכול להיות שניות קריטיות. בלי התאמה
-            לעיר ול־zone, קשה לדעת כמה זמן באמת יש להגיע למרחב המוגן.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- פיצ'רים -->
-  <section id="features">
-    <div class="container">
-      <h2>מה RED ALERT עושה עבורך בזמן אמת?</h2>
-      <p class="section-intro">
-        האפליקציה מחברת בין נתוני אזעקות, אזורי התגוננות, מיקום GPS
-        ומסד נתונים של אלפי מקלטים – כדי לתת לך תמונה אחת ברורה.
-      </p>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">📍</div>
-          <div class="feature-title">איתור מקלטים לפי GPS</div>
-          <div class="feature-text">
-            שימוש במיקום הנוכחי שלך וב־MongoDB עם אלפי מקלטים כדי להציג את
-            אלה שהכי קרובים אליך – כולל מרחק מדויק במטרים.
-          </div>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🧭</div>
-          <div class="feature-title">ניווט מהיר למקלט</div>
-          <div class="feature-text">
-            בלחיצה אחת – מתעדכנים המקלטים הקרובים, נבנה מסלול, והאפליקציה
-            מציגה כיוון ברור למקלט הנבחר.
-          </div>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🛡</div>
-          <div class="feature-title">התאמת אזעקות לעיר ול־zone</div>
-          <div class="feature-text">
-            מיפוי לוגי של עיר → אזור התגוננות, וסינון אזעקות כך שרק
-            אזעקות הרלוונטיות לאזור שלך יפעילו את מנגנון האזעקה באפליקציה.
-          </div>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🧪</div>
-          <div class="feature-title">מצב תרגול</div>
-          <div class="feature-text">
-            אפשרות להפעיל &quot;אזעקת תרגול&quot; ולראות מראש מה המסלול למקלט
-            הקרוב – בבית, במשרד, או בכל מקום אחר.
-          </div>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🧾</div>
-          <div class="feature-title">היסטוריית אזעקות במכשיר</div>
-          <div class="feature-text">
-            האפליקציה שומרת לוג מקומי של האזעקות שזוהו במכשיר – בלי לשלוח
-            את היסטוריית השימוש שלך לשרת.
-          </div>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">📱</div>
-          <div class="feature-title">ממשק פשוט בעברית</div>
-          <div class="feature-text">
-            מסך אחד ברור, אייקונים ברורים ו־UX נקי. בזמן אזעקה – אין מקום
-            ליותר מדי כפתורים.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- מסכי דמו -->
-  <section class="screens-section">
-    <div class="container">
-      <h2>איך זה נראה בפועל?</h2>
-      <p class="section-intro">
-        אלו מוקאפים / מסכי דוגמה מהאפליקציה. בהמשך ניתן יהיה להחליף כאן
-        לתמונות אמיתיות מה־build של Flutter.
-      </p>
-
-      <div class="screens-grid">
-        <div class="screen-card">
-          <div class="screen-placeholder">
-            מסך מפה – מיקום המשתמש + שני המקלטים הקרובים ביותר
-          </div>
-          <div class="screen-caption">מסך מפה ומקלטים קרובים</div>
-        </div>
-
-        <div class="screen-card">
-          <div class="screen-placeholder">
-            מסך ניווט – מרחק למקלט, כיוון, והנחיות בסיסיות
-          </div>
-          <div class="screen-caption">ניווט חי למקלט</div>
-        </div>
-
-        <div class="screen-card">
-          <div class="screen-placeholder">
-            מסך אזעקה / מצב תרגול – טיימר, עיר, אזור התגוננות
-          </div>
-          <div class="screen-caption">מצב אזעקה / תרגול</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- למי זה מיועד -->
-  <section id="audience">
-    <div class="container">
-      <h2>למי RED ALERT מתאימה?</h2>
-      <p class="section-intro">
-        האפליקציה מיועדת גם לשימוש אישי, וגם כפלטפורמת פיילוט לגופים
-        עירוניים או מקצועיים.
-      </p>
-
-      <div class="audience-grid">
-        <div class="audience-card">
-          <div class="audience-title">תושבים פרטיים</div>
-          <p>
-            כל מי שרוצה לדעת שבזמן אזעקה יש לו כלי אחד ברור שמראה לאן
-            הולכים, כמה זה רחוק, וכמה זמן יש להתגונן.
-          </p>
-        </div>
-
-        <div class="audience-card">
-          <div class="audience-title">רשויות מקומיות / עיריות</div>
-          <p>
-            פיילוטים עירוניים, בדיקות שטח, והנגשת מידע נוסף לתושבים בצורה
-            דיגיטלית. ניתן ליצור קשר לשיתופי פעולה רחבים יותר.
-          </p>
-        </div>
-
-        <div class="audience-card">
-          <div class="audience-title">גורמי חירום / מקצוע</div>
-          <p>
-            מי שרוצה להכיר פתרון טכנולוגי חדש לניהול ניווט למרחבים מוגנים –
-            עם דגש על UX בזמן אמת ונתונים חיים מהשטח.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- טופס בטא מפורט -->
-  <section id="beta-form" class="beta-section">
-    <div class="container">
-      <div class="beta-card">
-        <h2>הצטרפות לגרסת הבטא / בדיקות שטח</h2>
+    <!-- הבעיה -->
+    <section id="how-it-works" class="problem-section">
+      <div class="container">
+        <h2>מה קורה היום בזמן אזעקה?</h2>
         <p class="section-intro">
-          האפליקציה נמצאת בשלב קדם־חנות (Android / iOS). השארת פרטים כאן
-          תאפשר לנו:
+          ברגעים של אזעקה יש לחץ, רעש ובלבול. ברוב המקרים, אנשים שואלים
+          את עצמם שלוש שאלות פשוטות – בלי שיהיה להם כלי אחד ברור שנותן
+          תשובה:
         </p>
-        <ul class="hero-list">
-          <li>
-            <span class="bullet">•</span>
-            <span>לשלוח לך קישור להורדה כשגרסת הבטא תהיה מוכנה.</span>
-          </li>
-          <li>
-            <span class="bullet">•</span>
-            <span>להזמין אותך, אם תרצה, להשתתף בפיילוט / בדיקות שטח.</span>
-          </li>
-          <li>
-            <span class="bullet">•</span>
-            <span>להבין באילו ערים ואזורים יש ביקוש גבוה יותר.</span>
-          </li>
-        </ul>
 
-        <form
-                class="beta-grid"
-                action="https://formspree.io/f/mankynal"
-                method="POST"
-        >
-          <div class="form-group">
-            <label for="email_beta">
-              <span class="required">*</span> כתובת אימייל
-            </label>
-            <input
-                    id="email_beta"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="example@domain.com"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="name_beta">שם (לא חובה)</label>
-            <input
-                    id="name_beta"
-                    name="name"
-                    type="text"
-                    placeholder="איך לפנות אליך?"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="city_beta">עיר / ישוב</label>
-            <input
-                    id="city_beta"
-                    name="city"
-                    type="text"
-                    placeholder="לדוגמה: יהוד, תל אביב, באר שבע"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="role_beta">מי אתם?</label>
-            <select id="role_beta" name="role">
-              <option value="">בחר...</option>
-              <option value="resident">תושב/ת פרטי/ת</option>
-              <option value="municipality">נציג/ת רשות / עירייה</option>
-              <option value="professional">גורם מקצוע בתחום החירום</option>
-              <option value="other">אחר</option>
-            </select>
-          </div>
-
-          <input type="hidden" name="_subject" value="RED ALERT – הרשמה לבטא (טופס תחתון)" />
-
-          <div class="beta-actions" style="grid-column: 1 / -1;">
-            <button type="submit" class="btn-primary-lg">
-              שלחו לי עדכון כשגרסת הבטא מוכנה
-            </button>
-            <p class="beta-note">
-              נשתמש בפרטים רק לצורך עדכונים על האפליקציה וגרסת הבטא.
-              לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.
+        <div class="problem-grid">
+          <div class="problem-card">
+            <div class="problem-card-title">
+              <span class="problem-emoji">🔍</span> איפה בכלל יש כאן מקלט?
+            </div>
+            <p>
+              לא תמיד יש שילוט ברור, לא תמיד זוכרים איפה חדר המדרגות הכי
+              קרוב, ובמיוחד אם נמצאים במקום לא מוכר – החוסר ודאות גדל.
             </p>
           </div>
-        </form>
-      </div>
-    </div>
-  </section>
 
-  <!-- פרטיות / אחריות -->
-  <section>
-    <div class="container">
-      <div class="legal-card">
-        <p>
-          <strong>הבהרה:</strong> RED ALERT אינה אפליקציה רשמית של פיקוד
-          העורף, צה״ל או כל גוף מדינתי אחר. יש לפעול תמיד לפי ההנחיות
-          הרשמיות של גורמי הביטחון, ולראות באפליקציה כלי עזר נוסף בלבד.
+          <div class="problem-card">
+            <div class="problem-card-title">
+              <span class="problem-emoji">🧭</span> מה המסלול הכי מהיר?
+            </div>
+            <p>
+              יש כמה אפשרויות – חדר מדרגות, ממ&quot;ד, מקלט ציבורי. קשה לדעת
+              מה הכי קרוב, ומהו המסלול המהיר ביותר בזמן אמת.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-card-title">
+              <span class="problem-emoji">⏱</span> כמה זמן יש לי בכלל?
+            </div>
+            <p>
+              ההבדל בין אזורי התגוננות יכול להיות שניות קריטיות. בלי התאמה
+              לעיר ול־zone, קשה לדעת כמה זמן באמת יש להגיע למרחב המוגן.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- פיצ'רים -->
+    <section id="features">
+      <div class="container">
+        <h2>מה RED ALERT עושה עבורך בזמן אמת?</h2>
+        <p class="section-intro">
+          האפליקציה מחברת בין נתוני אזעקות, אזורי התגוננות, מיקום GPS
+          ומסד נתונים של אלפי מקלטים – כדי לתת לך תמונה אחת ברורה.
         </p>
-        <p style="margin-top: 8px;">
-          המייל והמידע שתמסרו ישמשו רק לצורך יצירת קשר ועדכונים על האפליקציה.
-          לא נעשה שימוש בפרטים לצרכי פרסום חיצוני.
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📍</div>
+            <div class="feature-title">איתור מקלטים לפי GPS</div>
+            <div class="feature-text">
+              שימוש במיקום הנוכחי שלך וב־MongoDB עם אלפי מקלטים בארץ כדי להציג את
+              אלה שהכי קרובים אליך – כולל מרחק משוער במטרים.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧭</div>
+            <div class="feature-title">ניווט מהיר למקלט</div>
+            <div class="feature-text">
+              בלחיצה אחת – מתעדכנים המקלטים הקרובים, נבנה מסלול, והאפליקציה
+              מציגה כיוון ברור למקלט הנבחר.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🛡</div>
+            <div class="feature-title">התאמת אזעקות לעיר ול־zone</div>
+            <div class="feature-text">
+              מיפוי לוגי של עיר → אזור התגוננות, וסינון אזעקות כך שרק
+              אזעקות הרלוונטיות לאזור שלך יפעילו את מנגנון האזעקה באפליקציה.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧪</div>
+            <div class="feature-title">מצב תרגול</div>
+            <div class="feature-text">
+              אפשרות להפעיל &quot;אזעקת תרגול&quot; ולראות מראש מה המסלול למקלט
+              הקרוב – בבית, במשרד, או בכל מקום אחר.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧾</div>
+            <div class="feature-title">היסטוריית אזעקות במכשיר</div>
+            <div class="feature-text">
+              RED ALERT שומרת לוג מקומי של האזעקות שזוהו במכשיר – בלי לשלוח
+              את היסטוריית השימוש שלך לשרת.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <div class="feature-title">ממשק פשוט בעברית</div>
+            <div class="feature-text">
+              מסך אחד ברור, אייקונים ברורים ו־UX נקי. בזמן אזעקה – אין מקום
+              ליותר מדי כפתורים.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- מסכי דמו -->
+    <section class="screens-section">
+      <div class="container">
+        <h2>איך זה נראה בפועל?</h2>
+        <p class="section-intro">
+          אלו מוקאפים / מסכי דוגמה מהאפליקציה. בהמשך ניתן יהיה להחליף כאן
+          לתמונות אמיתיות מה־build של Flutter.
         </p>
+
+        <div class="screens-grid">
+          <div class="screen-card">
+            <div class="screen-placeholder">
+              מסך מפה – מיקום המשתמש + שני המקלטים הקרובים ביותר
+            </div>
+            <div class="screen-caption">מסך מפה ומקלטים קרובים</div>
+          </div>
+
+          <div class="screen-card">
+            <div class="screen-placeholder">
+              מסך ניווט – מרחק למקלט, כיוון, והנחיות בסיסיות
+            </div>
+            <div class="screen-caption">ניווט חי למקלט</div>
+          </div>
+
+          <div class="screen-card">
+            <div class="screen-placeholder">
+              מסך אזעקה / מצב תרגול – טיימר, עיר, אזור התגוננות
+            </div>
+            <div class="screen-caption">מצב אזעקה / תרגול</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- למי זה מיועד -->
+    <section id="audience">
+      <div class="container">
+        <h2>למי RED ALERT מתאימה?</h2>
+        <p class="section-intro">
+          האפליקציה מיועדת גם לשימוש אישי, וגם כפלטפורמת פיילוט לגופים
+          עירוניים או מקצועיים.
+        </p>
+
+        <div class="audience-grid">
+          <div class="audience-card">
+            <div class="audience-title">תושבים פרטיים</div>
+            <p>
+              כל מי שרוצה לדעת שבזמן אזעקה יש לו כלי אחד ברור שמראה לאן
+              הולכים, כמה זה רחוק, וכמה זמן יש להתגונן.
+            </p>
+          </div>
+
+          <div class="audience-card">
+            <div class="audience-title">רשויות מקומיות / עיריות</div>
+            <p>
+              פיילוטים עירוניים, בדיקות שטח, והנגשת מידע נוסף לתושבים בצורה
+              דיגיטלית. ניתן ליצור קשר לשיתופי פעולה רחבים יותר.
+            </p>
+          </div>
+
+          <div class="audience-card">
+            <div class="audience-title">גורמי חירום / מקצוע</div>
+            <p>
+              מי שרוצה להכיר פתרון טכנולוגי חדש לניהול ניווט למרחבים מוגנים –
+              עם דגש על UX בזמן אמת ונתונים חיים מהשטח.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- טופס בטא -->
+    <section id="beta-form" class="beta-section">
+      <div class="container">
+        <div class="beta-card">
+          <h2>הצטרפות לגרסת הבטא / בדיקות שטח</h2>
+          <p class="section-intro">
+            האפליקציה נמצאת בשלב קדם־חנות (Android / iOS). השארת פרטים כאן
+            תאפשר לנו:
+          </p>
+          <ul class="hero-list">
+            <li>
+              <span class="bullet">•</span>
+              <span>לשלוח לך קישור להורדה כשגרסת הבטא תהיה מוכנה.</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>להזמין אותך, אם תרצה, להשתתף בפיילוט / בדיקות שטח.</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>להבין באילו ערים ואזורים יש ביקוש גבוה יותר.</span>
+            </li>
+          </ul>
+
+          <form
+            class="beta-grid"
+            action="https://formspree.io/f/mankynal"
+            method="POST"
+          >
+            <input type="hidden" name="form_name" value="beta_form" />
+
+            <div class="form-group">
+              <label for="email">
+                <span class="required">*</span> כתובת אימייל
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="example@domain.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="name">שם (לא חובה)</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="איך לפנות אליך?"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="city">עיר / ישוב</label>
+              <input
+                id="city"
+                name="city"
+                type="text"
+                placeholder="לדוגמה: יהוד, תל אביב, באר שבע"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="role">מי אתם?</label>
+              <select id="role" name="role">
+                <option value="">בחר...</option>
+                <option value="resident">תושב/ת פרטי/ת</option>
+                <option value="municipality">נציג/ת רשות / עירייה</option>
+                <option value="professional">גורם מקצוע בתחום החירום</option>
+                <option value="other">אחר</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="org">שם ארגון / רשות (אם רלוונטי)</label>
+              <input
+                id="org"
+                name="organization"
+                type="text"
+                placeholder="שם הרשות / הארגון / החברה"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">טלפון לנקודת קשר (לא חובה)</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="לדוגמה: 050-0000000"
+              />
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label for="notes">הערות / עניין מיוחד (לדוגמה: פיילוט עירוני, שימוש ארגוני)</label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="3"
+                placeholder="ספרו לנו בקצרה איך תרצו להשתמש ב-RED ALERT"
+              ></textarea>
+            </div>
+
+            <div class="beta-actions" style="grid-column: 1 / -1;">
+              <button type="submit" class="btn-primary-lg">
+                שלחו לי עדכון כשגרסת הבטא מוכנה
+              </button>
+              <p class="beta-note">
+                נשתמש בפרטים רק לצורך עדכונים על האפליקציה וגרסת הבטא.
+                לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- פרטיות / אחריות -->
+    <section>
+      <div class="container">
+        <div class="legal-card">
+          <p>
+            <strong>הבהרה:</strong> RED ALERT אינה אפליקציה רשמית של פיקוד
+            העורף, צה״ל או כל גוף מדינתי אחר. יש לפעול תמיד לפי ההנחיות
+            הרשמיות של גורמי הביטחון, ולראות באפליקציה כלי עזר נוסף בלבד.
+          </p>
+          <p style="margin-top: 8px;">
+            המייל והמידע שתמסרו ישמשו רק לצורך יצירת קשר ועדכונים על האפליקציה.
+            לא נעשה שימוש בפרטים לצרכי פרסום חיצוני.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <h2>שאלות נפוצות</h2>
+        <div class="faq-list">
+          <details>
+            <summary>האם האפליקציה כבר זמינה בחנות?</summary>
+            <p>
+              כרגע האפליקציה בשלב קדם־חנות / בטא. המשמעות היא שאנחנו עדיין
+              בודקים, משפרים ומייצבים את המערכת. מי שנרשם כאן יקבל עדכון
+              כשגרסת בטא תהיה זמינה להורדה.
+            </p>
+          </details>
+
+          <details>
+            <summary>האם השימוש באפליקציה יהיה בתשלום?</summary>
+            <p>
+              בשלב הבטא השימוש מתוכנן להיות ללא עלות. בהמשך, חלק מהפיצ׳רים
+              המתקדמים עשויים להיות במסגרת מודלים שונים – אך המטרה היא להשאיר
+              את הליבה (התרעה + ניווט למקלט) נגישה ככל האפשר.
+            </p>
+          </details>
+
+          <details>
+            <summary>איך זה יעבוד ב־Android וב־iOS?</summary>
+            <p>
+              ב־Android ההפצה תעשה דרך Google Play (או קישור ישיר לבטא).
+              ב־iOS ההפצה תעשה באמצעות TestFlight ו/או App Store – בהתאם למצב
+              האישור מול Apple. מי שיישאיר מייל יקבל קישורים מתאימים לשתי
+              הפלטפורמות.
+            </p>
+          </details>
+
+          <details>
+            <summary>מה קורה עם הפרטים שאני משאיר?</summary>
+            <p>
+              הפרטים משמשים רק כדי לעדכן אותך כשיש גרסת בטא, ולנהל רשימת
+              מתעניינים. לא נשתף את המידע עם מפרסמים חיצוניים. ניתן לבקש בכל
+              רגע להסיר אותך מרשימת התפוצה.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© RED ALERT – כל הזכויות שמורות.</div>
+      <div class="footer-links">
+        <a href="mailto:yoav.barel1@gmail.com">צור קשר</a>
+        <a href="#beta-form">הצטרפות לבטא</a>
       </div>
     </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="faq-section">
-    <div class="container">
-      <h2>שאלות נפוצות</h2>
-      <div class="faq-list">
-        <details>
-          <summary>האם האפליקציה כבר זמינה בחנות?</summary>
-          <p>
-            כרגע האפליקציה בשלב קדם־חנות / בטא. המשמעות היא שאנחנו עדיין
-            בודקים, משפרים ומייצבים את המערכת. מי שנרשם כאן יקבל עדכון
-            כשגרסת בטא תהיה זמינה להורדה.
-          </p>
-        </details>
-
-        <details>
-          <summary>האם השימוש באפליקציה יהיה בתשלום?</summary>
-          <p>
-            בשלב הבטא השימוש מתוכנן להיות ללא עלות. בהמשך, חלק מהפיצ׳רים
-            המתקדמים עשויים להיות במסגרת מודלים שונים – אך המטרה היא להשאיר
-            את הליבה (התרעה + ניווט למקלט) נגישה ככל האפשר.
-          </p>
-        </details>
-
-        <details>
-          <summary>איך זה יעבוד ב־Android וב־iOS?</summary>
-          <p>
-            ב־Android ההפצה תעשה דרך Google Play (או קישור ישיר לבטא).
-            ב־iOS ההפצה תעשה באמצעות TestFlight ו/או App Store – בהתאם למצב
-            האישור מול Apple. מי שיישאיר מייל יקבל קישורים מתאימים לשתי
-            הפלטפורמות.
-          </p>
-        </details>
-
-        <details>
-          <summary>מה קורה עם הפרטים שאני משאיר?</summary>
-          <p>
-            הפרטים משמשים רק כדי לעדכן אותך כשיש גרסת בטא, ולנהל רשימת
-            מתעניינים. לא נשתף את המידע עם מפרסמים חיצוניים. ניתן לבקש בכל
-            רגע להסיר אותך מרשימת התפוצה.
-          </p>
-        </details>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container footer-inner">
-    <div>© RED ALERT – כל הזכויות שמורות.</div>
-    <div class="footer-links">
-      <a href="mailto:yoav.barel1@gmail.com">צור קשר</a>
-      <a href="#beta-form">הצטרפות לבטא</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 </body>
 </html>
