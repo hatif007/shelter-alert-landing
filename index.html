@@ -797,7 +797,7 @@
 
           <!-- בועת מייל קטנה וממוקדת -->
           <div class="email-box">
-            <form action="https://formspree.io/f/mankynal" method="POST">
+            <form id="hero-form">
               <input type="hidden" name="form_name" value="hero_top" />
               <div class="email-box-title">השאירו מייל לקבלת גישה לגרסת הבטא כשנהיה מוכנים</div>
               <div class="email-row">
@@ -815,6 +815,7 @@
               <div class="email-hint">
                 נשלח עדכונים רק כשיש משהו חשוב. בלי ספאם.
               </div>
+              <div class="email-hint" id="hero-status"></div>
             </form>
           </div>
 
@@ -1038,11 +1039,7 @@
             </li>
           </ul>
 
-          <form
-            class="beta-grid"
-            action="https://formspree.io/f/mankynal"
-            method="POST"
-          >
+          <form class="beta-grid" id="beta-form-form">
             <input type="hidden" name="form_name" value="beta_form" />
 
             <div class="form-group">
@@ -1127,6 +1124,7 @@
                 נשתמש בפרטים רק לצורך עדכונים על האפליקציה וגרסת הבטא.
                 לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.
               </p>
+              <p class="beta-note" id="beta-status"></p>
             </div>
           </form>
         </div>
@@ -1201,10 +1199,132 @@
     <div class="container footer-inner">
       <div>© RED ALERT – כל הזכויות שמורות.</div>
       <div class="footer-links">
-        <a href="mailto:yoav.barel1@gmail.com">צור קשר</a>
+        <a href="mailto:support@red-alert.live">צור קשר</a>
         <a href="#beta-form">הצטרפות לבטא</a>
       </div>
     </div>
   </footer>
+
+  <!-- JS לטפסים -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // כתובת ה-API של שירות הטפסים שלך
+      // לפיתוח מקומי: http://localhost:4000/contact
+      // בפרודקשן תחליף לכתובת האמיתית שלך (למשל https://forms.red-alert.live/contact)
+      const FORMS_API_URL = 'http://localhost:4000/contact';
+
+      // טופס קטן ב-HERO (אימייל בלבד)
+      const heroForm = document.getElementById('hero-form');
+      const heroStatus = document.getElementById('hero-status');
+
+      if (heroForm && heroStatus) {
+        heroForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          heroStatus.textContent = 'שולח...';
+
+          const emailInput = heroForm.querySelector('input[name="email"]');
+          const email = emailInput.value.trim();
+
+          if (!email) {
+            heroStatus.textContent = 'נא למלא כתובת אימייל.';
+            return;
+          }
+
+          const payload = {
+            name: '',
+            email: email,
+            source: 'hero_form',
+            message: 'Hero form signup from top email box on landing page.',
+          };
+
+          try {
+            const res = await fetch(FORMS_API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+
+            const json = await res.json();
+            if (json.ok) {
+              heroStatus.textContent = 'תודה! נוסיף אותך לרשימת העדכונים.';
+              heroForm.reset();
+            } else {
+              console.error(json);
+              heroStatus.textContent = 'אירעה שגיאה בשליחה. נסה/י שוב.';
+            }
+          } catch (err) {
+            console.error(err);
+            heroStatus.textContent = 'שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.';
+          }
+        });
+      }
+
+      // טופס בטא מורחב
+      const betaForm = document.getElementById('beta-form-form');
+      const betaStatus = document.getElementById('beta-status');
+
+      if (betaForm && betaStatus) {
+        betaForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          betaStatus.textContent = 'שולח...';
+
+          const formData = new FormData(betaForm);
+          const email = (formData.get('email') || '').toString().trim();
+          const name = (formData.get('name') || '').toString().trim();
+          const city = (formData.get('city') || '').toString().trim();
+          const role = (formData.get('role') || '').toString().trim();
+          const organization = (formData.get('organization') || '').toString().trim();
+          const phone = (formData.get('phone') || '').toString().trim();
+          const notes = (formData.get('notes') || '').toString().trim();
+
+          if (!email) {
+            betaStatus.textContent = 'נא למלא כתובת אימייל.';
+            return;
+          }
+
+          const messageLines = [
+            'Beta form signup from landing page:',
+            '',
+            `Name: ${name || 'N/A'}`,
+            `Email: ${email}`,
+            `City: ${city || 'N/A'}`,
+            `Role: ${role || 'N/A'}`,
+            `Organization: ${organization || 'N/A'}`,
+            `Phone: ${phone || 'N/A'}`,
+            '',
+            'Notes:',
+            notes || 'N/A',
+          ];
+
+          const payload = {
+            name: name,
+            email: email,
+            source: 'beta_form',
+            message: messageLines.join('\n'),
+          };
+
+          try {
+            const res = await fetch(FORMS_API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+
+            const json = await res.json();
+            if (json.ok) {
+              betaStatus.textContent = 'תודה! פנייתך נרשמה ונעדכן כשגרסת הבטא תהיה מוכנה.';
+              betaForm.reset();
+            } else {
+              console.error(json);
+              betaStatus.textContent = 'אירעה שגיאה בשליחה. נסה/י שוב.';
+            }
+          } catch (err) {
+            console.error(err);
+            betaStatus.textContent = 'שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.';
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
