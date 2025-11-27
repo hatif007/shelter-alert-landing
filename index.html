@@ -1211,7 +1211,7 @@
       // כתובת ה-API של שירות הטפסים שלך
       // לפיתוח מקומי: http://localhost:4000/contact
       // בפרודקשן תחליף לכתובת האמיתית שלך (למשל https://forms.red-alert.live/contact)
-      const FORMS_API_URL = 'http://localhost:4000/contact';
+      const FORMS_API_URL = 'http:red-alert-forms-service.up.railway.app/contact';
 
       // טופס קטן ב-HERO (אימייל בלבד)
       const heroForm = document.getElementById('hero-form');
@@ -1297,11 +1297,17 @@
           ];
 
           const payload = {
-            name: name,
-            email: email,
-            source: 'beta_form',
-            message: messageLines.join('\n'),
-          };
+  name: name,
+  email: email,
+  source: 'beta_form',
+  message: messageLines.join('\n'),
+  role: role,
+  city: city,
+  organization: organization,
+  phone: phone,
+  notes: notes,
+};
+
 
           try {
             const res = await fetch(FORMS_API_URL, {
