@@ -1112,7 +1112,7 @@
             </div>
 
             <div class="form-group">
-              <label for="phone">טלפון לנקודת קשר (לא חובה)</label>
+              <label for="phone">טלפון ליצירת קשר (לא חובה)</label>
               <input
                 id="phone"
                 name="phone"
@@ -1306,13 +1306,17 @@
           }
 
           if (role && role !== 'resident') {
-            if (!city) {
-              errors.push('אם אינכם תושבים – חובה למלא עיר.');
-            }
-            if (!organization) {
-              errors.push('אם אינכם תושבים – חובה למלא שם רשות / ארגון.');
-            }
-          }
+  if (!name) {
+    errors.push('אם אינכם תושבים – חובה למלא שם איש קשר.');
+  }
+  if (!city) {
+    errors.push('אם אינכם תושבים – חובה למלא עיר.');
+  }
+  if (!organization) {
+    errors.push('אם אינכם תושבים – חובה למלא שם רשות / ארגון.');
+  }
+}
+
 
           if (errors.length > 0) {
             betaStatus.textContent = '';
