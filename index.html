@@ -100,6 +100,15 @@
       display: flex;
       flex-direction: column;
     }
+.form-errors {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  margin-top: 4px;
+}
 
     .nav-links {
       display: flex;
@@ -1016,6 +1025,7 @@
     </section>
 
     <!-- טופס בטא -->
+    
     <section id="beta-form" class="beta-section">
       <div class="container">
         <div class="beta-card">
@@ -1076,60 +1086,20 @@
             </div>
 
             <div class="form-group">
-            <select id="role" name="role" required>
-  <option value="">מי אתם?</option>
-  <option value="resident">תושב</option>
-  <option value="municipality">רשות מקומית</option>
-  <option value="professional">גורם מקצועי</option>
-  <option value="other">אחר</option>
-</select>
-const form = document.getElementById('lead-form'); // או מה שה-id שלך
-const roleInput = document.getElementById('role');
-const cityInput = document.getElementById('city');
-const orgInput = document.getElementById('organization');
-const errorBox = document.getElementById('form-errors'); // div קטן להודעות
-
-function showErrors(errors) {
-  if (!errorBox) {
-    alert(errors.join('\n'));
-    return;
-  }
-  errorBox.innerHTML = errors.map(e => `<div>${e}</div>`).join('');
-  errorBox.style.display = 'block';
-}
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const errors = [];
-  const role = (roleInput.value || '').trim();
-  const city = (cityInput.value || '').trim();
-  const org  = (orgInput.value || '').trim();
-
-  if (!role) {
-    errors.push('נא לבחור מי אתם בשדה "מי אתם".');
-  }
-
-  if (role && role !== 'resident') {
-    if (!city) {
-      errors.push('אם אינכם תושבים – חובה למלא עיר.');
-    }
-    if (!org) {
-      errors.push('אם אינכם תושבים – חובה למלא שם רשות / ארגון.');
-    }
-  }
-
-  if (errors.length > 0) {
-    showErrors(errors);
-    return;
-  }
-
-  // אם אין שגיאות – ממשיכים ל-fetch הרגיל שלך
-  errorBox.style.display = 'none';
-
-  // ... הקוד הקיים שלך ששולח את הנתונים ל-/contact ...
-});
-
+              <label for="role">
+                <span class="required">*</span> מי אתם?
+              </label>
+              <select id="role" name="role" required>
+                <option value="">בחרו...</option>
+                <option value="resident">תושב</option>
+                <option value="municipality">רשות מקומית</option>
+                <option value="professional">גורם מקצועי</option>
+                <option value="other">אחר</option>
+              </select>
+              <small style="font-size:12px;color:#6b7280;">
+                אם אינכם תושבים – עיר ושם ארגון יהיו שדות חובה.
+              </small>
+            </div>
 
             <div class="form-group">
               <label for="org">שם ארגון / רשות (אם רלוונטי)</label>
@@ -1161,6 +1131,9 @@ form.addEventListener('submit', async (e) => {
               ></textarea>
             </div>
 
+            <!-- תיבת שגיאות כללית לטופס -->
+            <div id="form-errors" class="form-errors" style="display:none; grid-column:1 / -1;"></div>
+
             <div class="beta-actions" style="grid-column: 1 / -1;">
               <button type="submit" class="btn-primary-lg">
                 שלחו לי עדכון כשגרסת הבטא מוכנה
@@ -1175,6 +1148,7 @@ form.addEventListener('submit', async (e) => {
         </div>
       </div>
     </section>
+
 
     <!-- פרטיות / אחריות -->
     <section>
@@ -1250,18 +1224,15 @@ form.addEventListener('submit', async (e) => {
     </div>
   </footer>
 
-  <!-- JS לטפסים -->
+    <!-- JS לטפסים -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // כתובת ה-API של שירות הטפסים שלך
-      // לפיתוח מקומי: http://localhost:4000/contact
-      // בפרודקשן תחליף לכתובת האמיתית שלך (למשל https://forms.red-alert.live/contact)
       const FORMS_API_URL = 'https://red-alert-forms-service-production.up.railway.app/contact';
 
-//    אין "-production"               ויש "/contact" בסוף
+      const formErrors = document.getElementById('form-errors');
 
-
-      // טופס קטן ב-HERO (אימייל בלבד)
+      // --- טופס קטן ב-HERO (אימייל בלבד) ---
       const heroForm = document.getElementById('hero-form');
       const heroStatus = document.getElementById('hero-status');
 
@@ -1307,14 +1278,13 @@ form.addEventListener('submit', async (e) => {
         });
       }
 
-      // טופס בטא מורחב
+      // --- טופס בטא מורחב ---
       const betaForm = document.getElementById('beta-form-form');
       const betaStatus = document.getElementById('beta-status');
 
       if (betaForm && betaStatus) {
         betaForm.addEventListener('submit', async function (e) {
           e.preventDefault();
-          betaStatus.textContent = 'שולח...';
 
           const formData = new FormData(betaForm);
           const email = (formData.get('email') || '').toString().trim();
@@ -1325,10 +1295,40 @@ form.addEventListener('submit', async (e) => {
           const phone = (formData.get('phone') || '').toString().trim();
           const notes = (formData.get('notes') || '').toString().trim();
 
+          const errors = [];
+
           if (!email) {
-            betaStatus.textContent = 'נא למלא כתובת אימייל.';
-            return;
+            errors.push('נא למלא כתובת אימייל.');
           }
+
+          if (!role) {
+            errors.push('נא לבחור מי אתם בשדה "מי אתם".');
+          }
+
+          if (role && role !== 'resident') {
+            if (!city) {
+              errors.push('אם אינכם תושבים – חובה למלא עיר.');
+            }
+            if (!organization) {
+              errors.push('אם אינכם תושבים – חובה למלא שם רשות / ארגון.');
+            }
+          }
+
+          if (errors.length > 0) {
+            betaStatus.textContent = '';
+            if (formErrors) {
+              formErrors.innerHTML = errors.map(e => `<div>• ${e}</div>`).join('');
+              formErrors.style.display = 'block';
+            } else {
+              alert(errors.join('\n'));
+            }
+            return;
+          } else if (formErrors) {
+            formErrors.style.display = 'none';
+            formErrors.innerHTML = '';
+          }
+
+          betaStatus.textContent = 'שולח...';
 
           const messageLines = [
             'Beta form signup from landing page:',
@@ -1345,17 +1345,16 @@ form.addEventListener('submit', async (e) => {
           ];
 
           const payload = {
-  name: name,
-  email: email,
-  source: 'beta_form',
-  message: messageLines.join('\n'),
-  role: role,
-  city: city,
-  organization: organization,
-  phone: phone,
-  notes: notes,
-};
-
+            name: name,
+            email: email,
+            source: 'beta_form',
+            message: messageLines.join('\n'),
+            role: role,
+            city: city,
+            organization: organization,
+            phone: phone,
+            notes: notes,
+          };
 
           try {
             const res = await fetch(FORMS_API_URL, {
@@ -1366,7 +1365,8 @@ form.addEventListener('submit', async (e) => {
 
             const json = await res.json();
             if (json.ok) {
-              betaStatus.textContent = 'תודה! פנייתך נרשמה ונעדכן כשגרסת הבטא תהיה מוכנה.';
+              betaStatus.textContent =
+                'תודה! פנייתך נרשמה ונעדכן כשגרסת הבטא תהיה מוכנה.';
               betaForm.reset();
             } else {
               console.error(json);
@@ -1380,5 +1380,6 @@ form.addEventListener('submit', async (e) => {
       }
     });
   </script>
+
 </body>
 </html>
