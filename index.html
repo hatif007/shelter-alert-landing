@@ -1076,15 +1076,60 @@
             </div>
 
             <div class="form-group">
-              <label for="role">מי אתם?</label>
-              <select id="role" name="role">
-                <option value="">בחר...</option>
-                <option value="resident">תושב/ת פרטי/ת</option>
-                <option value="municipality">נציג/ת רשות / עירייה</option>
-                <option value="professional">גורם מקצוע בתחום החירום</option>
-                <option value="other">אחר</option>
-              </select>
-            </div>
+            <select id="role" name="role" required>
+  <option value="">מי אתם?</option>
+  <option value="resident">תושב</option>
+  <option value="municipality">רשות מקומית</option>
+  <option value="professional">גורם מקצועי</option>
+  <option value="other">אחר</option>
+</select>
+const form = document.getElementById('lead-form'); // או מה שה-id שלך
+const roleInput = document.getElementById('role');
+const cityInput = document.getElementById('city');
+const orgInput = document.getElementById('organization');
+const errorBox = document.getElementById('form-errors'); // div קטן להודעות
+
+function showErrors(errors) {
+  if (!errorBox) {
+    alert(errors.join('\n'));
+    return;
+  }
+  errorBox.innerHTML = errors.map(e => `<div>${e}</div>`).join('');
+  errorBox.style.display = 'block';
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const errors = [];
+  const role = (roleInput.value || '').trim();
+  const city = (cityInput.value || '').trim();
+  const org  = (orgInput.value || '').trim();
+
+  if (!role) {
+    errors.push('נא לבחור מי אתם בשדה "מי אתם".');
+  }
+
+  if (role && role !== 'resident') {
+    if (!city) {
+      errors.push('אם אינכם תושבים – חובה למלא עיר.');
+    }
+    if (!org) {
+      errors.push('אם אינכם תושבים – חובה למלא שם רשות / ארגון.');
+    }
+  }
+
+  if (errors.length > 0) {
+    showErrors(errors);
+    return;
+  }
+
+  // אם אין שגיאות – ממשיכים ל-fetch הרגיל שלך
+  errorBox.style.display = 'none';
+
+  // ... הקוד הקיים שלך ששולח את הנתונים ל-/contact ...
+});
+
 
             <div class="form-group">
               <label for="org">שם ארגון / רשות (אם רלוונטי)</label>
