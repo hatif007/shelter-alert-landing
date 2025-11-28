@@ -1236,13 +1236,12 @@
     </div>
   </footer>
 
-    <!-- JS לטפסים -->
+     <!-- JS לטפסים -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // כתובת ה-API של שירות הטפסים שלך
-      const FORMS_API_URL = 'https://red-alert-forms-service-production.up.railway.app/contact';
-
-      const formErrors = document.getElementById('form-errors');
+      const FORMS_API_URL =
+        'https://red-alert-forms-service-production.up.railway.app/contact';
 
       // --- טופס קטן ב-HERO (אימייל בלבד) ---
       const heroForm = document.getElementById('hero-form');
@@ -1265,7 +1264,8 @@
             name: '',
             email: email,
             source: 'hero_form',
-            message: 'Hero form signup from top email box on landing page.',
+            message:
+              'Hero form signup from top email box on landing page.',
           };
 
           try {
@@ -1277,15 +1277,18 @@
 
             const json = await res.json();
             if (json.ok) {
-              heroStatus.textContent = 'תודה! נוסיף אותך לרשימת העדכונים.';
+              heroStatus.textContent =
+                'תודה! נוסיף אותך לרשימת העדכונים.';
               heroForm.reset();
             } else {
               console.error(json);
-              heroStatus.textContent = 'אירעה שגיאה בשליחה. נסה/י שוב.';
+              heroStatus.textContent =
+                'אירעה שגיאה בשליחה. נסה/י שוב.';
             }
           } catch (err) {
             console.error(err);
-            heroStatus.textContent = 'שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.';
+            heroStatus.textContent =
+              'שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.';
           }
         });
       }
@@ -1298,53 +1301,26 @@
         betaForm.addEventListener('submit', async function (e) {
           e.preventDefault();
 
+          // לפני השליחה – סטטוס ניטרלי
+          betaStatus.textContent = 'שולח...';
+          betaStatus.className = 'beta-note';
+
           const formData = new FormData(betaForm);
           const email = (formData.get('email') || '').toString().trim();
           const name = (formData.get('name') || '').toString().trim();
           const city = (formData.get('city') || '').toString().trim();
           const role = (formData.get('role') || '').toString().trim();
-          const organization = (formData.get('organization') || '').toString().trim();
+          const organization = (formData.get('organization') || '')
+            .toString()
+            .trim();
           const phone = (formData.get('phone') || '').toString().trim();
           const notes = (formData.get('notes') || '').toString().trim();
 
-          const errors = [];
-
           if (!email) {
-            errors.push('נא למלא כתובת אימייל.');
-          }
-
-          if (!role) {
-            errors.push('נא לבחור מי אתם בשדה "מי אתם".');
-          }
-
-          if (role && role !== 'resident') {
-  if (!name) {
-    errors.push('אם אינכם תושבים – חובה למלא שם איש קשר.');
-  }
-  if (!city) {
-    errors.push('אם אינכם תושבים – חובה למלא עיר.');
-  }
-  if (!organization) {
-    errors.push('אם אינכם תושבים – חובה למלא שם רשות / ארגון.');
-  }
-}
-
-
-          if (errors.length > 0) {
-            betaStatus.textContent = '';
-            if (formErrors) {
-              formErrors.innerHTML = errors.map(e => `<div>• ${e}</div>`).join('');
-              formErrors.style.display = 'block';
-            } else {
-              alert(errors.join('\n'));
-            }
+            betaStatus.textContent = 'נא למלא כתובת אימייל.';
+            betaStatus.className = 'beta-note beta-status-error';
             return;
-          } else if (formErrors) {
-            formErrors.style.display = 'none';
-            formErrors.innerHTML = '';
           }
-
-          betaStatus.textContent = 'שולח...';
 
           const messageLines = [
             'Beta form signup from landing page:',
@@ -1361,15 +1337,15 @@
           ];
 
           const payload = {
-            name: name,
-            email: email,
+            name,
+            email,
             source: 'beta_form',
             message: messageLines.join('\n'),
-            role: role,
-            city: city,
-            organization: organization,
-            phone: phone,
-            notes: notes,
+            role,
+            city,
+            organization,
+            phone,
+            notes,
           };
 
           try {
@@ -1380,22 +1356,30 @@
             });
 
             const json = await res.json();
+
             if (json.ok) {
               betaStatus.textContent =
                 'תודה! פנייתך נרשמה ונעדכן כשגרסת הבטא תהיה מוכנה.';
+              betaStatus.className =
+                'beta-note beta-status-success'; // גדול, מודגש ושחור
               betaForm.reset();
             } else {
               console.error(json);
-              betaStatus.textContent = 'אירעה שגיאה בשליחה. נסה/י שוב.';
+              betaStatus.textContent =
+                'אירעה שגיאה בשליחה. נסה/י שוב.';
+              betaStatus.className =
+                'beta-note beta-status-error'; // אדום
             }
           } catch (err) {
             console.error(err);
-            betaStatus.textContent = 'שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.';
+            betaStatus.textContent =
+              'שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.';
+            betaStatus.className =
+              'beta-note beta-status-error'; // אדום
           }
         });
       }
     });
   </script>
-
 </body>
 </html>
