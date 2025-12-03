@@ -1393,6 +1393,7 @@
             '',
             `Name: ${name || 'N/A'}`,
             `Email: ${email}`,
+            `Platform: ${platform || 'N/A'}`,
             `City: ${city || 'N/A'}`,
             `Role: ${role || 'N/A'}`,
             `Organization: ${organization || 'N/A'}`,
@@ -1402,11 +1403,12 @@
             notes || 'N/A',
           ];
 
-          const payload = {
+                    const payload = {
             name,
             email,
             source: 'beta_form',
             message: messageLines.join('\n'),
+            platform,
             role,
             city,
             organization,
