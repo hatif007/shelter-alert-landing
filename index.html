@@ -9,45 +9,25 @@
     content="RED ALERT LIVE – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה."
   />
 
-  <!-- פונט עברי נעים לקריאה -->
   <link
     href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap"
     rel="stylesheet"
   />
 
   <style>
-    /* בסיס כללי */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      height: 100%;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
 
     body {
-      font-family: "Heebo", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
+      font-family: "Heebo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background-color: #f5f7fb;
       color: #111827;
       line-height: 1.6;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* קונטיינר ראשי */
     .container {
       width: 100%;
       max-width: 1120px;
@@ -55,7 +35,6 @@
       padding: 0 16px;
     }
 
-    /* HEADER */
     header {
       position: sticky;
       top: 0;
@@ -73,42 +52,28 @@
       gap: 16px;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-img { width: 40px; height: 40px; border-radius: 999px; }
 
     .logo-text-main {
       font-weight: 800;
       font-size: 20px;
-      color: #b91c1c; /* RED ALERT */
+      color: #b91c1c;
     }
 
-    .logo-text-sub {
+    .logo-text-sub { font-size: 12px; color: #6b7280; }
+
+    .logo-text-wrap { display: flex; flex-direction: column; }
+
+    .form-errors {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+      border-radius: 10px;
+      padding: 8px 10px;
       font-size: 12px;
-      color: #6b7280;
+      margin-top: 4px;
     }
-
-    .logo-text-wrap {
-      display: flex;
-      flex-direction: column;
-    }
-.form-errors {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #b91c1c;
-  border-radius: 10px;
-  padding: 8px 10px;
-  font-size: 12px;
-  margin-top: 4px;
-}
 
     .nav-links {
       display: flex;
@@ -117,14 +82,8 @@
       font-size: 14px;
     }
 
-    .nav-links a {
-      color: #374151;
-      padding: 4px 0;
-    }
-
-    .nav-links a:hover {
-      color: #111827;
-    }
+    .nav-links a { color: #374151; padding: 4px 0; }
+    .nav-links a:hover { color: #111827; }
 
     .btn-primary-sm {
       padding: 8px 16px;
@@ -143,7 +102,6 @@
       transform: translateY(-1px);
     }
 
-    /* כפתור המבורגר למובייל */
     .menu-toggle {
       display: none;
       font-size: 22px;
@@ -152,15 +110,9 @@
       cursor: pointer;
     }
 
-    /* HERO */
     .hero {
       padding: 32px 0 40px;
-      background: radial-gradient(
-          circle at top right,
-          rgba(37, 99, 235, 0.12),
-          transparent 60%
-        ),
-        #f5f7fb;
+      background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 60%), #f5f7fb;
     }
 
     .hero-grid {
@@ -195,10 +147,7 @@
       margin-bottom: 18px;
     }
 
-    .hero-list {
-      list-style: none;
-      margin-bottom: 16px;
-    }
+    .hero-list { list-style: none; margin-bottom: 16px; }
 
     .hero-list li {
       display: flex;
@@ -215,13 +164,9 @@
       color: #10b981;
     }
 
-    .hero-note {
-      font-size: 12px;
-      color: #6b7280;
-      margin-top: 6px;
-    }
+    .hero-note { font-size: 12px; color: #6b7280; margin-top: 6px; }
 
-    /* בועת מייל קטנה */
+    /* הקופסה שב-HERO (הייתה מייל) – עכשיו CTA בלבד */
     .email-box {
       background: #ffffff;
       border-radius: 18px;
@@ -235,29 +180,7 @@
       font-size: 13px;
       font-weight: 600;
       color: #111827;
-      margin-bottom: 8px;
-    }
-
-    .email-row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .email-input {
-      flex: 1;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      font-size: 14px;
-      outline: none;
-      background-color: #f9fafb;
-    }
-
-    .email-input:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 1px #2563eb33;
-      background-color: #ffffff;
+      margin-bottom: 10px;
     }
 
     .email-btn {
@@ -270,17 +193,12 @@
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
+      width: 100%;
     }
 
-    .email-btn:hover {
-      opacity: 0.95;
-    }
+    .email-btn:hover { opacity: 0.95; }
 
-    .email-hint {
-      margin-top: 6px;
-      font-size: 11px;
-      color: #6b7280;
-    }
+    .email-hint { margin-top: 8px; font-size: 11px; color: #6b7280; }
 
     .hero-image-wrapper {
       border-radius: 24px;
@@ -300,24 +218,13 @@
       gap: 12px;
     }
 
-    .hero-pill {
-      font-size: 12px;
-      color: #a5b4fc;
-    }
+    .hero-pill { font-size: 12px; color: #a5b4fc; }
 
     .hero-map-placeholder {
       flex: 1;
       border-radius: 16px;
-      background: radial-gradient(
-          circle at top left,
-          rgba(59, 130, 246, 0.5),
-          transparent 55%
-        ),
-        radial-gradient(
-          circle at bottom right,
-          rgba(129, 140, 248, 0.45),
-          transparent 55%
-        );
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.5), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.45), transparent 55%);
       position: relative;
       overflow: hidden;
     }
@@ -330,40 +237,15 @@
       font-size: 12px;
       color: rgba(249, 250, 251, 0.9);
     }
-/* סטטוס טופס בטא */
-.beta-status-success {
-  font-size: 14px;
-  font-weight: 600;
-  color: #111827; /* שחור-כהה */
-}
 
-.beta-status-error {
-  font-size: 12px;
-  font-weight: 400;
-  color: #b91c1c; /* אדום לשגיאות */
-}
+    .beta-status-success { font-size: 14px; font-weight: 600; color: #111827; }
+    .beta-status-error { font-size: 12px; font-weight: 400; color: #b91c1c; }
 
-    /* SECTION בסיסי */
-    section {
-      padding: 40px 0;
-    }
+    section { padding: 40px 0; }
+    section h2 { font-size: 24px; margin-bottom: 12px; color: #111827; }
+    section p.section-intro { font-size: 14px; color: #4b5563; margin-bottom: 20px; }
 
-    section h2 {
-      font-size: 24px;
-      margin-bottom: 12px;
-      color: #111827;
-    }
-
-    section p.section-intro {
-      font-size: 14px;
-      color: #4b5563;
-      margin-bottom: 20px;
-    }
-
-    /* הבעיה / המציאות */
-    .problem-section {
-      background-color: #eef2ff;
-    }
+    .problem-section { background-color: #eef2ff; }
 
     .problem-grid {
       display: grid;
@@ -380,17 +262,9 @@
       font-size: 14px;
     }
 
-    .problem-card-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
+    .problem-card-title { font-weight: 600; margin-bottom: 4px; }
+    .problem-emoji { font-size: 20px; margin-left: 4px; }
 
-    .problem-emoji {
-      font-size: 20px;
-      margin-left: 4px;
-    }
-
-    /* פיצ'רים */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -406,25 +280,11 @@
       font-size: 14px;
     }
 
-    .feature-icon {
-      font-size: 20px;
-      margin-bottom: 4px;
-    }
+    .feature-icon { font-size: 20px; margin-bottom: 4px; }
+    .feature-title { font-weight: 600; margin-bottom: 6px; color: #111827; }
+    .feature-text { color: #4b5563; }
 
-    .feature-title {
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #111827;
-    }
-
-    .feature-text {
-      color: #4b5563;
-    }
-
-    /* תמונות / הדמיות */
-    .screens-section {
-      background-color: #f9fafb;
-    }
+    .screens-section { background-color: #f9fafb; }
 
     .screens-grid {
       display: grid;
@@ -455,12 +315,8 @@
       padding: 8px;
     }
 
-    .screen-caption {
-      color: #4b5563;
-      text-align: center;
-    }
+    .screen-caption { color: #4b5563; text-align: center; }
 
-    /* למי זה מיועד */
     .audience-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -476,15 +332,9 @@
       font-size: 14px;
     }
 
-    .audience-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
+    .audience-title { font-weight: 600; margin-bottom: 4px; }
 
-    /* טופס בטא מורחב */
-    .beta-section {
-      background-color: #e0f2fe;
-    }
+    .beta-section { background-color: #e0f2fe; }
 
     .beta-card {
       background: #ffffff;
@@ -502,22 +352,9 @@
       margin-top: 12px;
     }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 14px;
-    }
-
-    .form-group label {
-      font-weight: 500;
-      color: #111827;
-    }
-
-    .form-group span.required {
-      color: #dc2626;
-      margin-right: 4px;
-    }
+    .form-group { display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+    .form-group label { font-weight: 500; color: #111827; }
+    .form-group span.required { color: #dc2626; margin-right: 4px; }
 
     .form-group input,
     .form-group select,
@@ -566,15 +403,9 @@
       transform: translateY(-1px);
     }
 
-    .beta-note {
-      font-size: 12px;
-      color: #6b7280;
-    }
+    .beta-note { font-size: 12px; color: #6b7280; }
 
-    /* FAQ */
-    .faq-section {
-      background-color: #f9fafb;
-    }
+    .faq-section { background-color: #f9fafb; }
 
     .faq-list {
       margin-top: 12px;
@@ -584,15 +415,8 @@
       padding: 10px 14px;
     }
 
-    details {
-      border-bottom: 1px solid #e5e7eb;
-      padding: 8px 0;
-      font-size: 14px;
-    }
-
-    details:last-of-type {
-      border-bottom: none;
-    }
+    details { border-bottom: 1px solid #e5e7eb; padding: 8px 0; font-size: 14px; }
+    details:last-of-type { border-bottom: none; }
 
     summary {
       cursor: pointer;
@@ -601,23 +425,10 @@
       list-style: none;
     }
 
-    summary::marker,
-    summary::-webkit-details-marker {
-      display: none;
-    }
+    summary::marker, summary::-webkit-details-marker { display: none; }
+    details[open] summary { color: #2563eb; }
+    details p { margin-top: 4px; color: #4b5563; padding-inline-start: 8px; font-size: 13px; }
 
-    details[open] summary {
-      color: #2563eb;
-    }
-
-    details p {
-      margin-top: 4px;
-      color: #4b5563;
-      padding-inline-start: 8px;
-      font-size: 13px;
-    }
-
-    /* פרטיות / אחריות */
     .legal-card {
       border-radius: 16px;
       background: #111827;
@@ -626,11 +437,8 @@
       font-size: 13px;
     }
 
-    .legal-card strong {
-      color: #fbbf24;
-    }
+    .legal-card strong { color: #fbbf24; }
 
-    /* FOOTER */
     footer {
       border-top: 1px solid #e5e7eb;
       padding: 16px 0;
@@ -648,85 +456,35 @@
       gap: 8px;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 12px;
-    }
+    .footer-links { display: flex; gap: 12px; }
+    .footer-links a { color: #4b5563; }
+    .footer-links a:hover { color: #111827; }
 
-    .footer-links a {
-      color: #4b5563;
-    }
-
-    .footer-links a:hover {
-      color: #111827;
-    }
-
-    /* RESPONSIVE – מובייל וטאבלט */
     @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 24px;
-      }
-
-      .hero-title {
-        font-size: 26px;
-      }
-
-      .hero-image-wrapper {
-        max-width: 420px;
-        margin: 0 auto;
-      }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 24px; }
+      .hero-title { font-size: 26px; }
+      .hero-image-wrapper { max-width: 420px; margin: 0 auto; }
 
       .problem-grid,
       .features-grid,
       .screens-grid,
-      .audience-grid {
-        grid-template-columns: 1fr;
-      }
+      .audience-grid { grid-template-columns: 1fr; }
 
-      .beta-grid {
-        grid-template-columns: 1fr;
-      }
+      .beta-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
-      .nav-links {
-        display: none;
-      }
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .header-inner { padding: 8px 0; }
+      .logo-text-sub { display: none; }
 
-      .menu-toggle {
-        display: block;
-      }
-
-      .header-inner {
-        padding: 8px 0;
-      }
-
-      .logo-text-sub {
-        display: none;
-      }
-
-      .email-row {
-        flex-direction: column;
-      }
-
-      .email-btn {
-        width: 100%;
-      }
-
-      .email-box {
-        max-width: 100%;
-        padding: 12px;
-        border-radius: 14px;
-      }
+      .email-box { max-width: 100%; padding: 12px; border-radius: 14px; }
     }
   </style>
 
   <script>
-    // תפריט מובייל
     document.addEventListener("DOMContentLoaded", function () {
       var toggle = document.getElementById("menu-toggle");
       var nav = document.getElementById("nav-links");
@@ -747,11 +505,15 @@
         nav.style.boxShadow = "0 12px 32px rgba(15, 23, 42, 0.25)";
       });
     });
+
+    function scrollToBetaForm() {
+      var el = document.getElementById('beta-form');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   </script>
 </head>
 
 <body>
-  <!-- HEADER -->
   <header>
     <div class="container header-inner">
       <div class="logo">
@@ -763,26 +525,18 @@
       </div>
 
       <nav>
-        <button id="menu-toggle" class="menu-toggle" aria-label="תפריט">
-          ☰
-        </button>
+        <button id="menu-toggle" class="menu-toggle" aria-label="תפריט">☰</button>
         <div id="nav-links" class="nav-links">
           <a href="#how-it-works">איך זה עובד</a>
           <a href="#features">פיצ'רים</a>
           <a href="#audience">למי זה מתאים?</a>
           <a href="#faq">שאלות נפוצות</a>
-          <button
-            class="btn-primary-sm"
-            onclick="document.getElementById('beta-form').scrollIntoView({behavior: 'smooth'});"
-          >
-            הצטרפות לבטא
-          </button>
+          <button class="btn-primary-sm" onclick="scrollToBetaForm()">הצטרפות לבטא</button>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
   <main>
     <section class="hero">
       <div class="container hero-grid">
@@ -797,51 +551,27 @@
           </h1>
 
           <p class="hero-subtitle">
-            ברגעי חירום אין זמן לחפש RED ALERT LIVE מאתרת את מיקומך, מציגה את
+            ברגעי חירום אין זמן לחפש. RED ALERT LIVE מאתרת את מיקומך, מציגה את
             המקלטים הקרובים אליך, ומנווטת אליהם – לפי אזור ההתגוננות שלך.
           </p>
 
           <ul class="hero-list">
-            <li>
-              <span class="bullet">•</span>
-              <span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי.</span>
-            </li>
-            <li>
-              <span class="bullet">•</span>
-              <span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד – פחות רעש, יותר דיוק.</span>
-            </li>
-            <li>
-              <span class="bullet">•</span>
-              <span>מצב תרגול – להתנסות מראש במסלול למקלט בסביבת הבית / העבודה.</span>
-            </li>
+            <li><span class="bullet">•</span><span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי.</span></li>
+            <li><span class="bullet">•</span><span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד – פחות רעש, יותר דיוק.</span></li>
+            <li><span class="bullet">•</span><span>מצב תרגול – להתנסות מראש במסלול למקלט בסביבת הבית / העבודה.</span></li>
           </ul>
 
-          <!-- בועת מייל קטנה וממוקדת -->
+          <!-- ✅ במקום שליחת מייל: כפתור שמוביל לטופס בתחתית -->
           <div class="email-box">
-            <form id="hero-form">
-              <input type="hidden" name="form_name" value="hero_top" />
-              <div class="email-box-title">השאירו מייל לקבלת גישה לגרסת הבטא כשנהיה מוכנים</div>
-              <div class="email-row">
-                <input
-                  type="email"
-                  name="email"
-                  class="email-input"
-                  placeholder="example@domain.com"
-                  required
-                />
-                <button type="submit" class="email-btn">
-                  קבלו עדכון ראשון
-                </button>
-              </div>
-              <div class="email-hint">
-                נשלח עדכונים רק כשיש משהו חשוב. בלי ספאם.
-              </div>
-              <div class="email-hint" id="hero-status"></div>
-            </form>
+            <div class="email-box-title">השאירו קבלת גישה לגרסת הבטא כשנהיה מוכנים</div>
+            <button type="button" class="email-btn" onclick="scrollToBetaForm()">
+              מעבר לטופס ההצטרפות
+            </button>
+            <div class="email-hint">הכפתור מוביל ישירות לטופס שבתחתית העמוד.</div>
           </div>
 
           <p class="hero-note">
-            גרסת בטא מתוכננת ל־Android ובהמשך גם ל־iOS. המייל ישמש רק לעדכונים על RED ALERT LIVE.
+            גרסת בטא מתוכננת ל־Android ובהמשך גם ל־iOS. להצטרפות ולבדיקות שטח – מלאו את הטופס בהמשך העמוד.
           </p>
         </div>
 
@@ -854,7 +584,6 @@
       </div>
     </section>
 
-    <!-- הבעיה -->
     <section id="how-it-works" class="problem-section">
       <div class="container">
         <h2>מה קורה היום בזמן אזעקה?</h2>
@@ -870,7 +599,7 @@
               <span class="problem-emoji">🔍</span> איפה בכלל יש כאן מקלט?
             </div>
             <p>
-              ברגע של אזעקה אין זמן לנחש  RED ALERT LIVE מכוון אותך מהר למרחב המוגן  גם  כשאתה לא מכיר את האזור.
+              ברגע של אזעקה אין זמן לנחש. RED ALERT LIVE מכוון אותך מהר למרחב המוגן גם כשאתה לא מכיר את האזור.
             </p>
           </div>
 
@@ -897,10 +626,9 @@
       </div>
     </section>
 
-    <!-- פיצ'רים -->
     <section id="features">
       <div class="container">
-        <h2>מה RED ALERT LIVE  עושה עבורך בזמן אמת?</h2>
+        <h2>מה RED ALERT LIVE עושה עבורך בזמן אמת?</h2>
         <p class="section-intro">
           האפליקציה מחברת בין נתוני אזעקות, אזורי התגוננות, מיקום GPS
           ומסד נתונים של אלפי מקלטים – כדי לתת לך תמונה אחת ברורה.
@@ -947,7 +675,7 @@
             <div class="feature-icon">🧾</div>
             <div class="feature-title">היסטוריית אזעקות במכשיר</div>
             <div class="feature-text">
-              RED ALERT LIVE  שומרת לוג מקומי של האזעקות שזוהו במכשיר – בלי לשלוח
+              RED ALERT LIVE שומרת לוג מקומי של האזעקות שזוהו במכשיר – בלי לשלוח
               את היסטוריית השימוש שלך לשרת.
             </div>
           </div>
@@ -964,43 +692,33 @@
       </div>
     </section>
 
-    <!-- מסכי דמו -->
     <section class="screens-section">
       <div class="container">
         <h2>איך זה נראה בפועל?</h2>
-        <p class="section-intro">
-         
-        </p>
+        <p class="section-intro"></p>
 
         <div class="screens-grid">
           <div class="screen-card">
-            <div class="screen-placeholder">
-              מסך מפה – מיקום המשתמש + שני המקלטים הקרובים ביותר
-            </div>
+            <div class="screen-placeholder">מסך מפה – מיקום המשתמש + שני המקלטים הקרובים ביותר</div>
             <div class="screen-caption">מסך מפה ומקלטים קרובים</div>
           </div>
 
           <div class="screen-card">
-            <div class="screen-placeholder">
-              מסך ניווט – מרחק למקלט, כיוון, והנחיות בסיסיות
-            </div>
+            <div class="screen-placeholder">מסך ניווט – מרחק למקלט, כיוון, והנחיות בסיסיות</div>
             <div class="screen-caption">ניווט חי למקלט</div>
           </div>
 
           <div class="screen-card">
-            <div class="screen-placeholder">
-              מסך אזעקה / מצב תרגול – טיימר, עיר, אזור התגוננות
-            </div>
+            <div class="screen-placeholder">מסך אזעקה / מצב תרגול – טיימר, עיר, אזור התגוננות</div>
             <div class="screen-caption">מצב אזעקה / תרגול</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- למי זה מיועד -->
     <section id="audience">
       <div class="container">
-        <h2>למי RED ALERT LIVE  מתאימה?</h2>
+        <h2>למי RED ALERT LIVE מתאימה?</h2>
         <p class="section-intro">
           האפליקציה מיועדת גם לשימוש אישי, וגם כפלטפורמת פיילוט לגופים
           עירוניים או מקצועיים.
@@ -1009,33 +727,22 @@
         <div class="audience-grid">
           <div class="audience-card">
             <div class="audience-title">תושבים פרטיים</div>
-            <p>
-              כל מי שרוצה לדעת שבזמן אזעקה יש לו כלי אחד ברור שמראה לאן
-              הולכים, כמה זה רחוק, וכמה זמן יש להתגונן.
-            </p>
+            <p>כל מי שרוצה לדעת שבזמן אזעקה יש לו כלי אחד ברור שמראה לאן הולכים, כמה זה רחוק, וכמה זמן יש להתגונן.</p>
           </div>
 
           <div class="audience-card">
             <div class="audience-title">רשויות מקומיות / עיריות</div>
-            <p>
-              פיילוטים עירוניים, בדיקות שטח, והנגשת מידע נוסף לתושבים בצורה
-              דיגיטלית. ניתן ליצור קשר לשיתופי פעולה רחבים יותר.
-            </p>
+            <p>פיילוטים עירוניים, בדיקות שטח, והנגשת מידע נוסף לתושבים בצורה דיגיטלית. ניתן ליצור קשר לשיתופי פעולה רחבים יותר.</p>
           </div>
 
           <div class="audience-card">
             <div class="audience-title">גורמי חירום / מקצוע</div>
-            <p>
-              מי שרוצה להכיר פתרון טכנולוגי חדש לניהול ניווט למרחבים מוגנים –
-              עם דגש על UX בזמן אמת ונתונים חיים מהשטח.
-            </p>
+            <p>מי שרוצה להכיר פתרון טכנולוגי חדש לניהול ניווט למרחבים מוגנים – עם דגש על UX בזמן אמת ונתונים חיים מהשטח.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- טופס בטא -->
-    
     <section id="beta-form" class="beta-section">
       <div class="container">
         <div class="beta-card">
@@ -1044,42 +751,23 @@
             האפליקציה נמצאת בשלב קדם־חנות (Android / iOS). השארת פרטים כאן
             תאפשר לנו:
           </p>
+
           <ul class="hero-list">
-            <li>
-              <span class="bullet">•</span>
-              <span>לשלוח לך קישור להורדה כשגרסת הבטא תהיה מוכנה.</span>
-            </li>
-            <li>
-              <span class="bullet">•</span>
-              <span>להזמין אותך, אם תרצה, להשתתף בפיילוט / בדיקות שטח.</span>
-            </li>
-            <li>
-              <span class="bullet">•</span>
-              <span>להבין באילו ערים ואזורים יש ביקוש גבוה יותר.</span>
-            </li>
+            <li><span class="bullet">•</span><span>לשלוח לך קישור להורדה כשגרסת הבטא תהיה מוכנה.</span></li>
+            <li><span class="bullet">•</span><span>להזמין אותך, אם תרצה, להשתתף בפיילוט / בדיקות שטח.</span></li>
+            <li><span class="bullet">•</span><span>להבין באילו ערים ואזורים יש ביקוש גבוה יותר.</span></li>
           </ul>
 
-                    <form class="beta-grid" id="beta-form-form">
+          <form class="beta-grid" id="beta-form-form">
             <input type="hidden" name="form_name" value="beta_form" />
 
-            <!-- שורה 1: אימייל + סוג מכשיר -->
             <div class="form-group">
-              <label for="email">
-                <span class="required">*</span> כתובת אימייל
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder="example@domain.com"
-              />
+              <label for="email"><span class="required">*</span> כתובת אימייל</label>
+              <input id="email" name="email" type="email" required placeholder="example@domain.com" />
             </div>
 
             <div class="form-group">
-              <label for="platform">
-                <span class="required">*</span> לאיזה מכשיר?
-              </label>
+              <label for="platform"><span class="required">*</span> לאיזה מכשיר?</label>
               <select id="platform" name="platform" required>
                 <option value="">בחרו...</option>
                 <option value="android">Android</option>
@@ -1088,32 +776,18 @@
               </select>
             </div>
 
-            <!-- שורה 2: שם + עיר -->
             <div class="form-group">
               <label for="name">שם (לא חובה)</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="איך לפנות אליך?"
-              />
+              <input id="name" name="name" type="text" placeholder="איך לפנות אליך?" />
             </div>
 
             <div class="form-group">
               <label for="city">עיר / ישוב</label>
-              <input
-                id="city"
-                name="city"
-                type="text"
-                placeholder="לדוגמה: יהוד, תל אביב, באר שבע"
-              />
+              <input id="city" name="city" type="text" placeholder="לדוגמה: יהוד, תל אביב, באר שבע" />
             </div>
 
-            <!-- שורה 3: מי אתם + ארגון -->
             <div class="form-group">
-              <label for="role">
-                <span class="required">*</span> מי אתם?
-              </label>
+              <label for="role"><span class="required">*</span> מי אתם?</label>
               <select id="role" name="role" required>
                 <option value="">בחרו...</option>
                 <option value="resident">תושב</option>
@@ -1128,43 +802,23 @@
 
             <div class="form-group">
               <label for="org">שם ארגון / רשות (אם רלוונטי)</label>
-              <input
-                id="org"
-                name="organization"
-                type="text"
-                placeholder="שם הרשות / הארגון / החברה"
-              />
+              <input id="org" name="organization" type="text" placeholder="שם הרשות / הארגון / החברה" />
             </div>
 
-            <!-- שורה 4: טלפון -->
             <div class="form-group">
               <label for="phone">טלפון ליצירת קשר (לא חובה)</label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder="לדוגמה: 050-0000000"
-              />
+              <input id="phone" name="phone" type="tel" placeholder="לדוגמה: 050-0000000" />
             </div>
 
-            <!-- הערות על פני כל הרוחב -->
             <div class="form-group" style="grid-column: 1 / -1;">
               <label for="notes">הערות / עניין מיוחד (לדוגמה: פיילוט עירוני, שימוש ארגוני)</label>
-              <textarea
-                id="notes"
-                name="notes"
-                rows="3"
-                placeholder="ספרו לנו בקצרה איך תרצו להשתמש ב-RED ALERT LIVE "
-              ></textarea>
+              <textarea id="notes" name="notes" rows="3" placeholder="ספרו לנו בקצרה איך תרצו להשתמש ב-RED ALERT LIVE"></textarea>
             </div>
 
-            <!-- תיבת שגיאות כללית לטופס -->
             <div id="form-errors" class="form-errors" style="display:none; grid-column:1 / -1;"></div>
 
             <div class="beta-actions" style="grid-column: 1 / -1;">
-              <button type="submit" class="btn-primary-lg">
-                שלחו לי עדכון כשגרסת הבטא מוכנה
-              </button>
+              <button type="submit" class="btn-primary-lg">שלחו לי עדכון כשגרסת הבטא מוכנה</button>
               <p class="beta-note">
                 נשתמש בפרטים רק לצורך עדכונים על האפליקציה וגרסת הבטא.
                 לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.
@@ -1172,18 +826,15 @@
               <p class="beta-note" id="beta-status"></p>
             </div>
           </form>
-
         </div>
       </div>
     </section>
 
-
-    <!-- פרטיות / אחריות -->
     <section>
       <div class="container">
         <div class="legal-card">
           <p>
-            <strong>הבהרה:</strong> RED ALERT LIVE  אינה אפליקציה רשמית של פיקוד
+            <strong>הבהרה:</strong> RED ALERT LIVE אינה אפליקציה רשמית של פיקוד
             העורף, צה״ל או כל גוף מדינתי אחר. יש לפעול תמיד לפי ההנחיות
             הרשמיות של גורמי הביטחון, ולראות באפליקציה כלי עזר נוסף בלבד.
           </p>
@@ -1195,8 +846,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
-         <!-- מי אנחנו -->
     <section id="about">
       <div class="container">
         <h2>מי אנחנו?</h2>
@@ -1224,22 +873,19 @@
       <div class="container">
         <h2>שאלות נפוצות</h2>
         <div class="faq-list">
-                <details>
-        <summary>מאיפה הגיע השם RED ALERT LIVE ?</summary>
-        <p>
-          השם RED ALERT LIVE  נבחר כמחווה למשחק המחשב הקלאסי Command &amp; Conquer: Red Alert.
-          באחד השלבים במשחק היריב משגר טיל בליסטי, נשמעת אזעקה, ועל המסך מופיע טיימר קצר
-          עד לפגיעה – וצריך להספיק להתגונן. התחושה הזאת של "יש אזעקה, יש טיימר, צריך להגיע
-          מהר למקום מוגן" היא בדיוק ההשראה מאחורי האפליקציה: לעזור להגיע בזמן למקלט בעולם
-          האמיתי, ולא רק במשחק.
-        </p>
-      </details>
+          <details>
+            <summary>מאיפה הגיע השם RED ALERT LIVE ?</summary>
+            <p>
+              השם RED ALERT LIVE נבחר כמחווה למשחק המחשב הקלאסי Command &amp; Conquer: Red Alert.
+              באחד השלבים במשחק היריב משגר טיל בליסטי, נשמעת אזעקה, ועל המסך מופיע טיימר קצר
+              עד לפגיעה – וצריך להספיק להתגונן.
+            </p>
+          </details>
 
           <details>
             <summary>האם האפליקציה כבר זמינה בחנות?</summary>
             <p>
-              כרגע האפליקציה בשלב קדם־חנות / בטא. המשמעות היא שאנחנו עדיין
-              בודקים, משפרים ומייצבים את המערכת. מי שנרשם כאן יקבל עדכון
+              כרגע האפליקציה בשלב קדם־חנות / בטא. מי שנרשם כאן יקבל עדכון
               כשגרסת בטא תהיה זמינה להורדה.
             </p>
           </details>
@@ -1248,8 +894,7 @@
             <summary>האם השימוש באפליקציה יהיה בתשלום?</summary>
             <p>
               בשלב הבטא השימוש מתוכנן להיות ללא עלות. בהמשך, חלק מהפיצ׳רים
-              המתקדמים עשויים להיות במסגרת מודלים שונים – אך המטרה היא להשאיר
-              את הליבה (התרעה + ניווט למקלט) נגישה ככל האפשר.
+              המתקדמים עשויים להיות במסגרת מודלים שונים.
             </p>
           </details>
 
@@ -1257,9 +902,7 @@
             <summary>איך זה יעבוד ב־Android וב־iOS?</summary>
             <p>
               ב־Android ההפצה תעשה דרך Google Play (או קישור ישיר לבטא).
-              ב־iOS ההפצה תעשה באמצעות TestFlight ו/או App Store – בהתאם למצב
-              האישור מול Apple. מי שיישאיר מייל יקבל קישורים מתאימים לשתי
-              הפלטפורמות.
+              ב־iOS ההפצה תעשה באמצעות TestFlight ו/או App Store.
             </p>
           </details>
 
@@ -1267,8 +910,7 @@
             <summary>מה קורה עם הפרטים שאני משאיר?</summary>
             <p>
               הפרטים משמשים רק כדי לעדכן אותך כשיש גרסת בטא, ולנהל רשימת
-              מתעניינים. לא נשתף את המידע עם מפרסמים חיצוניים. ניתן לבקש בכל
-              רגע להסיר אותך מרשימת התפוצה.
+              מתעניינים. לא נשתף את המידע עם מפרסמים חיצוניים.
             </p>
           </details>
         </div>
@@ -1276,7 +918,6 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
       <div>© RED ALERT LIVE – כל הזכויות שמורות.</div>
@@ -1287,64 +928,12 @@
     </div>
   </footer>
 
-     <!-- JS לטפסים -->
+  <!-- JS לטופס הבטא בלבד (Hero לא שולח כלום) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // כתובת ה-API של שירות הטפסים שלך
       const FORMS_API_URL =
         'https://red-alert-forms-service-production.up.railway.app/contact';
 
-      // --- טופס קטן ב-HERO (אימייל בלבד) ---
-      const heroForm = document.getElementById('hero-form');
-      const heroStatus = document.getElementById('hero-status');
-
-      if (heroForm && heroStatus) {
-        heroForm.addEventListener('submit', async function (e) {
-          e.preventDefault();
-          heroStatus.textContent = 'שולח...';
-
-          const emailInput = heroForm.querySelector('input[name="email"]');
-          const email = emailInput.value.trim();
-
-          if (!email) {
-            heroStatus.textContent = 'נא למלא כתובת אימייל.';
-            return;
-          }
-
-          const payload = {
-            name: '',
-            email: email,
-            source: 'hero_form',
-            message:
-              'Hero form signup from top email box on landing page.',
-          };
-
-          try {
-            const res = await fetch(FORMS_API_URL, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload),
-            });
-
-            const json = await res.json();
-            if (json.ok) {
-              heroStatus.textContent =
-                'תודה! נוסיף אותך לרשימת העדכונים.';
-              heroForm.reset();
-            } else {
-              console.error(json);
-              heroStatus.textContent =
-                'אירעה שגיאה בשליחה. נסה/י שוב.';
-            }
-          } catch (err) {
-            console.error(err);
-            heroStatus.textContent =
-              'שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.';
-          }
-        });
-      }
-
-      // --- טופס בטא מורחב ---
       const betaForm = document.getElementById('beta-form-form');
       const betaStatus = document.getElementById('beta-status');
 
@@ -1352,19 +941,16 @@
         betaForm.addEventListener('submit', async function (e) {
           e.preventDefault();
 
-          // לפני השליחה – סטטוס ניטרלי
           betaStatus.textContent = 'שולח...';
           betaStatus.className = 'beta-note';
 
-                    const formData = new FormData(betaForm);
+          const formData = new FormData(betaForm);
           const email = (formData.get('email') || '').toString().trim();
           const platform = (formData.get('platform') || '').toString().trim();
           const name = (formData.get('name') || '').toString().trim();
           const city = (formData.get('city') || '').toString().trim();
           const role = (formData.get('role') || '').toString().trim();
-          const organization = (formData.get('organization') || '')
-            .toString()
-            .trim();
+          const organization = (formData.get('organization') || '').toString().trim();
           const phone = (formData.get('phone') || '').toString().trim();
           const notes = (formData.get('notes') || '').toString().trim();
 
@@ -1376,12 +962,6 @@
 
           if (!platform) {
             betaStatus.textContent = 'נא לבחור סוג מכשיר (Android / iPhone).';
-            betaStatus.className = 'beta-note beta-status-error';
-            return;
-          }
-
-          if (!email) {
-            betaStatus.textContent = 'נא למלא כתובת אימייל.';
             betaStatus.className = 'beta-note beta-status-error';
             return;
           }
@@ -1401,7 +981,7 @@
             notes || 'N/A',
           ];
 
-                    const payload = {
+          const payload = {
             name,
             email,
             source: 'beta_form',
@@ -1424,24 +1004,18 @@
             const json = await res.json();
 
             if (json.ok) {
-              betaStatus.textContent =
-                'תודה! פנייתך נרשמה ונעדכן כשגרסת הבטא תהיה מוכנה.';
-              betaStatus.className =
-                'beta-note beta-status-success'; // גדול, מודגש ושחור
+              betaStatus.textContent = 'תודה! פנייתך נרשמה ונעדכן כשגרסת הבטא תהיה מוכנה.';
+              betaStatus.className = 'beta-note beta-status-success';
               betaForm.reset();
             } else {
               console.error(json);
-              betaStatus.textContent =
-                'אירעה שגיאה בשליחה. נסה/י שוב.';
-              betaStatus.className =
-                'beta-note beta-status-error'; // אדום
+              betaStatus.textContent = 'אירעה שגיאה בשליחה. נסה/י שוב.';
+              betaStatus.className = 'beta-note beta-status-error';
             }
           } catch (err) {
             console.error(err);
-            betaStatus.textContent =
-              'שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.';
-            betaStatus.className =
-              'beta-note beta-status-error'; // אדום
+            betaStatus.textContent = 'שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.';
+            betaStatus.className = 'beta-note beta-status-error';
           }
         });
       }
