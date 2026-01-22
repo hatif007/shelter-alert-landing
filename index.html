@@ -9,7 +9,6 @@
     content="RED ALERT LIVE – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה."
   />
 
-  <!-- טיפוגרפיה יפה וקריאה -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -18,13 +17,8 @@
   />
 
   <style>
-    /* =========================
-       Modern Design System
-    ========================== */
     :root{
       --bg: #f5f7fb;
-      --panel: rgba(255,255,255,0.92);
-      --card: #ffffff;
       --text: #0f172a;
       --muted: #475569;
       --border: rgba(15,23,42,0.10);
@@ -34,8 +28,10 @@
       --blue:#2563eb;
       --green:#10b981;
 
-      --shadow-sm: 0 8px 22px rgba(15,23,42,0.08);
-      --shadow-md: 0 18px 50px rgba(15,23,42,0.12);
+      /* ✅ צל מקצועי ועדין יותר */
+      --shadow-sm: 0 10px 28px rgba(15,23,42,0.06);
+      --shadow-md: 0 18px 55px rgba(15,23,42,0.10);
+
       --radius-md: 16px;
       --radius-lg: 22px;
 
@@ -49,8 +45,8 @@
       min-height:100%;
       font-family: "Heebo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 15% 10%, rgba(37,99,235,0.10), transparent 35%),
-        radial-gradient(circle at 85% 0%, rgba(124,58,237,0.10), transparent 35%),
+        radial-gradient(circle at 15% 10%, rgba(37,99,235,0.08), transparent 35%),
+        radial-gradient(circle at 85% 0%, rgba(124,58,237,0.08), transparent 35%),
         var(--bg);
       color:var(--text);
       line-height:1.7;
@@ -84,7 +80,7 @@
     }
     header.scrolled{
       box-shadow: var(--shadow-sm);
-      background-color: rgba(255,255,255,0.85);
+      background-color: rgba(255,255,255,0.88);
     }
 
     .header-inner{
@@ -102,7 +98,7 @@
     }
     .logo-img{
       width:40px; height:40px; border-radius:999px;
-      box-shadow: 0 10px 20px rgba(15,23,42,0.12);
+      box-shadow: 0 10px 20px rgba(15,23,42,0.10);
     }
     .logo-text-wrap{ display:flex; flex-direction:column; }
     .logo-text-main{
@@ -145,13 +141,13 @@
       font-size: 14px;
       color: #fff;
       background: linear-gradient(135deg, var(--red-1), var(--red-2));
-      box-shadow: 0 12px 26px rgba(185,28,28,0.18);
+      box-shadow: 0 12px 26px rgba(185,28,28,0.16);
       transition: transform 160ms var(--ease), box-shadow 160ms var(--ease), filter 160ms var(--ease);
       white-space: nowrap;
     }
     .btn:hover{
       transform: translateY(-2px);
-      box-shadow: 0 16px 36px rgba(185,28,28,0.26);
+      box-shadow: 0 16px 34px rgba(185,28,28,0.22);
       filter: brightness(1.01);
     }
     .btn:active{ transform: translateY(0); }
@@ -159,7 +155,6 @@
 
     .btn.btn-sm{ padding: 8px 14px; font-size: 13px; font-weight: 700; }
 
-    /* Mobile menu button */
     .menu-toggle{
       display:none;
       border: 1px solid var(--border);
@@ -173,7 +168,6 @@
     .menu-toggle:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.95); }
     .menu-toggle:focus-visible{ outline:none; box-shadow: var(--focus); }
 
-    /* Mobile drawer */
     .nav-drawer{
       position:absolute;
       top: 58px;
@@ -215,8 +209,8 @@
     .hero{
       padding: 34px 0 46px;
       background:
-        radial-gradient(circle at top right, rgba(37,99,235,0.14), transparent 60%),
-        radial-gradient(circle at bottom left, rgba(239,68,68,0.10), transparent 55%);
+        radial-gradient(circle at top right, rgba(37,99,235,0.12), transparent 60%),
+        radial-gradient(circle at bottom left, rgba(239,68,68,0.08), transparent 55%);
     }
 
     .hero-grid{
@@ -324,7 +318,7 @@
       border-radius: 26px;
       padding: 3px;
       background: linear-gradient(135deg, #1d4ed8, #7c3aed);
-      box-shadow: 0 24px 70px rgba(15,23,42,0.20);
+      box-shadow: 0 22px 60px rgba(15,23,42,0.16);
     }
     .hero-image-inner{
       border-radius: 24px;
@@ -341,8 +335,6 @@
       color: #c7d2fe;
       font-weight: 600;
     }
-
-    /* Hero image instead of placeholder */
     .hero-figure{
       margin: 0;
       border-radius: 18px;
@@ -350,10 +342,7 @@
       border: 1px solid rgba(148,163,184,0.18);
       background: rgba(255,255,255,0.04);
     }
-    .hero-figure img{
-      width: 100%;
-      height: auto;
-    }
+    .hero-figure img{ width: 100%; height: auto; }
     .hero-figure figcaption{
       padding: 10px 10px 12px;
       font-size: 12px;
@@ -361,13 +350,8 @@
       background: rgba(2,6,23,0.55);
       border-top: 1px solid rgba(148,163,184,0.16);
     }
-    .hero-figure .hero-caption-title{
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-    .hero-figure .hero-caption-note{
-      color: rgba(226,232,240,0.86);
-    }
+    .hero-figure .hero-caption-title{ font-weight: 800; margin-bottom: 4px; }
+    .hero-figure .hero-caption-note{ color: rgba(226,232,240,0.86); }
 
     /* =========================
        Sections
@@ -387,7 +371,7 @@
 
     .problem-section{
       background:
-        radial-gradient(circle at 10% 0%, rgba(99,102,241,0.14), transparent 45%),
+        radial-gradient(circle at 10% 0%, rgba(99,102,241,0.12), transparent 45%),
         rgba(238,242,255,0.75);
       border-top: 1px solid rgba(15,23,42,0.06);
       border-bottom: 1px solid rgba(15,23,42,0.06);
@@ -400,18 +384,18 @@
       margin-top: 16px;
     }
 
+    /* ✅ כרטיס מקצועי - צל עדין */
     .card{
-      background: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.96);
       border: 1px solid rgba(15,23,42,0.08);
       border-radius: var(--radius-md);
       padding: 14px;
       box-shadow: var(--shadow-sm);
-      transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), background-color 180ms var(--ease);
+      transition: transform 180ms var(--ease), box-shadow 180ms var(--ease);
     }
     .card:hover{
-      transform: translateY(-3px);
-      box-shadow: 0 18px 50px rgba(15,23,42,0.14);
-      background: rgba(255,255,255,0.98);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
 
     .problem-card-title, .feature-title, .audience-title{
@@ -426,16 +410,19 @@
     .feature-icon{ font-size: 20px; }
     .feature-text{ color: var(--muted); font-size: 14px; }
 
+    /* =========================
+       Screens section
+    ========================== */
     .screens-section{
       background: rgba(248,250,252,0.65);
       border-top: 1px solid rgba(15,23,42,0.06);
       border-bottom: 1px solid rgba(15,23,42,0.06);
     }
 
-    /* 4 images grid */
-    .grid-4{
+    /* ✅ רק 3 תמונות */
+    .grid-screens{
       display:grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 16px;
       margin-top: 16px;
     }
@@ -446,34 +433,37 @@
       flex-direction:column;
       gap: 10px;
     }
+
+    /* ✅ הסרנו גרדיאנט שמייצר "הילה" */
     .screen-img-wrap{
       border-radius: 14px;
       overflow:hidden;
       border: 1px solid rgba(15,23,42,0.10);
-      background: linear-gradient(135deg, rgba(37,99,235,0.10), rgba(124,58,237,0.12));
+      background: #ffffff;
     }
+
+    /* ✅ אין חיתוך: contain + יחס מסך של צילום אנכי */
     .screen-img{
       width: 100%;
-      height: 220px;
-      object-fit: cover;
+      aspect-ratio: 9 / 16;        /* צילום מסך אנכי (כמו WhatsApp) */
+      object-fit: contain;          /* לא חותך */
+      background: #ffffff;          /* רקע נקי */
       display:block;
     }
+
     .screen-caption{
       color: var(--text);
       text-align:center;
       font-size: 13px;
       font-weight: 800;
     }
-    .screen-subnote{
-      text-align:center;
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: -4px;
-    }
 
+    /* =========================
+       Beta section / Form
+    ========================== */
     .beta-section{
       background:
-        radial-gradient(circle at 80% 20%, rgba(14,165,233,0.16), transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(14,165,233,0.14), transparent 45%),
         rgba(224,242,254,0.75);
       border-top: 1px solid rgba(15,23,42,0.06);
       border-bottom: 1px solid rgba(15,23,42,0.06);
@@ -484,7 +474,7 @@
       border: 1px solid rgba(15,23,42,0.08);
       border-radius: 24px;
       padding: 20px;
-      box-shadow: 0 18px 55px rgba(59,130,246,0.18);
+      box-shadow: 0 18px 55px rgba(59,130,246,0.16);
       max-width: 760px;
       margin: 0 auto;
     }
@@ -496,19 +486,8 @@
       margin-top: 14px;
     }
 
-    .form-group{
-      display:flex;
-      flex-direction:column;
-      gap: 6px;
-      font-size: 14px;
-    }
-    .form-group label{
-      font-weight: 700;
-      color: var(--text);
-      display:flex;
-      align-items:center;
-      gap: 6px;
-    }
+    .form-group{ display:flex; flex-direction:column; gap: 6px; font-size: 14px; }
+    .form-group label{ font-weight: 700; color: var(--text); display:flex; align-items:center; gap: 6px; }
     .required{ color: #dc2626; font-weight: 800; }
 
     .form-group input,
@@ -537,10 +516,7 @@
       background: rgba(254,242,242,0.65);
     }
 
-    .help-note{
-      font-size: 12px;
-      color: #64748b;
-    }
+    .help-note{ font-size: 12px; color: #64748b; }
 
     .form-errors{
       grid-column:1 / -1;
@@ -763,15 +739,12 @@
     /* =========================
        Responsive
     ========================== */
-    @media (max-width: 1050px){
-      .grid-4{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-
     @media (max-width: 900px){
       .hero-grid{ grid-template-columns: 1fr; }
       .hero{ padding-top: 26px; }
       .hero-image-wrapper{ max-width: 520px; margin: 0 auto; }
       .grid-3{ grid-template-columns: 1fr; }
+      .grid-screens{ grid-template-columns: 1fr; }
       .beta-grid{ grid-template-columns: 1fr; }
     }
 
@@ -780,13 +753,8 @@
       .menu-toggle{ display:block; }
       .logo-text-sub{ display:none; }
       .email-box{ max-width: 100%; }
-      .grid-4{ grid-template-columns: 1fr; }
-      .screen-img{ height: 240px; }
     }
 
-    /* =========================
-       Accessibility: reduce motion
-    ========================== */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior: auto; }
       *{ transition: none !important; animation: none !important; }
@@ -831,7 +799,6 @@
           <button class="btn btn-sm" onclick="scrollToBetaForm()" type="button">הצטרפות לבטא</button>
         </div>
 
-        <!-- Mobile Drawer -->
         <div id="nav-drawer" class="nav-drawer" role="menu">
           <a href="#how-it-works" role="menuitem">איך זה עובד</a>
           <a href="#features" role="menuitem">פיצ'רים</a>
@@ -884,9 +851,7 @@
 
         <div class="hero-image-wrapper">
           <div class="hero-image-inner">
-            <div class="hero-pill">תמונה 1 • מוקאפ</div>
-
-            <!-- ✅ תמונה 1 (מוקאפ) + "התמונה להמחשה בלבד" -->
+            <div class="hero-pill">מוקאפ • תצוגה לדוגמה</div>
             <figure class="hero-figure">
               <img src="assets/screens/mockup.png" alt="מוקאפ של האפליקציה – להמחשה" />
               <figcaption>
@@ -896,6 +861,7 @@
             </figure>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -998,27 +964,15 @@
       </div>
     </section>
 
-    <!-- ✅ 4 תמונות -->
+    <!-- ✅ בתחתית: רק 3 תמונות. המוקאפ הוסר -->
     <section id="screens" class="screens-section">
       <div class="container">
         <h2>איך זה נראה בפועל?</h2>
         <p class="section-intro">
-          4 תמונות לדוגמה: מוקאפ, מסך מפה ומקלטים קרובים, ניווט חי, תרגול.
+          3 תמונות מהאפליקציה: מסך מפה ומקלטים קרובים, ניווט חי, תרגול.
         </p>
 
-        <div class="grid-4">
-          <!-- תמונה 1: מוקאפ -->
-          <div class="card">
-            <figure class="screen-figure">
-              <div class="screen-img-wrap">
-                <img class="screen-img" src="assets/screens/mockup.png" alt="מוקאפ של האפליקציה" />
-              </div>
-              <figcaption class="screen-caption">מוקאפ</figcaption>
-              <div class="screen-subnote">התמונה להמחשה בלבד</div>
-            </figure>
-          </div>
-
-          <!-- תמונה 2: מסך מפה ומקלטים קרובים -->
+        <div class="grid-screens">
           <div class="card">
             <figure class="screen-figure">
               <div class="screen-img-wrap">
@@ -1028,21 +982,19 @@
             </figure>
           </div>
 
-          <!-- תמונה 3: ניווט חי -->
           <div class="card">
             <figure class="screen-figure">
               <div class="screen-img-wrap">
-                <img class="screen-img" src="assets/screens/live_navigation.png" alt="מסך ניווט חי" />
+                <img class="screen-img" src="assets/screens/live_navigation.png" alt="ניווט חי" />
               </div>
               <figcaption class="screen-caption">ניווט חי</figcaption>
             </figure>
           </div>
 
-          <!-- תמונה 4: תרגול -->
           <div class="card">
             <figure class="screen-figure">
               <div class="screen-img-wrap">
-                <img class="screen-img" src="assets/screens/drill.png" alt="מסך תרגול" />
+                <img class="screen-img" src="assets/screens/drill.png" alt="תרגול" />
               </div>
               <figcaption class="screen-caption">תרגול</figcaption>
             </figure>
@@ -1162,7 +1114,6 @@
                 לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.
               </p>
 
-              <!-- נשאיר את זה ריק (כבר לא משתמשים בו), כדי שלא לשבור קוד ישן -->
               <p class="beta-note" id="beta-status" style="display:none;"></p>
             </div>
           </form>
@@ -1186,20 +1137,6 @@
       </div>
     </section>
 
-    <section id="about">
-      <div class="container">
-        <h2>מי אנחנו?</h2>
-        <p class="section-intro">
-          RED ALERT LIVE היא יוזמה עצמאית שנולדה מהרצון להפוך רגעי חירום למעט פחות
-          מבלבלים, ולהוסיף עוד שכבת ביטחון טכנולוגית לצד ההנחיות הרשמיות של גורמי החירום.
-        </p>
-        <p class="section-intro" style="margin-bottom:0;">
-          מאחורי הפרויקט עומדת קבוצה קטנה של אנשים שעובדים יחד על הפיתוח: מעצבת גרפית, עו״ד, ארכיטקט תוכנה,
-          מתכנתים ובודקי שטח – כדי לבנות כלי פשוט, יציב ואמין שיעזור לתושבים להגיע למרחב מוגן בזמן.
-        </p>
-      </div>
-    </section>
-
     <section id="faq" class="faq-section">
       <div class="container">
         <h2>שאלות נפוצות</h2>
@@ -1216,20 +1153,6 @@
             <summary>האם האפליקציה כבר זמינה בחנות?</summary>
             <p>
               כרגע האפליקציה בשלב קדם־חנות / בטא. מי שנרשם כאן יקבל עדכון כשגרסת בטא תהיה זמינה להורדה.
-            </p>
-          </details>
-
-          <details>
-            <summary>האם השימוש באפליקציה יהיה בתשלום?</summary>
-            <p>
-              בשלב הבטא השימוש מתוכנן להיות ללא עלות. בהמשך, חלק מהפיצ׳רים המתקדמים עשויים להיות במסגרת מודלים שונים.
-            </p>
-          </details>
-
-          <details>
-            <summary>איך זה יעבוד ב־Android וב־iOS?</summary>
-            <p>
-              ב־Android ההפצה תעשה דרך Google Play (או קישור ישיר לבטא). ב־iOS ההפצה תעשה באמצעות TestFlight ו/או App Store.
             </p>
           </details>
 
@@ -1255,7 +1178,6 @@
     </div>
   </footer>
 
-  <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
     <div class="toast-icon" id="toast-icon">✓</div>
     <div class="toast-content">
@@ -1265,12 +1187,8 @@
     <button class="toast-close" id="toast-close" aria-label="סגור" type="button">✕</button>
   </div>
 
-  <!-- JS (תפריט + טופס + Toast) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      /* =========================
-         Header shadow on scroll
-      ========================== */
       const header = document.getElementById('site-header');
       function onScroll(){
         if (!header) return;
@@ -1279,9 +1197,6 @@
       onScroll();
       window.addEventListener('scroll', onScroll, { passive: true });
 
-      /* =========================
-         Mobile Menu (Drawer)
-      ========================== */
       const toggle = document.getElementById('menu-toggle');
       const drawer = document.getElementById('nav-drawer');
 
@@ -1290,7 +1205,6 @@
         drawer.style.display = 'none';
         toggle.setAttribute('aria-expanded', 'false');
       }
-
       function openDrawer(){
         if (!drawer || !toggle) return;
         drawer.style.display = 'block';
@@ -1303,7 +1217,6 @@
           isOpen ? closeDrawer() : openDrawer();
         });
 
-        // close on click outside
         document.addEventListener('click', function(e){
           const isOpen = toggle.getAttribute('aria-expanded') === 'true';
           if (!isOpen) return;
@@ -1311,20 +1224,13 @@
           closeDrawer();
         });
 
-        // close on ESC
         document.addEventListener('keydown', function(e){
           if (e.key === 'Escape') closeDrawer();
         });
 
-        // close when clicking a link
-        drawer.querySelectorAll('a').forEach(a => {
-          a.addEventListener('click', closeDrawer);
-        });
+        drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
       }
 
-      /* =========================
-         Toast
-      ========================== */
       const toast = document.getElementById('toast');
       const toastIcon = document.getElementById('toast-icon');
       const toastTitle = document.getElementById('toast-title');
@@ -1352,9 +1258,6 @@
         toastClose.addEventListener('click', () => toast.classList.remove('show'));
       }
 
-      /* =========================
-         Beta Form
-      ========================== */
       const FORMS_API_URL = 'https://red-alert-forms-service-production.up.railway.app/contact';
 
       const betaForm = document.getElementById('beta-form-form');
@@ -1384,9 +1287,7 @@
       }
 
       function clearInvalid(){
-        [emailEl, platformEl, cityEl, roleEl, orgEl].forEach(el => {
-          if (el) el.classList.remove('invalid');
-        });
+        [emailEl, platformEl, cityEl, roleEl, orgEl].forEach(el => el && el.classList.remove('invalid'));
       }
 
       function showFormError(msg){
@@ -1401,7 +1302,6 @@
         formErrors.style.display = 'none';
       }
 
-      // אם לא תושב → עיר + ארגון חובה
       function updateConditionalRequirements(){
         const role = (roleEl?.value || '').trim();
         const nonResident = role && role !== 'resident';
@@ -1413,9 +1313,7 @@
         if (orgHelp) orgHelp.style.display = nonResident ? 'block' : 'none';
       }
 
-      if (roleEl){
-        roleEl.addEventListener('change', updateConditionalRequirements);
-      }
+      roleEl?.addEventListener('change', updateConditionalRequirements);
       updateConditionalRequirements();
 
       function isValidEmail(email){
@@ -1471,86 +1369,79 @@
             return false;
           }
         }
-
         return true;
       }
 
-      if (betaForm){
-        betaForm.addEventListener('submit', async function(e){
-          e.preventDefault();
-          if (!validate()) return;
+      betaForm?.addEventListener('submit', async function(e){
+        e.preventDefault();
+        if (!validate()) return;
 
-          setLoading(true);
+        setLoading(true);
 
-          const email = (emailEl?.value || '').trim();
-          const platform = (platformEl?.value || '').trim();
-          const name = (nameEl?.value || '').trim();
-          const city = (cityEl?.value || '').trim();
-          const role = (roleEl?.value || '').trim();
-          const organization = (orgEl?.value || '').trim();
-          const phone = (phoneEl?.value || '').trim();
-          const notes = (notesEl?.value || '').trim();
+        const email = (emailEl?.value || '').trim();
+        const platform = (platformEl?.value || '').trim();
+        const name = (nameEl?.value || '').trim();
+        const city = (cityEl?.value || '').trim();
+        const role = (roleEl?.value || '').trim();
+        const organization = (orgEl?.value || '').trim();
+        const phone = (phoneEl?.value || '').trim();
+        const notes = (notesEl?.value || '').trim();
 
-          const messageLines = [
-            'Beta form signup from landing page:',
-            '',
-            `Name: ${name || 'N/A'}`,
-            `Email: ${email}`,
-            `Platform: ${platform || 'N/A'}`,
-            `City: ${city || 'N/A'}`,
-            `Role: ${role || 'N/A'}`,
-            `Organization: ${organization || 'N/A'}`,
-            `Phone: ${phone || 'N/A'}`,
-            '',
-            'Notes:',
-            notes || 'N/A',
-          ];
+        const messageLines = [
+          'Beta form signup from landing page:',
+          '',
+          `Name: ${name || 'N/A'}`,
+          `Email: ${email}`,
+          `Platform: ${platform || 'N/A'}`,
+          `City: ${city || 'N/A'}`,
+          `Role: ${role || 'N/A'}`,
+          `Organization: ${organization || 'N/A'}`,
+          `Phone: ${phone || 'N/A'}`,
+          '',
+          'Notes:',
+          notes || 'N/A',
+        ];
 
-          const payload = {
-            name,
-            email,
-            source: 'beta_form',
-            message: messageLines.join('\n'),
-            platform,
-            role,
-            city,
-            organization,
-            phone,
-            notes,
-          };
+        const payload = {
+          name,
+          email,
+          source: 'beta_form',
+          message: messageLines.join('\n'),
+          platform,
+          role,
+          city,
+          organization,
+          phone,
+          notes,
+        };
 
-          try{
-            const res = await fetch(FORMS_API_URL, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload),
-            });
+        try{
+          const res = await fetch(FORMS_API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
 
-            // אם השרת החזיר לא-JSON או שגיאה
-            let json = null;
-            try { json = await res.json(); } catch (_) {}
+          let json = null;
+          try { json = await res.json(); } catch (_) {}
 
-            if (res.ok && json && json.ok){
-              betaForm.reset();
-              updateConditionalRequirements();
-              hideFormError();
-
-              showToast('success', 'נשלח בהצלחה', 'תודה! נעדכן כשגרסת הבטא תהיה מוכנה.');
-
-              // פעולה "ברורה" נוספת: להשאיר את המשתמש באיזור הטופס, במרכז
-              document.getElementById('beta-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-              console.error(json || { status: res.status });
-              showToast('error', 'לא נשלח', 'אירעה שגיאה בשליחה. נסו שוב בעוד רגע.');
-            }
-          } catch(err){
-            console.error(err);
-            showToast('error', 'שגיאת חיבור', 'לא הצלחנו להתחבר לשרת. נסו שוב מאוחר יותר.');
-          } finally {
-            setLoading(false);
+          if (res.ok && json && json.ok){
+            betaForm.reset();
+            updateConditionalRequirements();
+            hideFormError();
+            showToast('success', 'נשלח בהצלחה', 'תודה! נעדכן כשגרסת הבטא תהיה מוכנה.');
+            document.getElementById('beta-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            console.error(json || { status: res.status });
+            showToast('error', 'לא נשלח', 'אירעה שגיאה בשליחה. נסו שוב בעוד רגע.');
           }
-        });
-      }
+        } catch(err){
+          console.error(err);
+          showToast('error', 'שגיאת חיבור', 'לא הצלחנו להתחבר לשרת. נסו שוב מאוחר יותר.');
+        } finally {
+          setLoading(false);
+        }
+      });
     });
   </script>
 </body>
