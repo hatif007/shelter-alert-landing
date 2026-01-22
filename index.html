@@ -4,140 +4,115 @@
   <meta charset="UTF-8" />
   <title>RED ALERT LIVE – ניווט חכם למקלטים בזמן אזעקה</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-        content="RED ALERT LIVE – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה." />
+  <meta
+    name="description"
+    content="RED ALERT LIVE – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה."
+  />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Assistant:wght@300;400;600;700&display=swap"
-        rel="stylesheet" />
+  <!-- טיפוגרפיה יפה וקריאה -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
-    /* ------------------------------
-       Design Tokens
-    -------------------------------- */
+    /* =========================
+       Modern Design System
+    ========================== */
     :root{
-      --bg: #f6f7fb;
-      --surface: rgba(255,255,255,.78);
-      --surface-solid: #ffffff;
+      --bg: #f5f7fb;
+      --panel: rgba(255,255,255,0.92);
+      --card: #ffffff;
       --text: #0f172a;
       --muted: #475569;
-      --muted2: #64748b;
-      --border: rgba(15, 23, 42, 0.10);
+      --border: rgba(15,23,42,0.10);
 
-      --brand: #b91c1c;
-      --brand2: #ef4444;
+      --red-1:#ef4444;
+      --red-2:#b91c1c;
+      --blue:#2563eb;
+      --green:#10b981;
 
-      --blue: #2563eb;
-      --violet: #7c3aed;
+      --shadow-sm: 0 8px 22px rgba(15,23,42,0.08);
+      --shadow-md: 0 18px 50px rgba(15,23,42,0.12);
+      --radius-md: 16px;
+      --radius-lg: 22px;
 
-      --radius-xl: 22px;
-      --radius-lg: 18px;
-      --radius-md: 14px;
-      --radius-sm: 12px;
-
-      --shadow-sm: 0 8px 22px rgba(15, 23, 42, 0.07);
-      --shadow-md: 0 16px 40px rgba(15, 23, 42, 0.12);
-      --shadow-lg: 0 26px 70px rgba(15, 23, 42, 0.18);
-
-      --ring: 0 0 0 3px rgba(37, 99, 235, 0.18);
-      --container: 1120px;
-
+      --focus: 0 0 0 3px rgba(37,99,235,0.22);
       --ease: cubic-bezier(.2,.8,.2,1);
-      --t: 180ms var(--ease);
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-    }
-
-    /* ------------------------------
-       Base
-    -------------------------------- */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    html { scroll-behavior: smooth; }
-
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ height:100%; scroll-behavior:smooth; }
     body{
-      font-family: "Heebo","Assistant",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      min-height:100%;
+      font-family: "Heebo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(900px 400px at 90% 0%, rgba(37,99,235,0.12), transparent 60%),
-        radial-gradient(900px 400px at 10% 20%, rgba(124,58,237,0.10), transparent 55%),
+        radial-gradient(circle at 15% 10%, rgba(37,99,235,0.10), transparent 35%),
+        radial-gradient(circle at 85% 0%, rgba(124,58,237,0.10), transparent 35%),
         var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      color:var(--text);
+      line-height:1.7;
+      letter-spacing: 0.1px;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; height: auto; display: block; }
+    a{ text-decoration:none; color:inherit; }
+    img{ max-width:100%; height:auto; display:block; }
+    button, input, select, textarea{ font-family: inherit; }
 
     .container{
-      width: 100%;
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 16px;
+      width:100%;
+      max-width:1120px;
+      margin:0 auto;
+      padding:0 16px;
     }
 
-    .sr-only{
-      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-    }
-
-    /* ------------------------------
-       Header (glass)
-    -------------------------------- */
+    /* =========================
+       Header
+    ========================== */
     header{
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255,255,255,.60);
+      background-color: rgba(255,255,255,0.70);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
+      transition: box-shadow 180ms var(--ease), background-color 180ms var(--ease);
+    }
+    header.scrolled{
+      box-shadow: var(--shadow-sm);
+      background-color: rgba(255,255,255,0.85);
     }
 
     .header-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding: 12px 0;
-      gap: 16px;
+      padding: 10px 0;
+      gap: 12px;
       position: relative;
     }
 
     .logo{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      min-width: 220px;
+      display:flex; align-items:center; gap:10px;
+      min-width: 240px;
     }
-
     .logo-img{
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      box-shadow: 0 10px 22px rgba(185,28,28,.18);
-      border: 1px solid rgba(185,28,28,.18);
-      background: #fff;
+      width:40px; height:40px; border-radius:999px;
+      box-shadow: 0 10px 20px rgba(15,23,42,0.12);
     }
-
     .logo-text-wrap{ display:flex; flex-direction:column; }
     .logo-text-main{
-      font-weight: 900;
-      letter-spacing: -0.3px;
+      font-weight: 800;
       font-size: 18px;
-      color: var(--brand);
+      color: var(--red-2);
       line-height: 1.1;
+      letter-spacing: 0.2px;
     }
-    .logo-text-sub{
-      font-size: 12px;
-      color: var(--muted2);
-      margin-top: 2px;
-    }
-
-    nav{ display:flex; align-items:center; gap: 10px; }
+    .logo-text-sub{ font-size: 12px; color: #64748b; }
 
     .nav-links{
       display:flex;
@@ -145,208 +120,108 @@
       align-items:center;
       font-size: 14px;
     }
-
     .nav-links a{
       color: #334155;
       padding: 6px 8px;
       border-radius: 10px;
-      transition: background var(--t), color var(--t), transform var(--t);
+      transition: background-color 160ms var(--ease), transform 160ms var(--ease), color 160ms var(--ease);
     }
-
     .nav-links a:hover{
       background: rgba(37,99,235,0.08);
-      color: var(--text);
+      color: #0f172a;
       transform: translateY(-1px);
     }
-
-    /* Buttons */
-    .btn{
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      border-radius: 999px;
-      font-weight: 700;
-      transition: transform var(--t), box-shadow var(--t), opacity var(--t), background var(--t);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 8px;
-      user-select:none;
-      -webkit-tap-highlight-color: transparent;
+    .nav-links a:focus-visible{
+      outline: none;
+      box-shadow: var(--focus);
     }
 
-    .btn:active{ transform: translateY(1px) scale(0.99); }
-    .btn:focus-visible{ outline: none; box-shadow: var(--ring), var(--shadow-sm); }
-
-    .btn-primary-sm{
-      padding: 9px 16px;
+    .btn{
+      border:none;
+      cursor:pointer;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-weight: 700;
       font-size: 14px;
       color: #fff;
-      background: linear-gradient(135deg, var(--brand2), var(--brand));
-      box-shadow: 0 12px 24px rgba(185,28,28,0.20);
+      background: linear-gradient(135deg, var(--red-1), var(--red-2));
+      box-shadow: 0 12px 26px rgba(185,28,28,0.18);
+      transition: transform 160ms var(--ease), box-shadow 160ms var(--ease), filter 160ms var(--ease);
+      white-space: nowrap;
     }
-
-    .btn-primary-sm:hover{
-      box-shadow: 0 18px 38px rgba(185,28,28,0.28);
-      transform: translateY(-1px);
+    .btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(185,28,28,0.26);
+      filter: brightness(1.01);
     }
-/* Toast */
-.toast{
-  position: fixed;
-  left: 16px;
-  right: 16px;
-  bottom: 18px;
-  margin: 0 auto;
-  max-width: 560px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 12px;
-  align-items: center;
+    .btn:active{ transform: translateY(0); }
+    .btn:focus-visible{ outline:none; box-shadow: var(--focus); }
 
-  padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
+    .btn.btn-sm{ padding: 8px 14px; font-size: 13px; font-weight: 700; }
 
-  transform: translateY(14px);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms cubic-bezier(.2,.8,.2,1);
-  z-index: 9999;
-}
-
-.toast.show{
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.toast.success{
-  border-color: rgba(16, 185, 129, 0.35);
-}
-
-.toast.error{
-  border-color: rgba(239, 68, 68, 0.35);
-}
-
-.toast-icon{
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  background: rgba(16,185,129,0.14);
-  color: #0f766e;
-  border: 1px solid rgba(16,185,129,0.25);
-}
-
-.toast.error .toast-icon{
-  background: rgba(239,68,68,0.14);
-  color: #b91c1c;
-  border-color: rgba(239,68,68,0.25);
-}
-
-.toast-title{
-  font-weight: 900;
-  font-size: 13px;
-  color: #0f172a;
-  line-height: 1.2;
-}
-
-.toast-message{
-  font-size: 12px;
-  color: #475569;
-  margin-top: 2px;
-}
-
-.toast-close{
-  width: 34px;
-  height: 34px;
-  border-radius: 12px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  background: rgba(255,255,255,0.7);
-  cursor: pointer;
-  font-size: 14px;
-  transition: transform 180ms cubic-bezier(.2,.8,.2,1);
-}
-
-.toast-close:hover{ transform: scale(1.03); }
-.toast-close:active{ transform: scale(0.98); }
-.toast-close:focus-visible{ outline: none; box-shadow: 0 0 0 3px rgba(37,99,235,0.18); }
-
+    /* Mobile menu button */
     .menu-toggle{
       display:none;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.7);
-      box-shadow: var(--shadow-sm);
-      font-size: 20px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: transform 160ms var(--ease), background-color 160ms var(--ease);
     }
+    .menu-toggle:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.95); }
+    .menu-toggle:focus-visible{ outline:none; box-shadow: var(--focus); }
 
-    /* Mobile menu panel */
-    .mobile-panel{
-      display:none;
+    /* Mobile drawer */
+    .nav-drawer{
       position:absolute;
-      top: calc(100% + 10px);
+      top: 58px;
       right: 0;
-      width: min(360px, calc(100vw - 32px));
-      background: rgba(255,255,255,.92);
+      width: min(360px, calc(100vw - 16px));
+      background: rgba(255,255,255,0.95);
       border: 1px solid var(--border);
       border-radius: 16px;
       box-shadow: var(--shadow-md);
       padding: 10px;
+      display:none;
+      overflow:hidden;
       transform-origin: top right;
-      animation: pop .18s var(--ease);
+      animation: drawerIn 200ms var(--ease) both;
     }
-    @keyframes pop { from{ transform: scale(.98); opacity: .0; } to{ transform: scale(1); opacity: 1; } }
-
-    .mobile-panel a{
-      display:block;
+    @keyframes drawerIn{
+      from{ transform: translateY(-6px) scale(0.98); opacity: 0; }
+      to{ transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .nav-drawer a, .nav-drawer button{
+      display:flex;
+      width: 100%;
+      justify-content: flex-start;
+      gap: 10px;
       padding: 10px 12px;
       border-radius: 12px;
-      color: #0f172a;
-      font-weight: 600;
+      font-size: 14px;
     }
-    .mobile-panel a:hover{ background: rgba(37,99,235,.08); }
-
-    .mobile-panel .cta{
-      margin-top: 8px;
-      width: 100%;
-      padding: 10px 16px;
+    .nav-drawer a:hover{
+      background: rgba(37,99,235,0.08);
+    }
+    .nav-drawer .drawer-cta{
+      margin-top: 6px;
     }
 
-    /* ------------------------------
-       Sections
-    -------------------------------- */
-    section{ padding: 54px 0; }
-    section h2{
-      font-size: 26px;
-      letter-spacing: -0.4px;
-      margin-bottom: 10px;
-    }
-    p.section-intro{
-      font-size: 15px;
-      color: var(--muted);
-      margin-bottom: 22px;
-      max-width: 75ch;
-    }
-
-    /* ------------------------------
+    /* =========================
        Hero
-    -------------------------------- */
+    ========================== */
     .hero{
-      padding: 42px 0 54px;
+      padding: 34px 0 46px;
+      background:
+        radial-gradient(circle at top right, rgba(37,99,235,0.14), transparent 60%),
+        radial-gradient(circle at bottom left, rgba(239,68,68,0.10), transparent 55%);
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.08fr 0.92fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 34px;
       align-items:center;
     }
@@ -358,163 +233,164 @@
       padding: 6px 12px;
       border-radius: 999px;
       background: rgba(239,68,68,0.12);
-      color: var(--brand);
+      color: var(--red-2);
       font-size: 12px;
       font-weight: 700;
-      border: 1px solid rgba(185,28,28,0.14);
-      margin-bottom: 12px;
+      border: 1px solid rgba(239,68,68,0.18);
     }
 
     .hero-title{
-      font-size: clamp(28px, 3vw, 38px);
-      font-weight: 900;
-      letter-spacing: -0.7px;
-      margin-bottom: 12px;
+      margin-top: 12px;
+      font-weight: 800;
+      font-size: clamp(24px, 2.2vw + 16px, 38px);
       line-height: 1.15;
+      letter-spacing: -0.2px;
     }
 
     .hero-subtitle{
-      font-size: 16px;
+      margin-top: 12px;
       color: var(--muted);
-      margin-bottom: 18px;
-      max-width: 70ch;
+      font-size: 16px;
+      max-width: 60ch;
     }
 
     .hero-list{
       list-style:none;
-      margin-bottom: 16px;
-      display:grid;
+      margin-top: 14px;
+      display:flex;
+      flex-direction:column;
       gap: 8px;
     }
-
     .hero-list li{
       display:flex;
-      gap: 10px;
       align-items:flex-start;
-      color: #334155;
+      gap: 10px;
       font-size: 14px;
+      color:#334155;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(15,23,42,0.06);
+      transition: transform 180ms var(--ease), background-color 180ms var(--ease);
     }
-
+    .hero-list li:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.85);
+    }
     .bullet{
-      width: 22px; height: 22px;
-      border-radius: 999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(16,185,129,0.12);
-      color: #0f766e;
-      font-weight: 900;
-      flex: 0 0 auto;
       margin-top: 2px;
-      border: 1px solid rgba(16,185,129,0.18);
+      color: var(--green);
+      font-weight: 900;
     }
 
-    .hero-note{
-      font-size: 12px;
-      color: var(--muted2);
-      margin-top: 10px;
-    }
-
-    /* CTA card */
-    .cta-card{
-      background: var(--surface);
-      border: 1px solid var(--border);
+    .email-box{
+      margin-top: 14px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(15,23,42,0.08);
       border-radius: var(--radius-lg);
       padding: 14px;
-      max-width: 440px;
-      margin-top: 10px;
       box-shadow: var(--shadow-sm);
-      backdrop-filter: blur(10px);
+      max-width: 440px;
     }
-
-    .cta-title{
+    .email-box-title{
       font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 10px;
+      font-weight: 700;
       color: var(--text);
+      margin-bottom: 10px;
     }
-
-    .cta-btn{
-      width: 100%;
-      padding: 11px 16px;
-      font-size: 14px;
-      background: linear-gradient(135deg, var(--brand2), var(--brand));
-      color: #fff;
-      box-shadow: 0 16px 30px rgba(185,28,28,0.22);
+    .email-btn{
+      width:100%;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--red-1), var(--red-2));
+      color:#fff;
+      font-weight: 800;
+      font-size: 13px;
+      transition: transform 160ms var(--ease), box-shadow 160ms var(--ease);
+      box-shadow: 0 12px 26px rgba(185,28,28,0.16);
     }
+    .email-btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(185,28,28,0.22); }
+    .email-btn:focus-visible{ outline:none; box-shadow: var(--focus); }
 
-    .cta-btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 24px 48px rgba(185,28,28,0.28);
-    }
-
-    .cta-hint{
-      margin-top: 8px;
+    .hero-note{
+      margin-top: 10px;
+      color:#64748b;
       font-size: 12px;
-      color: var(--muted2);
     }
 
-    /* Hero mock */
     .hero-image-wrapper{
       border-radius: 26px;
-      background: linear-gradient(135deg, rgba(37,99,235,1), rgba(124,58,237,1));
       padding: 3px;
-      box-shadow: var(--shadow-lg);
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+      box-shadow: 0 24px 70px rgba(15,23,42,0.20);
     }
-
     .hero-image-inner{
       border-radius: 24px;
       background: #020617;
-      padding: 14px;
-      color: #e5e7eb;
+      padding: 12px;
+      color: #e2e8f0;
       min-height: 300px;
       display:flex;
       flex-direction:column;
       gap: 12px;
-      position: relative;
-      overflow:hidden;
     }
-
     .hero-pill{
       font-size: 12px;
-      color: rgba(165,180,252,0.9);
-      font-weight: 700;
-      display:flex;
-      gap: 8px;
-      align-items:center;
+      color: #c7d2fe;
+      font-weight: 600;
     }
 
-    .hero-map-placeholder{
-      flex:1;
+    /* Hero image instead of placeholder */
+    .hero-figure{
+      margin: 0;
       border-radius: 18px;
-      background:
-        radial-gradient(circle at top left, rgba(59,130,246,0.55), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(129,140,248,0.48), transparent 55%);
-      position:relative;
-      overflow:hidden;
+      overflow: hidden;
       border: 1px solid rgba(148,163,184,0.18);
+      background: rgba(255,255,255,0.04);
     }
-
-    .hero-map-placeholder::before{
-      content:"תצוגת מפה + מקלטים קרובים (מוקאפ)";
-      position:absolute;
-      bottom: 12px;
-      right: 12px;
+    .hero-figure img{
+      width: 100%;
+      height: auto;
+    }
+    .hero-figure figcaption{
+      padding: 10px 10px 12px;
       font-size: 12px;
-      color: rgba(249,250,251,0.9);
+      color: rgba(248,250,252,0.92);
       background: rgba(2,6,23,0.55);
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.18);
+      border-top: 1px solid rgba(148,163,184,0.16);
+    }
+    .hero-figure .hero-caption-title{
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .hero-figure .hero-caption-note{
+      color: rgba(226,232,240,0.86);
     }
 
-    /* ------------------------------
-       Cards Grids
-    -------------------------------- */
-    .soft-section{
-      background: rgba(238,242,255,0.70);
-      border-top: 1px solid rgba(15,23,42,0.05);
-      border-bottom: 1px solid rgba(15,23,42,0.05);
+    /* =========================
+       Sections
+    ========================== */
+    section{ padding: 44px 0; }
+    section h2{
+      font-size: clamp(20px, 1.2vw + 16px, 28px);
+      margin-bottom: 10px;
+      letter-spacing: -0.2px;
+    }
+    .section-intro{
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 85ch;
+    }
+
+    .problem-section{
+      background:
+        radial-gradient(circle at 10% 0%, rgba(99,102,241,0.14), transparent 45%),
+        rgba(238,242,255,0.75);
+      border-top: 1px solid rgba(15,23,42,0.06);
+      border-bottom: 1px solid rgba(15,23,42,0.06);
     }
 
     .grid-3{
@@ -525,77 +401,90 @@
     }
 
     .card{
-      background: var(--surface-solid);
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(15,23,42,0.08);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 14px;
       box-shadow: var(--shadow-sm);
-      transition: transform var(--t), box-shadow var(--t);
+      transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), background-color 180ms var(--ease);
     }
-
     .card:hover{
       transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 18px 50px rgba(15,23,42,0.14);
+      background: rgba(255,255,255,0.98);
     }
 
-    .card-title{
-      font-weight: 900;
+    .problem-card-title, .feature-title, .audience-title{
+      font-weight: 800;
       margin-bottom: 6px;
-      letter-spacing: -0.2px;
-    }
-
-    .card p{ color: var(--muted); font-size: 14px; }
-
-    .emoji{
-      font-size: 20px;
-      margin-left: 6px;
-    }
-
-    .feature-icon{
-      font-size: 22px;
-      margin-bottom: 6px;
-    }
-
-    .screens-section{ background: rgba(249,250,251,0.8); }
-
-    .screen-placeholder{
-      height: 210px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(37,99,235,0.14), rgba(124,58,237,0.16));
-      margin-bottom: 10px;
+      color: var(--text);
       display:flex;
       align-items:center;
-      justify-content:center;
-      color: #0f172a;
-      font-weight: 700;
-      font-size: 13px;
-      text-align:center;
-      padding: 12px;
-      border: 1px dashed rgba(15,23,42,0.18);
+      gap: 8px;
     }
 
+    .feature-icon{ font-size: 20px; }
+    .feature-text{ color: var(--muted); font-size: 14px; }
+
+    .screens-section{
+      background: rgba(248,250,252,0.65);
+      border-top: 1px solid rgba(15,23,42,0.06);
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+    }
+
+    /* 4 images grid */
+    .grid-4{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .screen-figure{
+      margin: 0;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .screen-img-wrap{
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid rgba(15,23,42,0.10);
+      background: linear-gradient(135deg, rgba(37,99,235,0.10), rgba(124,58,237,0.12));
+    }
+    .screen-img{
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display:block;
+    }
     .screen-caption{
-      color: var(--muted);
+      color: var(--text);
       text-align:center;
       font-size: 13px;
+      font-weight: 800;
+    }
+    .screen-subnote{
+      text-align:center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: -4px;
     }
 
-    /* ------------------------------
-       Beta form
-    -------------------------------- */
     .beta-section{
-      background: rgba(224,242,254,0.75);
-      border-top: 1px solid rgba(15,23,42,0.05);
-      border-bottom: 1px solid rgba(15,23,42,0.05);
+      background:
+        radial-gradient(circle at 80% 20%, rgba(14,165,233,0.16), transparent 45%),
+        rgba(224,242,254,0.75);
+      border-top: 1px solid rgba(15,23,42,0.06);
+      border-bottom: 1px solid rgba(15,23,42,0.06);
     }
 
     .beta-card{
-      background: rgba(255,255,255,0.86);
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(15,23,42,0.08);
       border-radius: 24px;
-      padding: 22px;
-      box-shadow: var(--shadow-md);
-      backdrop-filter: blur(12px);
+      padding: 20px;
+      box-shadow: 0 18px 55px rgba(59,130,246,0.18);
       max-width: 760px;
       margin: 0 auto;
     }
@@ -603,150 +492,176 @@
     .beta-grid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 14px;
+      gap: 16px;
       margin-top: 14px;
     }
 
-    .form-group{ display:flex; flex-direction:column; gap: 6px; font-size: 14px; }
-    .form-group label{ font-weight: 800; color: var(--text); }
-    .required{ color: #dc2626; }
+    .form-group{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      font-size: 14px;
+    }
+    .form-group label{
+      font-weight: 700;
+      color: var(--text);
+      display:flex;
+      align-items:center;
+      gap: 6px;
+    }
+    .required{ color: #dc2626; font-weight: 800; }
 
     .form-group input,
     .form-group select,
     .form-group textarea{
-      padding: 11px 12px;
+      padding: 10px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(15,23,42,0.16);
-      font-size: 14px;
-      outline: none;
+      border: 1px solid rgba(15,23,42,0.14);
       background: rgba(248,250,252,0.85);
-      font-family: inherit;
-      transition: box-shadow var(--t), border-color var(--t), background var(--t);
+      outline: none;
+      font-size: 14px;
+      transition: box-shadow 160ms var(--ease), border-color 160ms var(--ease), background-color 160ms var(--ease);
     }
-
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus{
-      border-color: rgba(37,99,235,0.7);
-      box-shadow: var(--ring);
-      background: rgba(255,255,255,0.95);
+      border-color: rgba(37,99,235,0.55);
+      box-shadow: var(--focus);
+      background: #fff;
+    }
+    .form-group input.invalid,
+    .form-group select.invalid,
+    .form-group textarea.invalid{
+      border-color: rgba(239,68,68,0.55);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.14);
+      background: rgba(254,242,242,0.65);
     }
 
-    .helper{
+    .help-note{
       font-size: 12px;
-      color: var(--muted2);
-      margin-top: 2px;
+      color: #64748b;
     }
 
     .form-errors{
-      background: #fef2f2;
-      border: 1px solid #fecaca;
+      grid-column:1 / -1;
+      background: rgba(254,242,242,0.85);
+      border: 1px solid rgba(239,68,68,0.24);
       color: #b91c1c;
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 10px 12px;
       font-size: 12px;
+      display:none;
+      box-shadow: 0 12px 30px rgba(239,68,68,0.10);
     }
 
     .beta-actions{
-      margin-top: 16px;
+      grid-column: 1 / -1;
+      margin-top: 6px;
       display:flex;
-      flex-wrap:wrap;
+      flex-wrap: wrap;
       align-items:center;
       gap: 10px;
     }
 
     .btn-primary-lg{
-      padding: 12px 22px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--red-1), var(--red-2));
+      color: #fff;
       font-size: 14px;
-      color:#fff;
-      background: linear-gradient(135deg, var(--brand2), var(--brand));
-      box-shadow: 0 16px 30px rgba(185,28,28,0.22);
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 160ms var(--ease), box-shadow 160ms var(--ease), filter 160ms var(--ease);
+      box-shadow: 0 14px 32px rgba(185,28,28,0.18);
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
     }
     .btn-primary-lg:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 26px 56px rgba(185,28,28,0.30);
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(185,28,28,0.26);
+      filter: brightness(1.01);
+    }
+    .btn-primary-lg:active{ transform: translateY(0); }
+    .btn-primary-lg:focus-visible{ outline:none; box-shadow: var(--focus); }
+
+    .btn-primary-lg[disabled]{
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+      filter: none !important;
     }
 
-    .beta-note{ font-size: 12px; color: var(--muted2); }
-    .beta-status-success{ font-weight: 800; color: #0f172a; }
-    .beta-status-error{ font-weight: 700; color: #b91c1c; }
+    .spinner{
+      width: 16px; height: 16px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.55);
+      border-top-color: rgba(255,255,255,1);
+      display:none;
+      animation: spin 800ms linear infinite;
+    }
+    @keyframes spin{ to { transform: rotate(360deg); } }
 
-    /* ------------------------------
-       FAQ
-    -------------------------------- */
-    .faq-section{ background: rgba(249,250,251,0.9); }
+    .beta-note{ font-size: 12px; color: #64748b; }
 
-    .faq-list{
-      margin-top: 14px;
+    .legal-card{
       border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      padding: 12px 14px;
+      background: #0b1220;
+      color: #e2e8f0;
+      padding: 16px;
+      font-size: 13px;
+      border: 1px solid rgba(148,163,184,0.14);
+      box-shadow: 0 20px 60px rgba(2,6,23,0.40);
+    }
+    .legal-card strong{ color: #fbbf24; }
+
+    .faq-section{ background: rgba(248,250,252,0.65); border-top: 1px solid rgba(15,23,42,0.06); }
+    .faq-list{
+      margin-top: 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(15,23,42,0.10);
+      background: rgba(255,255,255,0.92);
+      padding: 10px 14px;
       box-shadow: var(--shadow-sm);
     }
-
     details{
       border-bottom: 1px solid rgba(15,23,42,0.08);
       padding: 10px 0;
       font-size: 14px;
     }
     details:last-of-type{ border-bottom:none; }
-
     summary{
       cursor:pointer;
-      font-weight: 900;
+      font-weight: 800;
       color: var(--text);
       list-style:none;
-      transition: color var(--t);
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap: 12px;
+      gap: 10px;
     }
-
     summary::marker, summary::-webkit-details-marker{ display:none; }
-
-    summary::after{
-      content:"⌄";
-      font-weight: 900;
-      color: var(--muted2);
-      transition: transform var(--t);
-    }
+    summary:focus-visible{ outline:none; box-shadow: var(--focus); border-radius: 12px; padding: 6px; margin: -6px; }
     details[open] summary{ color: var(--blue); }
-    details[open] summary::after{ transform: rotate(180deg); }
-
     details p{
-      margin-top: 8px;
+      margin-top: 6px;
       color: var(--muted);
       padding-inline-start: 8px;
       font-size: 13px;
     }
 
-    /* ------------------------------
-       Legal + Footer
-    -------------------------------- */
-    .legal-card{
-      border-radius: 18px;
-      background: #0b1220;
-      color: rgba(226,232,240,0.92);
-      padding: 18px;
-      font-size: 13px;
-      border: 1px solid rgba(148,163,184,0.16);
-      box-shadow: var(--shadow-md);
-    }
-    .legal-card strong{ color: #fbbf24; }
-
     footer{
       border-top: 1px solid rgba(15,23,42,0.08);
-      padding: 18px 0;
+      padding: 16px 0;
       font-size: 12px;
-      color: var(--muted2);
-      background: rgba(255,255,255,0.70);
-      backdrop-filter: blur(10px);
-      margin-top: 28px;
+      color: #64748b;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+      margin-top: 24px;
     }
-
     .footer-inner{
       display:flex;
       flex-wrap:wrap;
@@ -754,71 +669,140 @@
       justify-content:space-between;
       gap: 10px;
     }
-
-    .footer-links{ display:flex; gap: 14px; }
+    .footer-links{ display:flex; gap: 12px; }
     .footer-links a{
-      color: #334155;
+      color: #475569;
       padding: 6px 8px;
       border-radius: 10px;
-      transition: background var(--t);
+      transition: background-color 160ms var(--ease), transform 160ms var(--ease);
     }
-    .footer-links a:hover{ background: rgba(15,23,42,0.06); }
+    .footer-links a:hover{
+      background: rgba(37,99,235,0.08);
+      transform: translateY(-1px);
+    }
 
-    /* ------------------------------
+    /* =========================
+       Toast
+    ========================== */
+    .toast{
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 18px;
+      margin: 0 auto;
+      max-width: 560px;
+
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      box-shadow: var(--shadow-md);
+
+      transform: translateY(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 180ms var(--ease), opacity 180ms var(--ease);
+      z-index: 9999;
+    }
+    .toast.show{
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .toast.success{ border-color: rgba(16, 185, 129, 0.35); }
+    .toast.error{ border-color: rgba(239, 68, 68, 0.35); }
+
+    .toast-icon{
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      background: rgba(16,185,129,0.14);
+      color: #0f766e;
+      border: 1px solid rgba(16,185,129,0.25);
+    }
+    .toast.error .toast-icon{
+      background: rgba(239,68,68,0.14);
+      color: #b91c1c;
+      border-color: rgba(239,68,68,0.25);
+    }
+    .toast-title{
+      font-weight: 900;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .toast-message{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .toast-close{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      background: rgba(255,255,255,0.7);
+      cursor: pointer;
+      font-size: 14px;
+      transition: transform 160ms var(--ease);
+    }
+    .toast-close:hover{ transform: translateY(-1px); }
+    .toast-close:active{ transform: translateY(0); }
+    .toast-close:focus-visible{ outline:none; box-shadow: var(--focus); }
+
+    /* =========================
        Responsive
-    -------------------------------- */
+    ========================== */
+    @media (max-width: 1050px){
+      .grid-4{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
     @media (max-width: 900px){
       .hero-grid{ grid-template-columns: 1fr; }
-      .hero-image-wrapper{ max-width: 460px; margin: 0 auto; }
+      .hero{ padding-top: 26px; }
+      .hero-image-wrapper{ max-width: 520px; margin: 0 auto; }
       .grid-3{ grid-template-columns: 1fr; }
       .beta-grid{ grid-template-columns: 1fr; }
-      section{ padding: 46px 0; }
     }
 
     @media (max-width: 720px){
       .nav-links{ display:none; }
-      .menu-toggle{ display:inline-flex; align-items:center; justify-content:center; }
+      .menu-toggle{ display:block; }
       .logo-text-sub{ display:none; }
+      .email-box{ max-width: 100%; }
+      .grid-4{ grid-template-columns: 1fr; }
+      .screen-img{ height: 240px; }
     }
 
-    /* show mobile panel when open */
-    .is-open .mobile-panel{ display:block; }
+    /* =========================
+       Accessibility: reduce motion
+    ========================== */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      *{ transition: none !important; animation: none !important; }
+    }
   </style>
 
   <script>
     function scrollToBetaForm() {
-      const el = document.getElementById('beta-form');
+      var el = document.getElementById('beta-form');
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const header = document.querySelector("header");
-      const toggle = document.getElementById("menu-toggle");
-      const panel = document.getElementById("mobile-panel");
-
-      if (toggle && panel && header) {
-        toggle.addEventListener("click", () => {
-          const isOpen = header.classList.toggle("is-open");
-          toggle.setAttribute("aria-expanded", String(isOpen));
-        });
-
-        // Close when clicking outside
-        document.addEventListener("click", (e) => {
-          const isClickInside = header.contains(e.target);
-          if (!isClickInside) header.classList.remove("is-open");
-        });
-
-        // Close when clicking a link in panel
-        panel.querySelectorAll("a").forEach(a => {
-          a.addEventListener("click", () => header.classList.remove("is-open"));
-        });
-      }
-    });
   </script>
 </head>
 
 <body>
-  <header>
+  <header id="site-header">
     <div class="container header-inner">
       <div class="logo">
         <img src="assets/red-alert-logo-20260115.png" alt="לוגו RED ALERT LIVE" class="logo-img" />
@@ -828,24 +812,35 @@
         </div>
       </div>
 
-      <nav>
-        <div class="nav-links" aria-label="תפריט ניווט ראשי">
+      <nav aria-label="ניווט">
+        <button
+          id="menu-toggle"
+          class="menu-toggle"
+          aria-label="פתח תפריט"
+          aria-controls="nav-drawer"
+          aria-expanded="false"
+          type="button"
+        >☰</button>
+
+        <div class="nav-links" id="nav-links">
           <a href="#how-it-works">איך זה עובד</a>
           <a href="#features">פיצ'רים</a>
+          <a href="#screens">מסכים</a>
           <a href="#audience">למי זה מתאים?</a>
           <a href="#faq">שאלות נפוצות</a>
-          <button class="btn btn-primary-sm" onclick="scrollToBetaForm()">הצטרפות לבטא</button>
+          <button class="btn btn-sm" onclick="scrollToBetaForm()" type="button">הצטרפות לבטא</button>
         </div>
 
-        <button id="menu-toggle" class="btn menu-toggle" aria-label="פתיחת תפריט" aria-expanded="false">☰</button>
-
-        <!-- Mobile panel -->
-        <div id="mobile-panel" class="mobile-panel" role="dialog" aria-label="תפריט מובייל">
-          <a href="#how-it-works">איך זה עובד</a>
-          <a href="#features">פיצ'רים</a>
-          <a href="#audience">למי זה מתאים?</a>
-          <a href="#faq">שאלות נפוצות</a>
-          <button class="btn btn-primary-sm cta" onclick="scrollToBetaForm()">הצטרפות לבטא</button>
+        <!-- Mobile Drawer -->
+        <div id="nav-drawer" class="nav-drawer" role="menu">
+          <a href="#how-it-works" role="menuitem">איך זה עובד</a>
+          <a href="#features" role="menuitem">פיצ'רים</a>
+          <a href="#screens" role="menuitem">מסכים</a>
+          <a href="#audience" role="menuitem">למי זה מתאים?</a>
+          <a href="#faq" role="menuitem">שאלות נפוצות</a>
+          <div class="drawer-cta">
+            <button class="btn btn-sm" type="button" onclick="scrollToBetaForm()">הצטרפות לבטא</button>
+          </div>
         </div>
       </nav>
     </div>
@@ -856,10 +851,13 @@
       <div class="container hero-grid">
         <div>
           <div class="hero-badge">
-            שלב בטא / קדם־חנות <span style="font-weight:600;color:#7f1d1d;">– מחפשים נבדקים מהשטח</span>
+            שלב בטא / קדם־חנות
+            <span>– מחפשים נבדקים מהשטח</span>
           </div>
 
-          <h1 class="hero-title">RED ALERT LIVE – התרעה וניווט חכם למקלטים בזמן אזעקה</h1>
+          <h1 class="hero-title">
+            RED ALERT LIVE – התרעה וניווט חכם למקלטים בזמן אזעקה
+          </h1>
 
           <p class="hero-subtitle">
             ברגעי חירום אין זמן לחפש. RED ALERT LIVE מאתרת את מיקומך, מציגה את
@@ -867,55 +865,68 @@
           </p>
 
           <ul class="hero-list">
-            <li><span class="bullet">✓</span><span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי.</span></li>
-            <li><span class="bullet">✓</span><span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד – פחות רעש יותר דיוק.</span></li>
-            <li><span class="bullet">✓</span><span>מצב תרגול – להתנסות מראש במסלול למקלט בסביבת הבית / העבודה.</span></li>
+            <li><span class="bullet">•</span><span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי.</span></li>
+            <li><span class="bullet">•</span><span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד – פחות רעש, יותר דיוק.</span></li>
+            <li><span class="bullet">•</span><span>מצב תרגול – להתנסות מראש במסלול למקלט בסביבת הבית / העבודה.</span></li>
           </ul>
 
-          <div class="cta-card">
-            <div class="cta-title">השאירו פרטים לקבלת גישה לגרסת הבטא כשנהיה מוכנים</div>
-            <button type="button" class="btn cta-btn" onclick="scrollToBetaForm()">
+          <div class="email-box">
+            <div class="email-box-title">השאירו פרטים לקבלת גישה לגרסת הבטא כשנהיה מוכנים</div>
+            <button type="button" class="email-btn" onclick="scrollToBetaForm()">
               מעבר לטופס ההצטרפות
             </button>
-            <div class="cta-hint"> • פרטיך האישיים ישמשו רק לצורכי בדיקות ושיפור האפליקציה ולא יועברו לצד שלישי</div>
           </div>
 
           <p class="hero-note">
-          להצטרפות ולבדיקות שטח – מלאו את הטופס בהמשך העמוד.
+            גרסת בטא מתוכננת ל־Android ובהמשך גם ל־iOS. להצטרפות ולבדיקות שטח – מלאו את הטופס בהמשך העמוד.
           </p>
         </div>
 
-        <div class="hero-image-wrapper" aria-label="מוקאפ מסך מפה">
+        <div class="hero-image-wrapper">
           <div class="hero-image-inner">
-            <div class="hero-pill">מוקאפ • מסך מפת מקלטים בזמן אמת</div>
-            <div class="hero-map-placeholder"></div>
+            <div class="hero-pill">תמונה 1 • מוקאפ</div>
+
+            <!-- ✅ תמונה 1 (מוקאפ) + "התמונה להמחשה בלבד" -->
+            <figure class="hero-figure">
+              <img src="assets/screens/mockup.png" alt="מוקאפ של האפליקציה – להמחשה" />
+              <figcaption>
+                <div class="hero-caption-title">מוקאפ של האפליקציה</div>
+                <div class="hero-caption-note">התמונה להמחשה בלבד</div>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="how-it-works" class="soft-section">
+    <section id="how-it-works" class="problem-section">
       <div class="container">
         <h2>מה קורה היום בזמן אזעקה?</h2>
         <p class="section-intro">
           ברגעים של אזעקה יש לחץ, רעש ובלבול. ברוב המקרים, אנשים שואלים
-          את עצמם שלוש שאלות פשוטות בלי שיהיה להם כלי אחד ברור שנותן תשובה
+          את עצמם שלוש שאלות פשוטות – בלי שיהיה להם כלי אחד ברור שנותן תשובה:
         </p>
 
         <div class="grid-3">
           <div class="card">
-            <div class="card-title"><span class="emoji">🔍</span>איפה בכלל יש כאן מקלט?</div>
-            <p>ברגע של אזעקה אין זמן לנחש. RED ALERT LIVE מכוון אותך מהר למרחב המוגן גם כשאתה לא מכיר את האזור.</p>
+            <div class="problem-card-title">🔍 איפה בכלל יש כאן מקלט?</div>
+            <p class="feature-text">
+              ברגע של אזעקה אין זמן לנחש. RED ALERT LIVE מכוון אותך מהר למרחב המוגן גם כשאתה לא מכיר את האזור.
+            </p>
           </div>
 
           <div class="card">
-            <div class="card-title"><span class="emoji">🧭</span>מה המסלול הכי מהיר?</div>
-            <p>יש כמה אפשרויות חדר מדרגות, ממ&quot;ד, מקלט ציבורי. קשה לדעת מה הכי קרוב, ומהו המסלול המהיר ביותר בזמן אמת.</p>
+            <div class="problem-card-title">🧭 מה המסלול הכי מהיר?</div>
+            <p class="feature-text">
+              יש כמה אפשרויות – חדר מדרגות, ממ&quot;ד, מקלט ציבורי. קשה לדעת מה הכי קרוב, ומהו המסלול המהיר ביותר בזמן אמת.
+            </p>
           </div>
 
           <div class="card">
-            <div class="card-title"><span class="emoji">⏱</span>כמה זמן יש לי בכלל?</div>
-            <p>ההבדל בין אזורי התגוננות יכול להיות שניות קריטיות. בלי התאמה לעיר ול־zone, קשה לדעת כמה זמן באמת יש להגיע למרחב המוגן.</p>
+            <div class="problem-card-title">⏱ כמה זמן יש לי בכלל?</div>
+            <p class="feature-text">
+              ההבדל בין אזורי התגוננות יכול להיות שניות קריטיות. בלי התאמה לעיר ול־zone, קשה לדעת כמה זמן באמת יש להגיע למרחב המוגן.
+            </p>
           </div>
         </div>
       </div>
@@ -932,62 +943,109 @@
         <div class="grid-3">
           <div class="card">
             <div class="feature-icon">📍</div>
-            <div class="card-title">איתור מקלטים לפי GPS</div>
-            <p>שימוש במיקום הנוכחי שלך וב־MongoDB עם אלפי מקלטים בארץ כדי להציג את אלה שהכי קרובים אליך – כולל מרחק משוער במטרים.</p>
+            <div class="feature-title">איתור מקלטים לפי GPS</div>
+            <div class="feature-text">
+              שימוש במיקום הנוכחי שלך וב־MongoDB עם אלפי מקלטים בארץ כדי להציג את
+              אלה שהכי קרובים אליך – כולל מרחק משוער במטרים.
+            </div>
           </div>
 
           <div class="card">
             <div class="feature-icon">🧭</div>
-            <div class="card-title">ניווט מהיר למקלט</div>
-            <p>בלחיצה אחת – מתעדכנים המקלטים הקרובים, נבנה מסלול, והאפליקציה מציגה כיוון ברור למקלט הנבחר.</p>
+            <div class="feature-title">ניווט מהיר למקלט</div>
+            <div class="feature-text">
+              בלחיצה אחת – מתעדכנים המקלטים הקרובים, נבנה מסלול, והאפליקציה
+              מציגה כיוון ברור למקלט הנבחר.
+            </div>
           </div>
 
           <div class="card">
             <div class="feature-icon">🛡</div>
-            <div class="card-title">התאמת אזעקות לעיר ול־zone</div>
-            <p>מיפוי לוגי של עיר → אזור התגוננות, וסינון אזעקות כך שרק אזעקות הרלוונטיות לאזור שלך יפעילו את מנגנון האזעקה באפליקציה.</p>
+            <div class="feature-title">התאמת אזעקות לעיר ול־zone</div>
+            <div class="feature-text">
+              מיפוי לוגי של עיר → אזור התגוננות, וסינון אזעקות כך שרק
+              אזעקות הרלוונטיות לאזור שלך יפעילו את מנגנון האזעקה באפליקציה.
+            </div>
           </div>
 
           <div class="card">
             <div class="feature-icon">🧪</div>
-            <div class="card-title">מצב תרגול</div>
-            <p>אפשרות להפעיל &quot;אזעקת תרגול&quot; ולראות מראש מה המסלול למקלט הקרוב – בבית, במשרד, או בכל מקום אחר.</p>
+            <div class="feature-title">מצב תרגול</div>
+            <div class="feature-text">
+              אפשרות להפעיל &quot;אזעקת תרגול&quot; ולראות מראש מה המסלול למקלט
+              הקרוב – בבית, במשרד, או בכל מקום אחר.
+            </div>
           </div>
 
           <div class="card">
             <div class="feature-icon">🧾</div>
-            <div class="card-title">היסטוריית אזעקות במכשיר</div>
-            <p>RED ALERT LIVE שומרת לוג מקומי של האזעקות שזוהו במכשיר – בלי לשלוח את היסטוריית השימוש שלך לשרת.</p>
+            <div class="feature-title">היסטוריית אזעקות במכשיר</div>
+            <div class="feature-text">
+              RED ALERT LIVE שומרת לוג מקומי של האזעקות שזוהו במכשיר – בלי לשלוח
+              את היסטוריית השימוש שלך לשרת.
+            </div>
           </div>
 
           <div class="card">
             <div class="feature-icon">📱</div>
-            <div class="card-title">ממשק פשוט בעברית</div>
-            <p>מסך אחד ברור, אייקונים ברורים ו־UX נקי. בזמן אזעקה – אין מקום ליותר מדי כפתורים.</p>
+            <div class="feature-title">ממשק פשוט בעברית</div>
+            <div class="feature-text">
+              מסך אחד ברור, אייקונים ברורים ו־UX נקי. בזמן אזעקה – אין מקום
+              ליותר מדי כפתורים.
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="screens-section">
+    <!-- ✅ 4 תמונות -->
+    <section id="screens" class="screens-section">
       <div class="container">
         <h2>איך זה נראה בפועל?</h2>
-        <p class="section-intro"> </p>
+        <p class="section-intro">
+          4 תמונות לדוגמה: מוקאפ, מסך מפה ומקלטים קרובים, ניווט חי, תרגול.
+        </p>
 
-        <div class="grid-3">
+        <div class="grid-4">
+          <!-- תמונה 1: מוקאפ -->
           <div class="card">
-            <div class="screen-placeholder">מסך מפה – מיקום המשתמש + שני המקלטים הקרובים ביותר</div>
-            <div class="screen-caption">מסך מפה ומקלטים קרובים</div>
+            <figure class="screen-figure">
+              <div class="screen-img-wrap">
+                <img class="screen-img" src="assets/screens/mockup.png" alt="מוקאפ של האפליקציה" />
+              </div>
+              <figcaption class="screen-caption">מוקאפ</figcaption>
+              <div class="screen-subnote">התמונה להמחשה בלבד</div>
+            </figure>
           </div>
 
+          <!-- תמונה 2: מסך מפה ומקלטים קרובים -->
           <div class="card">
-            <div class="screen-placeholder">מסך ניווט – מרחק למקלט, כיוון, והנחיות בסיסיות</div>
-            <div class="screen-caption">ניווט חי למקלט</div>
+            <figure class="screen-figure">
+              <div class="screen-img-wrap">
+                <img class="screen-img" src="assets/screens/map_shelters.png" alt="מסך מפה ומקלטים קרובים" />
+              </div>
+              <figcaption class="screen-caption">מסך מפה ומקלטים קרובים</figcaption>
+            </figure>
           </div>
 
+          <!-- תמונה 3: ניווט חי -->
           <div class="card">
-            <div class="screen-placeholder">מסך אזעקה / מצב תרגול – טיימר, עיר, אזור התגוננות</div>
-            <div class="screen-caption">מצב אזעקה / תרגול</div>
+            <figure class="screen-figure">
+              <div class="screen-img-wrap">
+                <img class="screen-img" src="assets/screens/live_navigation.png" alt="מסך ניווט חי" />
+              </div>
+              <figcaption class="screen-caption">ניווט חי</figcaption>
+            </figure>
+          </div>
+
+          <!-- תמונה 4: תרגול -->
+          <div class="card">
+            <figure class="screen-figure">
+              <div class="screen-img-wrap">
+                <img class="screen-img" src="assets/screens/drill.png" alt="מסך תרגול" />
+              </div>
+              <figcaption class="screen-caption">תרגול</figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -997,23 +1055,24 @@
       <div class="container">
         <h2>למי RED ALERT LIVE מתאימה?</h2>
         <p class="section-intro">
-          האפליקציה מיועדת גם לשימוש אישי, וגם כפלטפורמת פיילוט לגופים עירוניים או מקצועיים.
+          האפליקציה מיועדת גם לשימוש אישי, וגם כפלטפורמת פיילוט לגופים
+          עירוניים או מקצועיים.
         </p>
 
         <div class="grid-3">
           <div class="card">
-            <div class="card-title">תושבים פרטיים</div>
-            <p>כל מי שרוצה לדעת שבזמן אזעקה יש לו כלי אחד ברור שמראה לאן הולכים, כמה זה רחוק, וכמה זמן יש להתגונן.</p>
+            <div class="audience-title">תושבים פרטיים</div>
+            <p class="feature-text">כל מי שרוצה לדעת שבזמן אזעקה יש לו כלי אחד ברור שמראה לאן הולכים, כמה זה רחוק, וכמה זמן יש להתגונן.</p>
           </div>
 
           <div class="card">
-            <div class="card-title">רשויות מקומיות / עיריות</div>
-            <p>פיילוטים עירוניים, בדיקות שטח, והנגשת מידע נוסף לתושבים בצורה דיגיטלית. ניתן ליצור קשר לשיתופי פעולה רחבים יותר.</p>
+            <div class="audience-title">רשויות מקומיות / עיריות</div>
+            <p class="feature-text">פיילוטים עירוניים, בדיקות שטח, והנגשת מידע נוסף לתושבים בצורה דיגיטלית. ניתן ליצור קשר לשיתופי פעולה רחבים יותר.</p>
           </div>
 
           <div class="card">
-            <div class="card-title">גורמי חירום / מקצוע</div>
-            <p>מי שרוצה להכיר פתרון טכנולוגי חדש לניהול ניווט למרחבים מוגנים – עם דגש על UX בזמן אמת ונתונים חיים מהשטח.</p>
+            <div class="audience-title">גורמי חירום / מקצוע</div>
+            <p class="feature-text">מי שרוצה להכיר פתרון טכנולוגי חדש לניהול ניווט למרחבים מוגנים – עם דגש על UX בזמן אמת ונתונים חיים מהשטח.</p>
           </div>
         </div>
       </div>
@@ -1024,15 +1083,21 @@
         <div class="beta-card">
           <h2>הצטרפות לגרסת הבטא / בדיקות שטח</h2>
           <p class="section-intro">
-            האפליקציה נמצאת בשלב קדם־חנות (Android / iOS). השארת פרטים כאן תאפשר לנו לשלוח לך עדכון בזמן.
+            האפליקציה נמצאת בשלב קדם־חנות (Android / iOS). השארת פרטים כאן תאפשר לנו:
           </p>
 
-          <form class="beta-grid" id="beta-form-form">
+          <ul class="hero-list">
+            <li><span class="bullet">•</span><span>לשלוח לך קישור להורדה כשגרסת הבטא תהיה מוכנה.</span></li>
+            <li><span class="bullet">•</span><span>להזמין אותך, אם תרצה, להשתתף בפיילוט / בדיקות שטח.</span></li>
+            <li><span class="bullet">•</span><span>להבין באילו ערים ואזורים יש ביקוש גבוה יותר.</span></li>
+          </ul>
+
+          <form class="beta-grid" id="beta-form-form" novalidate>
             <input type="hidden" name="form_name" value="beta_form" />
 
             <div class="form-group">
               <label for="email"><span class="required">*</span> כתובת אימייל</label>
-              <input id="email" name="email" type="email" required placeholder="example@domain.com" />
+              <input id="email" name="email" type="email" required placeholder="example@domain.com" autocomplete="email" />
             </div>
 
             <div class="form-group">
@@ -1047,12 +1112,13 @@
 
             <div class="form-group">
               <label for="name">שם (לא חובה)</label>
-              <input id="name" name="name" type="text" placeholder="איך לפנות אליך?" />
+              <input id="name" name="name" type="text" placeholder="איך לפנות אליך?" autocomplete="name" />
             </div>
 
             <div class="form-group">
-              <label for="city">עיר / ישוב</label>
-              <input id="city" name="city" type="text" placeholder="לדוגמה: יהוד, תל אביב, באר שבע" />
+              <label for="city" id="city-label">עיר / ישוב</label>
+              <input id="city" name="city" type="text" placeholder="לדוגמה: יהוד, תל אביב, באר שבע" autocomplete="address-level2" />
+              <div class="help-note" id="city-help" style="display:none;">ברשויות/גורמים מקצועיים – העיר תהיה חובה.</div>
             </div>
 
             <div class="form-group">
@@ -1064,17 +1130,18 @@
                 <option value="professional">גורם מקצועי</option>
                 <option value="other">אחר</option>
               </select>
-              <div class="helper">אם אינכם תושבים – עיר ושם ארגון יהיו שדות חובה.</div>
+              <div class="help-note">אם אינכם תושבים – עיר ושם ארגון יהיו שדות חובה.</div>
             </div>
 
             <div class="form-group">
-              <label for="org">שם ארגון / רשות (אם רלוונטי)</label>
-              <input id="org" name="organization" type="text" placeholder="שם הרשות / הארגון / החברה" />
+              <label for="org" id="org-label">שם ארגון / רשות (אם רלוונטי)</label>
+              <input id="org" name="organization" type="text" placeholder="שם הרשות / הארגון / החברה" autocomplete="organization" />
+              <div class="help-note" id="org-help" style="display:none;">ברשויות/גורמים מקצועיים – שם ארגון יהיה חובה.</div>
             </div>
 
             <div class="form-group">
               <label for="phone">טלפון ליצירת קשר (לא חובה)</label>
-              <input id="phone" name="phone" type="tel" placeholder="לדוגמה: 050-0000000" />
+              <input id="phone" name="phone" type="tel" placeholder="לדוגמה: 050-0000000" autocomplete="tel" />
             </div>
 
             <div class="form-group" style="grid-column: 1 / -1;">
@@ -1082,14 +1149,21 @@
               <textarea id="notes" name="notes" rows="3" placeholder="ספרו לנו בקצרה איך תרצו להשתמש ב-RED ALERT LIVE"></textarea>
             </div>
 
-            <div id="form-errors" class="form-errors" style="display:none; grid-column: 1 / -1;"></div>
+            <div id="form-errors" class="form-errors"></div>
 
-            <div class="beta-actions" style="grid-column: 1 / -1;">
-              <button type="submit" class="btn btn-primary-lg">שלחו לי עדכון כשגרסת הבטא מוכנה</button>
+            <div class="beta-actions">
+              <button type="submit" class="btn-primary-lg" id="submit-btn">
+                <span class="spinner" id="submit-spinner" aria-hidden="true"></span>
+                <span id="submit-text">שלחו לי עדכון כשגרסת הבטא מוכנה</span>
+              </button>
+
               <p class="beta-note">
-                נשתמש בפרטים רק לצורך עדכונים על האפליקציה וגרסת הבטא. לא נעביר את המייל שלכם לגורמים אחרים.
+                נשתמש בפרטים רק לצורך עדכונים על האפליקציה וגרסת הבטא.
+                לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.
               </p>
-              <p class="beta-note" id="beta-status"></p>
+
+              <!-- נשאיר את זה ריק (כבר לא משתמשים בו), כדי שלא לשבור קוד ישן -->
+              <p class="beta-note" id="beta-status" style="display:none;"></p>
             </div>
           </form>
         </div>
@@ -1104,8 +1178,9 @@
             העורף, צה״ל או כל גוף מדינתי אחר. יש לפעול תמיד לפי ההנחיות
             הרשמיות של גורמי הביטחון, ולראות באפליקציה כלי עזר נוסף בלבד.
           </p>
-          <p style="margin-top: 10px;">
-            המייל והמידע שתמסרו ישמשו רק לצורך יצירת קשר ועדכונים על האפליקציה. לא נעשה שימוש בפרטים לצרכי פרסום חיצוני.
+          <p style="margin-top: 8px;">
+            המייל והמידע שתמסרו ישמשו רק לצורך יצירת קשר ועדכונים על האפליקציה.
+            לא נעשה שימוש בפרטים לצרכי פרסום חיצוני.
           </p>
         </div>
       </div>
@@ -1118,17 +1193,9 @@
           RED ALERT LIVE היא יוזמה עצמאית שנולדה מהרצון להפוך רגעי חירום למעט פחות
           מבלבלים, ולהוסיף עוד שכבת ביטחון טכנולוגית לצד ההנחיות הרשמיות של גורמי החירום.
         </p>
-        <p>
-          מאחורי הפרויקט עומדת קבוצה קטנה של אנשים שעובדים יחד על הפיתוח:
-          מעצבת גרפית שאחראית על חוויית המשתמש והמראה של האפליקציה,
-          עו&quot;ד שמלווה את הפרויקט מהצד המשפטי (פרטיות, תנאי שימוש ועמידה במדיניות חנויות האפליקציות),
-          ארכיטקט תוכנה שמוביל את התכנון הטכני,
-          מספר מתכנתים שעובדים על צד השרת והאפליקציה,
-          ומספר בודקי שטח שמנסים את RED ALERT LIVE בסיטואציות אמיתיות ומדווחים לנו מה צריך לשפר.
-        </p>
-        <p style="margin-top: 10px;">
-          המטרה שלנו היא לבנות כלי פשוט, יציב ואמין שיעזור לתושבים למצוא ולנווט למקלט בזמן,
-          בלי להחליף את ההנחיות הרשמיות של פיקוד העורף וגופי החירום – אלא להיות שכבת עזר נוספת בזמן אמת.
+        <p class="section-intro" style="margin-bottom:0;">
+          מאחורי הפרויקט עומדת קבוצה קטנה של אנשים שעובדים יחד על הפיתוח: מעצבת גרפית, עו״ד, ארכיטקט תוכנה,
+          מתכנתים ובודקי שטח – כדי לבנות כלי פשוט, יציב ואמין שיעזור לתושבים להגיע למרחב מוגן בזמן.
         </p>
       </div>
     </section>
@@ -1138,31 +1205,39 @@
         <h2>שאלות נפוצות</h2>
         <div class="faq-list">
           <details>
-            <summary>מאיפה הגיע השם RED ALERT LIVE?</summary>
+            <summary>מאיפה הגיע השם RED ALERT LIVE ?</summary>
             <p>
               השם RED ALERT LIVE נבחר כמחווה למשחק המחשב הקלאסי Command &amp; Conquer: Red Alert.
-              באחד השלבים במשחק היריב משגר טיל בליסטי, נשמעת אזעקה, ועל המסך מופיע טיימר קצר עד לפגיעה – וצריך להספיק להתגונן.
+              באחד השלבים במשחק היריב משגר טיל בליסטי, נשמעת אזעקה, ועל המסך מופיע טיימר קצר עד לפגיעה.
             </p>
           </details>
 
           <details>
             <summary>האם האפליקציה כבר זמינה בחנות?</summary>
-            <p>כרגע האפליקציה בשלב קדם־חנות / בטא. מי שנרשם כאן יקבל עדכון כשגרסת בטא תהיה זמינה להורדה.</p>
+            <p>
+              כרגע האפליקציה בשלב קדם־חנות / בטא. מי שנרשם כאן יקבל עדכון כשגרסת בטא תהיה זמינה להורדה.
+            </p>
           </details>
 
           <details>
             <summary>האם השימוש באפליקציה יהיה בתשלום?</summary>
-            <p>בשלב הבטא השימוש מתוכנן להיות ללא עלות. בהמשך, חלק מהפיצ׳רים המתקדמים עשויים להיות במסגרת מודלים שונים.</p>
+            <p>
+              בשלב הבטא השימוש מתוכנן להיות ללא עלות. בהמשך, חלק מהפיצ׳רים המתקדמים עשויים להיות במסגרת מודלים שונים.
+            </p>
           </details>
 
           <details>
             <summary>איך זה יעבוד ב־Android וב־iOS?</summary>
-            <p>ב־Android ההפצה תעשה דרך Google Play (או קישור ישיר לבטא). ב־iOS ההפצה תעשה באמצעות TestFlight ו/או App Store.</p>
+            <p>
+              ב־Android ההפצה תעשה דרך Google Play (או קישור ישיר לבטא). ב־iOS ההפצה תעשה באמצעות TestFlight ו/או App Store.
+            </p>
           </details>
 
           <details>
             <summary>מה קורה עם הפרטים שאני משאיר?</summary>
-            <p>הפרטים משמשים רק כדי לעדכן אותך כשיש גרסת בטא, ולנהל רשימת מתעניינים. לא נשתף את המידע עם מפרסמים חיצוניים.</p>
+            <p>
+              הפרטים משמשים רק כדי לעדכן אותך כשיש גרסת בטא, ולנהל רשימת מתעניינים. לא נשתף את המידע עם מפרסמים חיצוניים.
+            </p>
           </details>
         </div>
       </div>
@@ -1180,54 +1255,241 @@
     </div>
   </footer>
 
-  <!-- JS לטופס הבטא -->
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-icon" id="toast-icon">✓</div>
+    <div class="toast-content">
+      <div class="toast-title" id="toast-title">נשלח בהצלחה</div>
+      <div class="toast-message" id="toast-message">תודה! נעדכן כשגרסת הבטא תהיה מוכנה.</div>
+    </div>
+    <button class="toast-close" id="toast-close" aria-label="סגור" type="button">✕</button>
+  </div>
+
+  <!-- JS (תפריט + טופס + Toast) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      /* =========================
+         Header shadow on scroll
+      ========================== */
+      const header = document.getElementById('site-header');
+      function onScroll(){
+        if (!header) return;
+        header.classList.toggle('scrolled', window.scrollY > 8);
+      }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      /* =========================
+         Mobile Menu (Drawer)
+      ========================== */
+      const toggle = document.getElementById('menu-toggle');
+      const drawer = document.getElementById('nav-drawer');
+
+      function closeDrawer(){
+        if (!drawer || !toggle) return;
+        drawer.style.display = 'none';
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      function openDrawer(){
+        if (!drawer || !toggle) return;
+        drawer.style.display = 'block';
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+
+      if (toggle && drawer){
+        toggle.addEventListener('click', function(){
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+          isOpen ? closeDrawer() : openDrawer();
+        });
+
+        // close on click outside
+        document.addEventListener('click', function(e){
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+          if (!isOpen) return;
+          if (drawer.contains(e.target) || toggle.contains(e.target)) return;
+          closeDrawer();
+        });
+
+        // close on ESC
+        document.addEventListener('keydown', function(e){
+          if (e.key === 'Escape') closeDrawer();
+        });
+
+        // close when clicking a link
+        drawer.querySelectorAll('a').forEach(a => {
+          a.addEventListener('click', closeDrawer);
+        });
+      }
+
+      /* =========================
+         Toast
+      ========================== */
+      const toast = document.getElementById('toast');
+      const toastIcon = document.getElementById('toast-icon');
+      const toastTitle = document.getElementById('toast-title');
+      const toastMessage = document.getElementById('toast-message');
+      const toastClose = document.getElementById('toast-close');
+      let toastTimer = null;
+
+      function showToast(type, title, message){
+        if (!toast) return;
+
+        toast.classList.remove('success','error','show');
+        toast.classList.add(type);
+
+        if (toastIcon) toastIcon.textContent = (type === 'success') ? '✓' : '!';
+        if (toastTitle) toastTitle.textContent = title || (type === 'success' ? 'נשלח בהצלחה' : 'שגיאה');
+        if (toastMessage) toastMessage.textContent = message || '';
+
+        if (toastTimer) clearTimeout(toastTimer);
+
+        requestAnimationFrame(() => toast.classList.add('show'));
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
+      }
+
+      if (toastClose){
+        toastClose.addEventListener('click', () => toast.classList.remove('show'));
+      }
+
+      /* =========================
+         Beta Form
+      ========================== */
       const FORMS_API_URL = 'https://red-alert-forms-service-production.up.railway.app/contact';
 
       const betaForm = document.getElementById('beta-form-form');
-      const betaStatus = document.getElementById('beta-status');
-      const errorsBox = document.getElementById('form-errors');
+      const formErrors = document.getElementById('form-errors');
 
-      function showError(msg){
-        if (!errorsBox) return;
-        errorsBox.style.display = 'block';
-        errorsBox.textContent = msg;
-      }
-      function clearError(){
-        if (!errorsBox) return;
-        errorsBox.style.display = 'none';
-        errorsBox.textContent = '';
+      const emailEl = document.getElementById('email');
+      const platformEl = document.getElementById('platform');
+      const nameEl = document.getElementById('name');
+      const cityEl = document.getElementById('city');
+      const roleEl = document.getElementById('role');
+      const orgEl = document.getElementById('org');
+      const phoneEl = document.getElementById('phone');
+      const notesEl = document.getElementById('notes');
+
+      const cityHelp = document.getElementById('city-help');
+      const orgHelp = document.getElementById('org-help');
+
+      const submitBtn = document.getElementById('submit-btn');
+      const spinner = document.getElementById('submit-spinner');
+      const submitText = document.getElementById('submit-text');
+
+      function setLoading(isLoading){
+        if (!submitBtn) return;
+        submitBtn.disabled = isLoading;
+        if (spinner) spinner.style.display = isLoading ? 'inline-block' : 'none';
+        if (submitText) submitText.textContent = isLoading ? 'שולח...' : 'שלחו לי עדכון כשגרסת הבטא מוכנה';
       }
 
-      if (betaForm && betaStatus) {
-        betaForm.addEventListener('submit', async function (e) {
+      function clearInvalid(){
+        [emailEl, platformEl, cityEl, roleEl, orgEl].forEach(el => {
+          if (el) el.classList.remove('invalid');
+        });
+      }
+
+      function showFormError(msg){
+        if (!formErrors) return;
+        formErrors.textContent = msg;
+        formErrors.style.display = 'block';
+      }
+
+      function hideFormError(){
+        if (!formErrors) return;
+        formErrors.textContent = '';
+        formErrors.style.display = 'none';
+      }
+
+      // אם לא תושב → עיר + ארגון חובה
+      function updateConditionalRequirements(){
+        const role = (roleEl?.value || '').trim();
+        const nonResident = role && role !== 'resident';
+
+        if (cityEl) cityEl.required = !!nonResident;
+        if (orgEl) orgEl.required = !!nonResident;
+
+        if (cityHelp) cityHelp.style.display = nonResident ? 'block' : 'none';
+        if (orgHelp) orgHelp.style.display = nonResident ? 'block' : 'none';
+      }
+
+      if (roleEl){
+        roleEl.addEventListener('change', updateConditionalRequirements);
+      }
+      updateConditionalRequirements();
+
+      function isValidEmail(email){
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function validate(){
+        hideFormError();
+        clearInvalid();
+
+        const email = (emailEl?.value || '').trim();
+        const platform = (platformEl?.value || '').trim();
+        const role = (roleEl?.value || '').trim();
+        const nonResident = role && role !== 'resident';
+
+        if (!email){
+          emailEl?.classList.add('invalid');
+          showFormError('נא למלא כתובת אימייל.');
+          emailEl?.focus();
+          return false;
+        }
+        if (!isValidEmail(email)){
+          emailEl?.classList.add('invalid');
+          showFormError('האימייל לא נראה תקין. בדקו ונסו שוב.');
+          emailEl?.focus();
+          return false;
+        }
+        if (!platform){
+          platformEl?.classList.add('invalid');
+          showFormError('נא לבחור סוג מכשיר (Android / iPhone).');
+          platformEl?.focus();
+          return false;
+        }
+        if (!role){
+          roleEl?.classList.add('invalid');
+          showFormError('נא לבחור מי אתם (תושב / רשות / גורם מקצועי).');
+          roleEl?.focus();
+          return false;
+        }
+        if (nonResident){
+          const city = (cityEl?.value || '').trim();
+          const org = (orgEl?.value || '').trim();
+          if (!city){
+            cityEl?.classList.add('invalid');
+            showFormError('נא למלא עיר / ישוב (חובה לרשויות/גורמים מקצועיים).');
+            cityEl?.focus();
+            return false;
+          }
+          if (!org){
+            orgEl?.classList.add('invalid');
+            showFormError('נא למלא שם ארגון / רשות (חובה לרשויות/גורמים מקצועיים).');
+            orgEl?.focus();
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      if (betaForm){
+        betaForm.addEventListener('submit', async function(e){
           e.preventDefault();
-          clearError();
+          if (!validate()) return;
 
-          betaStatus.textContent = 'שולח...';
-          betaStatus.className = 'beta-note';
+          setLoading(true);
 
-          const formData = new FormData(betaForm);
-          const email = (formData.get('email') || '').toString().trim();
-          const platform = (formData.get('platform') || '').toString().trim();
-          const name = (formData.get('name') || '').toString().trim();
-          const city = (formData.get('city') || '').toString().trim();
-          const role = (formData.get('role') || '').toString().trim();
-          const organization = (formData.get('organization') || '').toString().trim();
-          const phone = (formData.get('phone') || '').toString().trim();
-          const notes = (formData.get('notes') || '').toString().trim();
-
-          if (!email) {
-            showError('נא למלא כתובת אימייל.');
-            betaStatus.textContent = '';
-            return;
-          }
-          if (!platform) {
-            showError('נא לבחור סוג מכשיר (Android / iPhone).');
-            betaStatus.textContent = '';
-            return;
-          }
+          const email = (emailEl?.value || '').trim();
+          const platform = (platformEl?.value || '').trim();
+          const name = (nameEl?.value || '').trim();
+          const city = (cityEl?.value || '').trim();
+          const role = (roleEl?.value || '').trim();
+          const organization = (orgEl?.value || '').trim();
+          const phone = (phoneEl?.value || '').trim();
+          const notes = (notesEl?.value || '').trim();
 
           const messageLines = [
             'Beta form signup from landing page:',
@@ -1257,45 +1519,39 @@
             notes,
           };
 
-          try {
+          try{
             const res = await fetch(FORMS_API_URL, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(payload),
             });
 
-            let json = {};
-            try { json = await res.json(); } catch { /* ignore */ }
+            // אם השרת החזיר לא-JSON או שגיאה
+            let json = null;
+            try { json = await res.json(); } catch (_) {}
 
-            if (res.ok && json.ok) {
-              betaStatus.textContent = 'תודה! פנייתך נרשמה ונעדכן כשגרסת הבטא תהיה מוכנה.';
-              betaStatus.className = 'beta-note beta-status-success';
+            if (res.ok && json && json.ok){
               betaForm.reset();
+              updateConditionalRequirements();
+              hideFormError();
+
+              showToast('success', 'נשלח בהצלחה', 'תודה! נעדכן כשגרסת הבטא תהיה מוכנה.');
+
+              // פעולה "ברורה" נוספת: להשאיר את המשתמש באיזור הטופס, במרכז
+              document.getElementById('beta-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-              console.error(json);
-              showError('אירעה שגיאה בשליחה. נסה/י שוב.');
-              betaStatus.className = 'beta-note beta-status-error';
-              betaStatus.textContent = '';
+              console.error(json || { status: res.status });
+              showToast('error', 'לא נשלח', 'אירעה שגיאה בשליחה. נסו שוב בעוד רגע.');
             }
-          } catch (err) {
+          } catch(err){
             console.error(err);
-            showError('שגיאת חיבור לשרת. נסה/י שוב מאוחר יותר.');
-            betaStatus.className = 'beta-note beta-status-error';
-            betaStatus.textContent = '';
+            showToast('error', 'שגיאת חיבור', 'לא הצלחנו להתחבר לשרת. נסו שוב מאוחר יותר.');
+          } finally {
+            setLoading(false);
           }
         });
       }
     });
   </script>
-  <!-- Toast -->
-<div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
-  <div class="toast-icon" id="toast-icon">✓</div>
-  <div class="toast-content">
-    <div class="toast-title" id="toast-title">נשלח בהצלחה</div>
-    <div class="toast-message" id="toast-message">תודה! נעדכן כשגרסת הבטא תהיה מוכנה.</div>
-  </div>
-  <button class="toast-close" id="toast-close" aria-label="סגור">✕</button>
-</div>
-
 </body>
 </html>
