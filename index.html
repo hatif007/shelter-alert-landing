@@ -1,3 +1,4 @@
+<!-- index.html (קובץ מלא, מקצועי, בלי inline JS, תואם CSP קשוח) -->
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -8,6 +9,10 @@
     name="description"
     content="RED ALERT LIVE אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה"
   />
+
+  <!-- המלצה: את כותרות האבטחה הכי טוב לשים ב-Cloudflare (Response Headers) ולא כ-meta -->
+  <!-- אבל לא מזיק להשאיר referrer policy כאן גם -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -178,6 +183,7 @@
       transform-origin: top right;
       animation: drawerIn 200ms var(--ease) both;
     }
+    .nav-drawer[aria-hidden="false"]{ display:block; }
     @keyframes drawerIn{
       from{ transform: translateY(-6px) scale(0.98); opacity: 0; }
       to{ transform: translateY(0) scale(1); opacity: 1; }
@@ -379,7 +385,6 @@
     .feature-icon{ font-size: 20px; }
     .feature-text{ color: var(--muted); font-size: 14px; }
 
-    /* Alarm flow */
     .alarm-flow-section{
       background:
         radial-gradient(circle at 90% 10%, rgba(239,68,68,0.10), transparent 45%),
@@ -837,8 +842,6 @@
       *{ transition: none !important; animation: none !important; }
     }
   </style>
-
-  
 </head>
 
 <body>
@@ -869,10 +872,12 @@
           <a href="#screens">מסכים</a>
           <a href="#audience">למי זה מתאים</a>
           <a href="#faq">שאלות נפוצות</a>
-          <button class="btn btn-sm" onclick="scrollToBetaForm()" type="button">הצטרפות לבטא</button>
+
+          <!-- בלי onclick (תואם CSP). JS תופס לפי data-scroll -->
+          <button class="btn btn-sm" type="button" data-scroll="beta">הצטרפות לבטא</button>
         </div>
 
-        <div id="nav-drawer" class="nav-drawer" role="menu">
+        <div id="nav-drawer" class="nav-drawer" role="menu" aria-hidden="true">
           <a href="#how-it-works" role="menuitem">איך זה עובד</a>
           <a href="#alarm-flow" role="menuitem">בזמן אזעקה</a>
           <a href="#features" role="menuitem">פיצרים</a>
@@ -880,7 +885,7 @@
           <a href="#audience" role="menuitem">למי זה מתאים</a>
           <a href="#faq" role="menuitem">שאלות נפוצות</a>
           <div class="drawer-cta">
-            <button class="btn btn-sm" type="button" onclick="scrollToBetaForm()">הצטרפות לבטא</button>
+            <button class="btn btn-sm" type="button" data-scroll="beta">הצטרפות לבטא</button>
           </div>
         </div>
       </nav>
@@ -912,7 +917,9 @@
 
           <div class="email-box">
             <div class="email-box-title">השאירו פרטים לקבלת גישה לגרסת הבטא כשנהיה מוכנים</div>
-            <button type="button" class="email-btn" onclick="scrollToBetaForm()">
+
+            <!-- גם פה בלי onclick -->
+            <button type="button" class="email-btn" data-scroll="beta">
               מעבר לטופס ההצטרפות
             </button>
           </div>
@@ -935,6 +942,9 @@
 
       </div>
     </section>
+
+    <!-- שאר התוכן שלך נשאר אותו דבר בדיוק -->
+    <!-- ... (השארתי את כל הסקשנים שלך כמו שהם, לא שיניתי טקסטים) -->
 
     <section id="how-it-works" class="problem-section">
       <div class="container">
@@ -1338,6 +1348,5 @@
   </div>
 
   <script src="assets/app.js" defer></script>
-
 </body>
 </html>
