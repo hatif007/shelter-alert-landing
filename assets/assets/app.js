@@ -1,15 +1,10 @@
-/* assets/app.js */
-
-/* כדי שכפתורים עם onclick="scrollToBetaForm()" יעבדו */
-console.log("app.js loaded");
-
 function scrollToBetaForm() {
-  var el = document.getElementById('beta-form');
+  const el = document.getElementById('beta-form');
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-window.scrollToBetaForm = scrollToBetaForm;
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Header shadow on scroll
   const header = document.getElementById('site-header');
   function onScroll() {
     if (!header) return;
@@ -18,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  // Mobile drawer
   const toggle = document.getElementById('menu-toggle');
   const drawer = document.getElementById('nav-drawer');
 
@@ -33,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (toggle && drawer) {
-    toggle.addEventListener('click', function () {
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
       const isOpen = toggle.getAttribute('aria-expanded') === 'true';
       isOpen ? closeDrawer() : openDrawer();
     });
@@ -49,9 +46,18 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.key === 'Escape') closeDrawer();
     });
 
-    drawer.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeDrawer));
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
   }
 
+  // במקום onclick ב-HTML: נחבר את כל ה-CTA לאותו גלילה
+  document.querySelectorAll('[data-scroll="beta"]').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      scrollToBetaForm();
+    });
+  });
+
+  // Toast
   const toast = document.getElementById('toast');
   const toastIcon = document.getElementById('toast-icon');
   const toastTitle = document.getElementById('toast-title');
@@ -65,20 +71,18 @@ document.addEventListener('DOMContentLoaded', function () {
     toast.classList.remove('success', 'error', 'show');
     toast.classList.add(type);
 
-    if (toastIcon) toastIcon.textContent = type === 'success' ? '✓' : '!';
+    if (toastIcon) toastIcon.textContent = (type === 'success') ? '✓' : '!';
     if (toastTitle) toastTitle.textContent = title || (type === 'success' ? 'נשלח בהצלחה' : 'שגיאה');
     if (toastMessage) toastMessage.textContent = message || '';
 
     if (toastTimer) clearTimeout(toastTimer);
-
     requestAnimationFrame(() => toast.classList.add('show'));
     toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
   }
 
-  if (toastClose) {
-    toastClose.addEventListener('click', () => toast.classList.remove('show'));
-  }
+  if (toastClose) toastClose.addEventListener('click', () => toast.classList.remove('show'));
 
+  // Form submit
   const FORMS_API_URL = 'https://red-alert-forms-service-production.up.railway.app/contact';
 
   const betaForm = document.getElementById('beta-form-form');
@@ -108,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function clearInvalid() {
-    [emailEl, platformEl, cityEl, roleEl, orgEl].forEach((el) => el && el.classList.remove('invalid'));
+    [emailEl, platformEl, cityEl, roleEl, orgEl].forEach(el => el && el.classList.remove('invalid'));
   }
 
   function showFormError(msg) {
@@ -150,45 +154,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const role = (roleEl?.value || '').trim();
     const nonResident = role && role !== 'resident';
 
-    if (!email) {
-      emailEl?.classList.add('invalid');
-      showFormError('נא למלא כתובת אימייל');
-      emailEl?.focus();
-      return false;
-    }
-    if (!isValidEmail(email)) {
-      emailEl?.classList.add('invalid');
-      showFormError('האימייל לא נראה תקין בדקו ונסו שוב');
-      emailEl?.focus();
-      return false;
-    }
-    if (!platform) {
-      platformEl?.classList.add('invalid');
-      showFormError('נא לבחור סוג מכשיר');
-      platformEl?.focus();
-      return false;
-    }
-    if (!role) {
-      roleEl?.classList.add('invalid');
-      showFormError('נא לבחור מי אתם');
-      roleEl?.focus();
-      return false;
-    }
+    if (!email) { emailEl?.classList.add('invalid'); showFormError('נא למלא כתובת אימייל'); emailEl?.focus(); return false; }
+    if (!isValidEmail(email)) { emailEl?.classList.add('invalid'); showFormError('האימייל לא נראה תקין בדקו ונסו שוב'); emailEl?.focus(); return false; }
+    if (!platform) { platformEl?.classList.add('invalid'); showFormError('נא לבחור סוג מכשיר'); platformEl?.focus(); return false; }
+    if (!role) { roleEl?.classList.add('invalid'); showFormError('נא לבחור מי אתם'); roleEl?.focus(); return false; }
+
     if (nonResident) {
       const city = (cityEl?.value || '').trim();
       const org = (orgEl?.value || '').trim();
-      if (!city) {
-        cityEl?.classList.add('invalid');
-        showFormError('נא למלא עיר או ישוב חובה לרשויות ולגורמים מקצועיים');
-        cityEl?.focus();
-        return false;
-      }
-      if (!org) {
-        orgEl?.classList.add('invalid');
-        showFormError('נא למלא שם ארגון חובה לרשויות ולגורמים מקצועיים');
-        orgEl?.focus();
-        return false;
-      }
+      if (!city) { cityEl?.classList.add('invalid'); showFormError('נא למלא עיר או ישוב חובה לרשויות ולגורמים מקצועיים'); cityEl?.focus(); return false; }
+      if (!org) { orgEl?.classList.add('invalid'); showFormError('נא למלא שם ארגון חובה לרשויות ולגורמים מקצועיים'); orgEl?.focus(); return false; }
     }
     return true;
   }
@@ -223,18 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
       notes || 'N/A',
     ];
 
-    const payload = {
-      name,
-      email,
-      source: 'beta_form',
-      message: messageLines.join('\n'),
-      platform,
-      role,
-      city,
-      organization,
-      phone,
-      notes,
-    };
+    const payload = { name, email, source: 'beta_form', message: messageLines.join('\n'), platform, role, city, organization, phone, notes };
 
     try {
       const res = await fetch(FORMS_API_URL, {
@@ -244,9 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       let json = null;
-      try {
-        json = await res.json();
-      } catch (_) {}
+      try { json = await res.json(); } catch (_) {}
 
       if (res.ok && json && json.ok) {
         betaForm.reset();
