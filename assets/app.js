@@ -192,7 +192,6 @@
       const t0 = Number($('#ts')?.value || '0');
       if (t0 && Number.isFinite(t0)) {
         const delta = Date.now() - t0;
-        // פחות מ-900ms מרגע טעינת הדף עד submit = כמעט בטוח בוט
         if (delta < 900) return true;
       }
       return false;
@@ -201,7 +200,6 @@
     betaForm?.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // If scripts are running, prevent default navigation always
       if (isBotLikely()) {
         showToast('error', 'נחסם', 'נראה שזה ניסיון אוטומטי. נסו שוב.');
         return;
@@ -263,7 +261,7 @@
         } else {
           showToast('error', 'לא נשלח', 'אירעה שגיאה בשליחה – נסו שוב בעוד רגע');
         }
-      } catch (err) {
+      } catch (_) {
         showToast('error', 'שגיאת חיבור', 'לא הצלחנו להתחבר לשרת – נסו שוב מאוחר יותר');
       } finally {
         clearTimeout(timeout);

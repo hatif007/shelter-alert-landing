@@ -12,20 +12,23 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="color-scheme" content="light" />
 
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico" />
+
   <!-- Preconnect fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
 
-  <!-- External CSS (כדי לאפשר CSP חזק בלי unsafe-inline ל-style) -->
-  <link rel="stylesheet" href="/assets/app.css" />
+  <!-- External CSS -->
+  <link rel="stylesheet" href="assets/app.css" />
 </head>
 
 <body>
   <header id="site-header">
     <div class="container header-inner">
       <div class="logo">
-        <img src="/assets/red-alert-logo-20260115.png" alt="לוגו RED ALERT LIVE" class="logo-img" />
+        <img src="assets/red-alert-logo-20260115.png" alt="לוגו RED ALERT LIVE" class="logo-img" />
         <div class="logo-text-wrap">
           <span class="logo-text-main">RED ALERT LIVE</span>
           <span class="logo-text-sub">אפליקציה לניווט חכם למקלטים בזמן אזעקה</span>
@@ -49,7 +52,6 @@
           <a href="#screens">מסכים</a>
           <a href="#audience">למי זה מתאים</a>
           <a href="#faq">שאלות נפוצות</a>
-          <!-- בלי onclick (כדי לא להישבר תחת CSP) -->
           <button class="btn btn-sm" type="button" data-scroll="beta">הצטרפות לבטא</button>
         </div>
 
@@ -90,9 +92,10 @@
             <li><span class="bullet">•</span><span>בחירה מהירה בין שני המקלטים הקרובים ביותר ואז יציאה לניווט</span></li>
           </ul>
 
+          <!-- ✅ הכפתור חזר -->
           <div class="email-box">
             <div class="email-box-title">השאירו פרטים לקבלת גישה לגרסת הבטא כשנהיה מוכנים</div>
-           
+            <button class="email-btn" type="button" data-scroll="beta">להצטרפות לגרסת הבטא</button>
           </div>
 
           <p class="hero-note">
@@ -103,7 +106,7 @@
         <div class="hero-image-wrapper">
           <div class="hero-image-inner">
             <figure class="hero-figure">
-              <img src="/assets/screens/mockup.png" alt="מוקאפ של האפליקציה להמחשה" />
+              <img src="assets/screens/mockup.png" alt="מוקאפ של האפליקציה להמחשה" />
               <figcaption>
                 <div class="hero-caption-note">התמונה להמחשה בלבד</div>
               </figcaption>
@@ -200,21 +203,21 @@
         <div class="grid-screens">
           <div class="card">
             <figure class="screen-figure">
-              <div class="screen-img-wrap"><img class="screen-img" src="/assets/screens/map_shelters.png" alt="מסך מפה ומקלטים קרובים" /></div>
+              <div class="screen-img-wrap"><img class="screen-img" src="assets/screens/map_shelters.png" alt="מסך מפה ומקלטים קרובים" /></div>
               <figcaption class="screen-caption">מסך מפה ומקלטים קרובים</figcaption>
             </figure>
           </div>
 
           <div class="card">
             <figure class="screen-figure">
-              <div class="screen-img-wrap"><img class="screen-img" src="/assets/screens/live_navigation.png" alt="ניווט חי" /></div>
+              <div class="screen-img-wrap"><img class="screen-img" src="assets/screens/live_navigation.png" alt="ניווט חי" /></div>
               <figcaption class="screen-caption">ניווט חי</figcaption>
             </figure>
           </div>
 
           <div class="card">
             <figure class="screen-figure">
-              <div class="screen-img-wrap"><img class="screen-img" src="/assets/screens/drill.png" alt="תרגול" /></div>
+              <div class="screen-img-wrap"><img class="screen-img" src="assets/screens/drill.png" alt="תרגול" /></div>
               <figcaption class="screen-caption">תרגול</figcaption>
             </figure>
           </div>
@@ -248,14 +251,12 @@
           </ul>
 
           <noscript>
-            <div class="form-errors" style="display:block;">
+            <div class="form-errors noscript-visible">
               כדי שהטופס יעבוד צריך להפעיל JavaScript בדפדפן.
             </div>
           </noscript>
 
-          <!-- בלי action אמיתי כדי שלא יעשה Redirect אם JS לא נטען -->
           <form class="beta-grid" id="beta-form-form" novalidate>
-            <!-- Honeypot נגד בוטים -->
             <div class="hp-wrap" aria-hidden="true">
               <label for="website">website</label>
               <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
@@ -338,7 +339,7 @@
       <div class="container">
         <div class="legal-card">
           <p><strong>הבהרה:</strong> RED ALERT LIVE אינה אפליקציה רשמית של פיקוד העורף/צה״ל/כל גוף מדינתי אחר. יש לפעול תמיד לפי ההנחיות הרשמיות.</p>
-          <p style="margin-top: 8px;">המידע שתמסרו ישמש רק ליצירת קשר ועדכונים על האפליקציה – ללא פרסום חיצוני.</p>
+          <p class="legal-spacer">המידע שתמסרו ישמש רק ליצירת קשר ועדכונים על האפליקציה – ללא פרסום חיצוני.</p>
         </div>
       </div>
     </section>
@@ -376,7 +377,6 @@
     <button class="toast-close" id="toast-close" aria-label="סגור" type="button">✕</button>
   </div>
 
-  <!-- External JS (כדי לאפשר CSP חזק בלי inline scripts) -->
-  <script src="/assets/app.js" defer></script>
+  <script src="assets/app.js" defer></script>
 </body>
 </html>
