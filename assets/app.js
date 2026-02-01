@@ -1,48 +1,33 @@
-// assets/app.js (קובץ מלא, "הגנות ברזל", תואם CSP שלך: script-src 'self')
-// - אין inline handlers (onclick וכו')
-// - Event delegation (בטוח גם אם מוסיפים כפתורים בעתיד)
-// - סגירת drawer קשיחה (קליק בחוץ, ESC, ניווט)
-// - גלילה לטופס בצורה יציבה (offset ל-header sticky)
-// - הגנות בסיסיות: מניעת double-submit, abort לבקשה קודמת, timeout, ולידציה, ניקוי הודעות
-// - הגנת SPAM בסיסית: "honeypot" אם תרצה להוסיף שדה נסתר (אופציונלי)
-
 (() => {
   'use strict';
 
-  const qs = (sel, root = document) => root.querySelector(sel);
-  const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-
-  // ---------- Config ----------
   const FORMS_API_URL = 'https://red-alert-forms-service-production.up.railway.app/contact';
-  const HEADER_OFFSET_PX = 90; // כדי שה-header sticky לא יסתיר את כותרת הטופס
-  const REQUEST_TIMEOUT_MS = 12_000;
 
-  // ---------- Safe utils ----------
-  const safeText = (v) => (typeof v === 'string' ? v.trim() : '');
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  const scrollToId = (id) => {
-    const el = document.getElementById(id);
+  function scrollToBetaForm() {
+    const el = $('#beta-form');
     if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-    const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET_PX;
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-    // עדכון hash בצורה לא "קופצנית"
-    try { history.replaceState(null, '', `#${encodeURIComponent(id)}`); } catch (_) {}
-  };
+  function safeText(v, max = 8000) {
+    if (typeof v !== 'string') return '';
+    return v.replace(/\u0000/g, '').trim().slice(0, max);
+  }
 
-  const setAriaExpanded = (btn, expanded) => {
-    if (!btn) return;
-    btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-  };
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
 
-  // ---------- Init after DOM ready ----------
   document.addEventListener('DOMContentLoaded', () => {
-    const header = qs('#site-header');
-    const toggle = qs('#menu-toggle');
-    const drawer = qs('#nav-drawer');
+    // Timestamp for honeypot timing
+    const ts = $('#ts');
+    if (ts) ts.value = String(Date.now());
 
-    // Header shadow
+    // Header shadow on scroll
+    const header = $('#site-header');
     const onScroll = () => {
       if (!header) return;
       header.classList.toggle('scrolled', window.scrollY > 8);
@@ -50,66 +35,59 @@
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Drawer control
+    // Mobile drawer
+    const toggle = $('#menu-toggle');
+    const drawer = $('#nav-drawer');
+
     const closeDrawer = () => {
       if (!drawer || !toggle) return;
-      drawer.setAttribute('aria-hidden', 'true');
       drawer.style.display = 'none';
-      setAriaExpanded(toggle, false);
+      toggle.setAttribute('aria-expanded', 'false');
     };
-
     const openDrawer = () => {
       if (!drawer || !toggle) return;
       drawer.style.display = 'block';
-      drawer.setAttribute('aria-hidden', 'false');
-      setAriaExpanded(toggle, true);
+      toggle.setAttribute('aria-expanded', 'true');
     };
 
-    const isDrawerOpen = () => toggle?.getAttribute('aria-expanded') === 'true';
-
     if (toggle && drawer) {
-      closeDrawer(); // מצב התחלתי קשוח
-
       toggle.addEventListener('click', (e) => {
         e.preventDefault();
-        isDrawerOpen() ? closeDrawer() : openDrawer();
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeDrawer() : openDrawer();
       });
 
-      // קליק מחוץ ל-drawer
       document.addEventListener('click', (e) => {
-        if (!isDrawerOpen()) return;
-        const t = e.target;
-        if (drawer.contains(t) || toggle.contains(t)) return;
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        if (!isOpen) return;
+        if (drawer.contains(e.target) || toggle.contains(e.target)) return;
         closeDrawer();
       });
 
-      // ESC
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeDrawer();
       });
 
-      // קליק על לינקים בתוך drawer -> סגירה
-      qsa('a', drawer).forEach(a => a.addEventListener('click', closeDrawer));
+      $$('a', drawer).forEach(a => a.addEventListener('click', closeDrawer));
     }
 
-    // Event delegation לכל כפתור עם data-scroll="beta"
-    document.addEventListener('click', (e) => {
-      const btn = e.target?.closest?.('[data-scroll="beta"]');
-      if (!btn) return;
-      e.preventDefault();
-      closeDrawer();
-      scrollToId('beta-form');
+    // Wire CTA scroll buttons (no inline onclick)
+    $$('[data-scroll="beta"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToBetaForm();
+      });
     });
 
-    // ---------- Toast ----------
-    const toast = qs('#toast');
-    const toastIcon = qs('#toast-icon');
-    const toastTitle = qs('#toast-title');
-    const toastMessage = qs('#toast-message');
-    const toastClose = qs('#toast-close');
+    // Toast
+    const toast = $('#toast');
+    const toastIcon = $('#toast-icon');
+    const toastTitle = $('#toast-title');
+    const toastMessage = $('#toast-message');
+    const toastClose = $('#toast-close');
     let toastTimer = null;
 
-    const showToast = (type, title, message) => {
+    function showToast(type, title, message) {
       if (!toast) return;
 
       toast.classList.remove('success', 'error', 'show');
@@ -120,195 +98,157 @@
       if (toastMessage) toastMessage.textContent = message || '';
 
       if (toastTimer) clearTimeout(toastTimer);
-
       requestAnimationFrame(() => toast.classList.add('show'));
       toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
-    };
+    }
 
-    toastClose?.addEventListener('click', () => toast?.classList.remove('show'));
+    if (toastClose) toastClose.addEventListener('click', () => toast.classList.remove('show'));
 
-    // ---------- Form ----------
-    const betaForm = qs('#beta-form-form');
-    const formErrors = qs('#form-errors');
+    // Form handling
+    const betaForm = $('#beta-form-form');
+    const formErrors = $('#form-errors');
 
-    const emailEl = qs('#email');
-    const platformEl = qs('#platform');
-    const nameEl = qs('#name');
-    const cityEl = qs('#city');
-    const roleEl = qs('#role');
-    const orgEl = qs('#org');
-    const phoneEl = qs('#phone');
-    const notesEl = qs('#notes');
+    const emailEl = $('#email');
+    const platformEl = $('#platform');
+    const nameEl = $('#name');
+    const cityEl = $('#city');
+    const roleEl = $('#role');
+    const orgEl = $('#org');
+    const phoneEl = $('#phone');
+    const notesEl = $('#notes');
 
-    const cityHelp = qs('#city-help');
-    const orgHelp = qs('#org-help');
+    const cityHelp = $('#city-help');
+    const orgHelp = $('#org-help');
 
-    const submitBtn = qs('#submit-btn');
-    const spinner = qs('#submit-spinner');
-    const submitText = qs('#submit-text');
+    const submitBtn = $('#submit-btn');
+    const spinner = $('#submit-spinner');
+    const submitText = $('#submit-text');
 
-    // AbortController כדי למנוע בקשות כפולות + timeout
-    let activeController = null;
-
-    const setLoading = (isLoading) => {
+    function setLoading(isLoading) {
       if (!submitBtn) return;
-      submitBtn.disabled = !!isLoading;
+      submitBtn.disabled = isLoading;
       if (spinner) spinner.style.display = isLoading ? 'inline-block' : 'none';
-      if (submitText) submitText.textContent = isLoading ? 'שולח' : 'שלחו לי עדכון כשגרסת הבטא מוכנה';
-    };
+      if (submitText) submitText.textContent = isLoading ? 'שולח…' : 'שלחו לי עדכון כשגרסת הבטא מוכנה';
+    }
 
-    const clearInvalid = () => {
-      [emailEl, platformEl, cityEl, roleEl, orgEl].forEach(el => el?.classList.remove('invalid'));
-    };
+    function clearInvalid() {
+      [emailEl, platformEl, cityEl, roleEl, orgEl].forEach(el => el && el.classList.remove('invalid'));
+    }
 
-    const showFormError = (msg) => {
+    function showFormError(msg) {
       if (!formErrors) return;
       formErrors.textContent = msg;
       formErrors.style.display = 'block';
-    };
+    }
 
-    const hideFormError = () => {
+    function hideFormError() {
       if (!formErrors) return;
       formErrors.textContent = '';
       formErrors.style.display = 'none';
-    };
+    }
 
-    const updateConditionalRequirements = () => {
-      const role = safeText(roleEl?.value);
+    function updateConditionalRequirements() {
+      const role = safeText(roleEl?.value || '', 64);
       const nonResident = role && role !== 'resident';
 
       if (cityEl) cityEl.required = !!nonResident;
       if (orgEl) orgEl.required = !!nonResident;
 
-      if (cityHelp) cityHelp.style.display = nonResident ? 'block' : 'none';
-      if (orgHelp) orgHelp.style.display = nonResident ? 'block' : 'none';
-    };
+      if (cityHelp) cityHelp.hidden = !nonResident;
+      if (orgHelp) orgHelp.hidden = !nonResident;
+    }
 
     roleEl?.addEventListener('change', updateConditionalRequirements);
     updateConditionalRequirements();
 
-    const validate = () => {
+    function validate() {
       hideFormError();
       clearInvalid();
 
-      const email = safeText(emailEl?.value);
-      const platform = safeText(platformEl?.value);
-      const role = safeText(roleEl?.value);
+      const email = safeText(emailEl?.value || '', 160);
+      const platform = safeText(platformEl?.value || '', 32);
+      const role = safeText(roleEl?.value || '', 64);
       const nonResident = role && role !== 'resident';
 
-      if (!email) {
-        emailEl?.classList.add('invalid');
-        showFormError('נא למלא כתובת אימייל');
-        emailEl?.focus();
-        return false;
-      }
-      if (!isValidEmail(email)) {
-        emailEl?.classList.add('invalid');
-        showFormError('האימייל לא נראה תקין בדקו ונסו שוב');
-        emailEl?.focus();
-        return false;
-      }
-      if (!platform) {
-        platformEl?.classList.add('invalid');
-        showFormError('נא לבחור סוג מכשיר');
-        platformEl?.focus();
-        return false;
-      }
-      if (!role) {
-        roleEl?.classList.add('invalid');
-        showFormError('נא לבחור מי אתם');
-        roleEl?.focus();
-        return false;
-      }
+      if (!email) { emailEl?.classList.add('invalid'); showFormError('נא למלא כתובת אימייל'); emailEl?.focus(); return false; }
+      if (!isValidEmail(email)) { emailEl?.classList.add('invalid'); showFormError('האימייל לא נראה תקין – בדקו ונסו שוב'); emailEl?.focus(); return false; }
+      if (!platform) { platformEl?.classList.add('invalid'); showFormError('נא לבחור סוג מכשיר'); platformEl?.focus(); return false; }
+      if (!role) { roleEl?.classList.add('invalid'); showFormError('נא לבחור מי אתם'); roleEl?.focus(); return false; }
 
       if (nonResident) {
-        const city = safeText(cityEl?.value);
-        const org = safeText(orgEl?.value);
-
-        if (!city) {
-          cityEl?.classList.add('invalid');
-          showFormError('נא למלא עיר או ישוב חובה לרשויות ולגורמים מקצועיים');
-          cityEl?.focus();
-          return false;
-        }
-        if (!org) {
-          orgEl?.classList.add('invalid');
-          showFormError('נא למלא שם ארגון חובה לרשויות ולגורמים מקצועיים');
-          orgEl?.focus();
-          return false;
-        }
+        const city = safeText(cityEl?.value || '', 120);
+        const org = safeText(orgEl?.value || '', 160);
+        if (!city) { cityEl?.classList.add('invalid'); showFormError('נא למלא עיר/יישוב (חובה לרשויות ולגורמים מקצועיים)'); cityEl?.focus(); return false; }
+        if (!org) { orgEl?.classList.add('invalid'); showFormError('נא למלא שם ארגון (חובה לרשויות ולגורמים מקצועיים)'); orgEl?.focus(); return false; }
       }
-
       return true;
-    };
+    }
 
-    const withTimeout = (controller, ms) => {
-      const t = setTimeout(() => controller.abort(), ms);
-      return () => clearTimeout(t);
-    };
+    // Anti-bot: honeypot + minimum time to submit
+    function isBotLikely() {
+      const hp = $('#website');
+      if (hp && safeText(hp.value || '', 20).length > 0) return true;
+
+      const t0 = Number($('#ts')?.value || '0');
+      if (t0 && Number.isFinite(t0)) {
+        const delta = Date.now() - t0;
+        // פחות מ-900ms מרגע טעינת הדף עד submit = כמעט בטוח בוט
+        if (delta < 900) return true;
+      }
+      return false;
+    }
 
     betaForm?.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      if (!validate()) return;
+      // If scripts are running, prevent default navigation always
+      if (isBotLikely()) {
+        showToast('error', 'נחסם', 'נראה שזה ניסיון אוטומטי. נסו שוב.');
+        return;
+      }
 
-      // מניעת double-submit
-      if (submitBtn?.disabled) return;
+      if (!validate()) return;
 
       setLoading(true);
 
-      // מבטל בקשה קודמת אם קיימת
-      try { activeController?.abort(); } catch (_) {}
-      activeController = new AbortController();
-      const clearTO = withTimeout(activeController, REQUEST_TIMEOUT_MS);
-
-      const email = safeText(emailEl?.value);
-      const platform = safeText(platformEl?.value);
-      const name = safeText(nameEl?.value);
-      const city = safeText(cityEl?.value);
-      const role = safeText(roleEl?.value);
-      const organization = safeText(orgEl?.value);
-      const phone = safeText(phoneEl?.value);
-      const notes = safeText(notesEl?.value);
+      const payload = {
+        name: safeText(nameEl?.value || '', 120),
+        email: safeText(emailEl?.value || '', 160),
+        source: 'beta_form',
+        platform: safeText(platformEl?.value || '', 32),
+        role: safeText(roleEl?.value || '', 64),
+        city: safeText(cityEl?.value || '', 120),
+        organization: safeText(orgEl?.value || '', 160),
+        phone: safeText(phoneEl?.value || '', 40),
+        notes: safeText(notesEl?.value || '', 2000),
+      };
 
       const messageLines = [
         'Beta form signup from landing page',
         '',
-        `Name: ${name || 'N/A'}`,
-        `Email: ${email}`,
-        `Platform: ${platform || 'N/A'}`,
-        `City: ${city || 'N/A'}`,
-        `Role: ${role || 'N/A'}`,
-        `Organization: ${organization || 'N/A'}`,
-        `Phone: ${phone || 'N/A'}`,
+        `Name: ${payload.name || 'N/A'}`,
+        `Email: ${payload.email}`,
+        `Platform: ${payload.platform || 'N/A'}`,
+        `City: ${payload.city || 'N/A'}`,
+        `Role: ${payload.role || 'N/A'}`,
+        `Organization: ${payload.organization || 'N/A'}`,
+        `Phone: ${payload.phone || 'N/A'}`,
         '',
         'Notes',
-        notes || 'N/A',
+        payload.notes || 'N/A',
       ];
 
-      const payload = {
-        name,
-        email,
-        source: 'beta_form',
-        message: messageLines.join('\n'),
-        platform,
-        role,
-        city,
-        organization,
-        phone,
-        notes,
-      };
+      payload.message = messageLines.join('\n');
+
+      const ctrl = new AbortController();
+      const timeout = setTimeout(() => ctrl.abort(), 12000);
 
       try {
         const res = await fetch(FORMS_API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
-          signal: activeController.signal,
-          credentials: 'omit',
-          cache: 'no-store',
-          redirect: 'follow',
-          mode: 'cors',
+          signal: ctrl.signal,
         });
 
         let json = null;
@@ -318,28 +258,17 @@
           betaForm.reset();
           updateConditionalRequirements();
           hideFormError();
-          showToast('success', 'נשלח בהצלחה', 'תודה נעדכן כשגרסת הבטא תהיה מוכנה');
-          scrollToId('beta-form');
+          showToast('success', 'נשלח בהצלחה', 'תודה – נעדכן כשגרסת הבטא תהיה מוכנה');
+          scrollToBetaForm();
         } else {
-          showToast('error', 'לא נשלח', 'אירעה שגיאה בשליחה נסו שוב בעוד רגע');
+          showToast('error', 'לא נשלח', 'אירעה שגיאה בשליחה – נסו שוב בעוד רגע');
         }
       } catch (err) {
-        // Abort -> לרוב timeout
-        if (err?.name === 'AbortError') {
-          showToast('error', 'זמן המתנה הסתיים', 'השרת לא ענה בזמן נסו שוב');
-        } else {
-          showToast('error', 'שגיאת חיבור', 'לא הצלחנו להתחבר לשרת נסו שוב מאוחר יותר');
-        }
+        showToast('error', 'שגיאת חיבור', 'לא הצלחנו להתחבר לשרת – נסו שוב מאוחר יותר');
       } finally {
-        clearTO();
+        clearTimeout(timeout);
         setLoading(false);
       }
     });
-
-    // אם נכנסים עם #beta-form בכתובת -> גלילה עם offset (ולא שיקפוץ מתחת ל-header)
-    if (location.hash === '#beta-form') {
-      // קטן כדי לאפשר לרינדור להסתיים
-      setTimeout(() => scrollToId('beta-form'), 50);
-    }
   });
 })();
