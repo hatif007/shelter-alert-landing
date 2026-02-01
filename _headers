@@ -1,7 +1,0 @@
-/*
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://red-alert-forms-service-production.up.railway.app https://static.cloudflareinsights.com; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  X-RA-Headers-Test: 1
