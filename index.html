@@ -2,11 +2,11 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>RED ALERT LIVE – ניווט חכם למקלטים בזמן אזעקה</title>
+  <title>RED ALERT LIVE ניווט חכם למקלטים בזמן אזעקה</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="RED ALERT LIVE – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה."
+    content="RED ALERT LIVE אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה"
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,7 +28,6 @@
       --blue:#2563eb;
       --green:#10b981;
 
-      /* ✅ צל מקצועי ועדין יותר */
       --shadow-sm: 0 10px 28px rgba(15,23,42,0.06);
       --shadow-md: 0 18px 55px rgba(15,23,42,0.10);
 
@@ -66,9 +65,6 @@
       padding:0 16px;
     }
 
-    /* =========================
-       Header
-    ========================== */
     header{
       position: sticky;
       top: 0;
@@ -152,7 +148,6 @@
     }
     .btn:active{ transform: translateY(0); }
     .btn:focus-visible{ outline:none; box-shadow: var(--focus); }
-
     .btn.btn-sm{ padding: 8px 14px; font-size: 13px; font-weight: 700; }
 
     .menu-toggle{
@@ -196,16 +191,9 @@
       border-radius: 12px;
       font-size: 14px;
     }
-    .nav-drawer a:hover{
-      background: rgba(37,99,235,0.08);
-    }
-    .nav-drawer .drawer-cta{
-      margin-top: 6px;
-    }
+    .nav-drawer a:hover{ background: rgba(37,99,235,0.08); }
+    .nav-drawer .drawer-cta{ margin-top: 6px; }
 
-    /* =========================
-       Hero
-    ========================== */
     .hero{
       padding: 34px 0 46px;
       background:
@@ -271,11 +259,7 @@
       transform: translateY(-2px);
       background: rgba(255,255,255,0.85);
     }
-    .bullet{
-      margin-top: 2px;
-      color: var(--green);
-      font-weight: 900;
-    }
+    .bullet{ margin-top: 2px; color: var(--green); font-weight: 900; }
 
     .email-box{
       margin-top: 14px;
@@ -308,11 +292,7 @@
     .email-btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(185,28,28,0.22); }
     .email-btn:focus-visible{ outline:none; box-shadow: var(--focus); }
 
-    .hero-note{
-      margin-top: 10px;
-      color:#64748b;
-      font-size: 12px;
-    }
+    .hero-note{ margin-top: 10px; color:#64748b; font-size: 12px; }
 
     .hero-image-wrapper{
       border-radius: 26px;
@@ -330,11 +310,6 @@
       flex-direction:column;
       gap: 12px;
     }
-    .hero-pill{
-      font-size: 12px;
-      color: #c7d2fe;
-      font-weight: 600;
-    }
     .hero-figure{
       margin: 0;
       border-radius: 18px;
@@ -350,12 +325,8 @@
       background: rgba(2,6,23,0.55);
       border-top: 1px solid rgba(148,163,184,0.16);
     }
-    .hero-figure .hero-caption-title{ font-weight: 800; margin-bottom: 4px; }
     .hero-figure .hero-caption-note{ color: rgba(226,232,240,0.86); }
 
-    /* =========================
-       Sections
-    ========================== */
     section{ padding: 44px 0; }
     section h2{
       font-size: clamp(20px, 1.2vw + 16px, 28px);
@@ -384,7 +355,6 @@
       margin-top: 16px;
     }
 
-    /* ✅ כרטיס מקצועי - צל עדין */
     .card{
       background: rgba(255,255,255,0.96);
       border: 1px solid rgba(15,23,42,0.08);
@@ -406,51 +376,166 @@
       align-items:center;
       gap: 8px;
     }
-
     .feature-icon{ font-size: 20px; }
     .feature-text{ color: var(--muted); font-size: 14px; }
 
-    /* =========================
-       Screens section
-    ========================== */
+    /* Alarm flow */
+    .alarm-flow-section{
+      background:
+        radial-gradient(circle at 90% 10%, rgba(239,68,68,0.10), transparent 45%),
+        radial-gradient(circle at 10% 80%, rgba(37,99,235,0.10), transparent 45%),
+        rgba(248,250,252,0.75);
+      border-top: 1px solid rgba(15,23,42,0.06);
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+    }
+
+    .flow-grid{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px;
+      align-items:start;
+      margin-top: 14px;
+    }
+
+    .steps{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+
+    .step{
+      display:grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items:start;
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(15,23,42,0.08);
+      background: rgba(255,255,255,0.92);
+      box-shadow: var(--shadow-sm);
+      transition: transform 180ms var(--ease), box-shadow 180ms var(--ease);
+      position: relative;
+      overflow:hidden;
+    }
+    .step:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .step::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(135deg, rgba(239,68,68,0.06), rgba(37,99,235,0.06));
+      opacity: 0;
+      transition: opacity 180ms var(--ease);
+      pointer-events:none;
+    }
+    .step:hover::before{ opacity: 1; }
+
+    .step-num{
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(135deg, var(--red-1), var(--red-2));
+      box-shadow: 0 12px 28px rgba(185,28,28,0.18);
+      flex: 0 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-body{ position: relative; z-index: 1; }
+    .step-title{
+      font-weight: 900;
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 4px;
+      display:flex;
+      align-items:center;
+      gap: 8px;
+    }
+    .step-desc{
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .flow-side{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      position: sticky;
+      top: 92px;
+    }
+    .flow-highlight{
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid rgba(15,23,42,0.10);
+      background: rgba(255,255,255,0.85);
+      color: #0f172a;
+      width: fit-content;
+    }
+    .pill .dot{
+      width: 10px; height: 10px; border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(16,185,129,0.14);
+    }
+    .pill.warn .dot{
+      background: var(--red-1);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.14);
+    }
+
+    .mini-note{
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
     .screens-section{
       background: rgba(248,250,252,0.65);
       border-top: 1px solid rgba(15,23,42,0.06);
       border-bottom: 1px solid rgba(15,23,42,0.06);
     }
-
-    /* ✅ רק 3 תמונות */
     .grid-screens{
       display:grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 16px;
       margin-top: 16px;
     }
-
     .screen-figure{
       margin: 0;
       display:flex;
       flex-direction:column;
       gap: 10px;
     }
-
-    /* ✅ הסרנו גרדיאנט שמייצר "הילה" */
     .screen-img-wrap{
       border-radius: 14px;
       overflow:hidden;
       border: 1px solid rgba(15,23,42,0.10);
       background: #ffffff;
     }
-
-    /* ✅ אין חיתוך: contain + יחס מסך של צילום אנכי */
     .screen-img{
       width: 100%;
-      aspect-ratio: 9 / 16;        /* צילום מסך אנכי (כמו WhatsApp) */
-      object-fit: contain;          /* לא חותך */
-      background: #ffffff;          /* רקע נקי */
+      aspect-ratio: 9 / 16;
+      object-fit: contain;
+      background: #ffffff;
       display:block;
     }
-
     .screen-caption{
       color: var(--text);
       text-align:center;
@@ -458,9 +543,6 @@
       font-weight: 800;
     }
 
-    /* =========================
-       Beta section / Form
-    ========================== */
     .beta-section{
       background:
         radial-gradient(circle at 80% 20%, rgba(14,165,233,0.14), transparent 45%),
@@ -562,7 +644,6 @@
     }
     .btn-primary-lg:active{ transform: translateY(0); }
     .btn-primary-lg:focus-visible{ outline:none; box-shadow: var(--focus); }
-
     .btn-primary-lg[disabled]{
       opacity: 0.7;
       cursor: not-allowed;
@@ -657,9 +738,6 @@
       transform: translateY(-1px);
     }
 
-    /* =========================
-       Toast
-    ========================== */
     .toast{
       position: fixed;
       left: 16px;
@@ -736,9 +814,6 @@
     .toast-close:active{ transform: translateY(0); }
     .toast-close:focus-visible{ outline:none; box-shadow: var(--focus); }
 
-    /* =========================
-       Responsive
-    ========================== */
     @media (max-width: 900px){
       .hero-grid{ grid-template-columns: 1fr; }
       .hero{ padding-top: 26px; }
@@ -746,6 +821,8 @@
       .grid-3{ grid-template-columns: 1fr; }
       .grid-screens{ grid-template-columns: 1fr; }
       .beta-grid{ grid-template-columns: 1fr; }
+      .flow-grid{ grid-template-columns: 1fr; }
+      .flow-side{ position: static; }
     }
 
     @media (max-width: 720px){
@@ -792,18 +869,20 @@
 
         <div class="nav-links" id="nav-links">
           <a href="#how-it-works">איך זה עובד</a>
-          <a href="#features">פיצ'רים</a>
+          <a href="#alarm-flow">בזמן אזעקה</a>
+          <a href="#features">פיצרים</a>
           <a href="#screens">מסכים</a>
-          <a href="#audience">למי זה מתאים?</a>
+          <a href="#audience">למי זה מתאים</a>
           <a href="#faq">שאלות נפוצות</a>
           <button class="btn btn-sm" onclick="scrollToBetaForm()" type="button">הצטרפות לבטא</button>
         </div>
 
         <div id="nav-drawer" class="nav-drawer" role="menu">
           <a href="#how-it-works" role="menuitem">איך זה עובד</a>
-          <a href="#features" role="menuitem">פיצ'רים</a>
+          <a href="#alarm-flow" role="menuitem">בזמן אזעקה</a>
+          <a href="#features" role="menuitem">פיצרים</a>
           <a href="#screens" role="menuitem">מסכים</a>
-          <a href="#audience" role="menuitem">למי זה מתאים?</a>
+          <a href="#audience" role="menuitem">למי זה מתאים</a>
           <a href="#faq" role="menuitem">שאלות נפוצות</a>
           <div class="drawer-cta">
             <button class="btn btn-sm" type="button" onclick="scrollToBetaForm()">הצטרפות לבטא</button>
@@ -818,23 +897,22 @@
       <div class="container hero-grid">
         <div>
           <div class="hero-badge">
-            שלב בטא / קדם־חנות
-            <span>– מחפשים נבדקים מהשטח</span>
+            שלב בטא קדם חנות
+            <span>מחפשים נבדקים מהשטח</span>
           </div>
 
           <h1 class="hero-title">
-            RED ALERT LIVE – התרעה וניווט חכם למקלטים בזמן אזעקה
+            RED ALERT LIVE התרעה וניווט חכם למקלטים בזמן אזעקה
           </h1>
 
           <p class="hero-subtitle">
-            ברגעי חירום אין זמן לחפש. RED ALERT LIVE מאתרת את מיקומך, מציגה את
-            המקלטים הקרובים אליך, ומנווטת אליהם – לפי אזור ההתגוננות שלך.
+            ברגעי חירום אין זמן לחפש RED ALERT LIVE מאתרת את מיקומך מציגה את המקלטים הקרובים אליך ומנווטת אליהם לפי אזור ההתגוננות שלך
           </p>
 
           <ul class="hero-list">
-            <li><span class="bullet">•</span><span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי.</span></li>
-            <li><span class="bullet">•</span><span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד – פחות רעש, יותר דיוק.</span></li>
-            <li><span class="bullet">•</span><span>מצב תרגול – להתנסות מראש במסלול למקלט בסביבת הבית / העבודה.</span></li>
+            <li><span class="bullet">•</span><span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי</span></li>
+            <li><span class="bullet">•</span><span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד פחות רעש יותר דיוק</span></li>
+            <li><span class="bullet">•</span><span>בחירה מהירה בין שני המקלטים הקרובים ביותר ואז יציאה לניווט</span></li>
           </ul>
 
           <div class="email-box">
@@ -845,17 +923,15 @@
           </div>
 
           <p class="hero-note">
-            גרסת בטא מתוכננת ל־Android ובהמשך גם ל־iOS. להצטרפות ולבדיקות שטח – מלאו את הטופס בהמשך העמוד.
+            גרסת בטא מתוכננת לאנדרואיד ובהמשך גם לאייפון להצטרפות ולבדיקות שטח מלאו את הטופס בהמשך העמוד
           </p>
         </div>
 
         <div class="hero-image-wrapper">
           <div class="hero-image-inner">
-            
             <figure class="hero-figure">
-              <img src="assets/screens/mockup.png" alt="מוקאפ של האפליקציה – להמחשה" />
+              <img src="assets/screens/mockup.png" alt="מוקאפ של האפליקציה להמחשה" />
               <figcaption>
-          
                 <div class="hero-caption-note">התמונה להמחשה בלבד</div>
               </figcaption>
             </figure>
@@ -867,43 +943,126 @@
 
     <section id="how-it-works" class="problem-section">
       <div class="container">
-        <h2>מה קורה היום בזמן אזעקה?</h2>
+        <h2>מה קורה היום בזמן אזעקה</h2>
         <p class="section-intro">
-          ברגעים של אזעקה יש לחץ, רעש ובלבול. ברוב המקרים, אנשים שואלים
-          את עצמם שלוש שאלות פשוטות – בלי שיהיה להם כלי אחד ברור שנותן תשובה:
+          ברגעים של אזעקה יש לחץ רעש ובלבול ברוב המקרים אנשים שואלים את עצמם שלוש שאלות פשוטות בלי שיהיה להם כלי אחד ברור שנותן תשובה
         </p>
 
         <div class="grid-3">
           <div class="card">
-            <div class="problem-card-title">🔍 איפה בכלל יש כאן מקלט?</div>
+            <div class="problem-card-title">🔍 איפה בכלל יש כאן מקלט</div>
             <p class="feature-text">
-              ברגע של אזעקה אין זמן לנחש. RED ALERT LIVE מכוון אותך מהר למרחב המוגן גם כשאתה לא מכיר את האזור.
+              ברגע של אזעקה אין זמן לנחש RED ALERT LIVE מכוון אותך מהר למרחב המוגן גם כשאתה לא מכיר את האזור
             </p>
           </div>
 
           <div class="card">
-            <div class="problem-card-title">🧭 מה המסלול הכי מהיר?</div>
+            <div class="problem-card-title">🧭 מה המסלול הכי מהיר</div>
             <p class="feature-text">
-              יש כמה אפשרויות – חדר מדרגות, ממ&quot;ד, מקלט ציבורי. קשה לדעת מה הכי קרוב, ומהו המסלול המהיר ביותר בזמן אמת.
+              יש כמה אפשרויות ממד חדר מדרגות מקלט ציבורי קשה לדעת מה הכי קרוב ומהו המסלול המהיר ביותר בזמן אמת
             </p>
           </div>
 
           <div class="card">
-            <div class="problem-card-title">⏱ כמה זמן יש לי בכלל?</div>
+            <div class="problem-card-title">⏱ כמה זמן יש לי בכלל</div>
             <p class="feature-text">
-              ההבדל בין אזורי התגוננות יכול להיות שניות קריטיות. בלי התאמה לעיר ול־zone, קשה לדעת כמה זמן באמת יש להגיע למרחב המוגן.
+              ההבדל בין אזורי התגוננות יכול להיות שניות קריטיות בלי התאמה לעיר ול zone קשה לדעת כמה זמן באמת יש להגיע למרחב המוגן
             </p>
           </div>
         </div>
       </div>
     </section>
 
+    <section id="alarm-flow" class="alarm-flow-section">
+      <div class="container">
+        <h2>מה קורה באפליקציה בזמן אזעקה</h2>
+        <p class="section-intro">
+          האפליקציה מזהה התרעה רלוונטית מאתרת את המיקום שלך ושולחת נוטיפיקציה בלחיצה האפליקציה נפתחת למסך חירום שמציג שני מקלטים הכי קרובים כדי שתבחר מיד ותצא לניווט
+        </p>
+
+        <div class="flow-grid">
+          <div class="steps" aria-label="שלבי פעולה בזמן אזעקה">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <div class="step-title">📡 זיהוי התרעה בזמן אמת</div>
+                <div class="step-desc">
+                  כשהמערכת מזהה התרעה רלוונטית לאזור שלך מופעל תהליך חירום באפליקציה בלי שתצטרך לחפש ידנית
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <div class="step-title">📍 איתור מיקום מיידי GPS</div>
+                <div class="step-desc">
+                  האפליקציה מאתרת את המיקום הנוכחי שלך ומכינה תצוגה ברורה כדי לא לבזבז שנייה
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <div class="step-title">🔔 נוטיפיקציה ברורה ופתיחה בלחיצה</div>
+                <div class="step-desc">
+                  נשלחת התראה למכשיר בלחיצה אחת האפליקציה נפתחת ישר למסך החירום הרלוונטי בלי תפריטים מבלבלים
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <div class="step-title">🏠 הצגת שני מקלטים הכי קרובים</div>
+                <div class="step-desc">
+                  במקום רשימה ארוכה מוצגים שני המקלטים הקרובים ביותר עם מרחק כדי לבחור מהר את האפשרות המהירה ביותר בשטח
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-body">
+                <div class="step-title">🧭 ניווט חי עד הגעה</div>
+                <div class="step-desc">
+                  לאחר בחירה האפליקציה נכנסת לניווט חי ומובילה אותך למקלט היעד בצורה ברורה
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="flow-side" aria-label="דגשים חשובים">
+            <div class="card">
+              <div class="problem-card-title">✅ מה חשוב פה</div>
+              <div class="flow-highlight">
+                <div class="pill"><span class="dot"></span> מסך אחד ברור בזמן אמת</div>
+                <div class="pill"><span class="dot"></span> החלטה מהירה בין שני מקלטים</div>
+                <div class="pill"><span class="dot"></span> פחות רעש יותר דיוק לפי אזור</div>
+                <div class="pill warn"><span class="dot"></span> בכל מקרה פועלים לפי הנחיות רשמיות</div>
+              </div>
+              <div class="mini-note">
+                RED ALERT LIVE היא כלי עזר נוסף ולא תחליף להנחיות פיקוד העורף
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="problem-card-title">🛡 פרטיות ושקט נפשי</div>
+              <p class="feature-text">
+                המטרה לספק חוויית חירום נקייה התראות ממוקדות מידע ברור ופחות רעש שלא רלוונטי אליך
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section id="features">
       <div class="container">
-        <h2>מה RED ALERT LIVE עושה עבורך בזמן אמת?</h2>
+        <h2>מה RED ALERT LIVE עושה עבורך בזמן אמת</h2>
         <p class="section-intro">
-          האפליקציה מחברת בין נתוני אזעקות, אזורי התגוננות, מיקום GPS
-          ומסד נתונים של אלפי מקלטים – כדי לתת לך תמונה אחת ברורה.
+          האפליקציה מחברת בין נתוני אזעקות אזורי התגוננות מיקום GPS ומסד נתונים של אלפי מקלטים כדי לתת לך תמונה אחת ברורה
         </p>
 
         <div class="grid-3">
@@ -911,8 +1070,7 @@
             <div class="feature-icon">📍</div>
             <div class="feature-title">איתור מקלטים לפי GPS</div>
             <div class="feature-text">
-              שימוש במיקום הנוכחי שלך וב־MongoDB עם אלפי מקלטים בארץ כדי להציג את
-              אלה שהכי קרובים אליך – כולל מרחק משוער במטרים.
+              שימוש במיקום הנוכחי שלך וב MongoDB עם אלפי מקלטים בארץ כדי להציג את אלה שהכי קרובים אליך כולל מרחק משוער במטרים
             </div>
           </div>
 
@@ -920,17 +1078,15 @@
             <div class="feature-icon">🧭</div>
             <div class="feature-title">ניווט מהיר למקלט</div>
             <div class="feature-text">
-              בלחיצה אחת – מתעדכנים המקלטים הקרובים, נבנה מסלול, והאפליקציה
-              מציגה כיוון ברור למקלט הנבחר.
+              בלחיצה אחת מתעדכנים המקלטים הקרובים נבנה מסלול והאפליקציה מציגה כיוון ברור למקלט הנבחר
             </div>
           </div>
 
           <div class="card">
             <div class="feature-icon">🛡</div>
-            <div class="feature-title">התאמת אזעקות לעיר ול־zone</div>
+            <div class="feature-title">התאמת אזעקות לעיר ול zone</div>
             <div class="feature-text">
-              מיפוי לוגי של עיר → אזור התגוננות, וסינון אזעקות כך שרק
-              אזעקות הרלוונטיות לאזור שלך יפעילו את מנגנון האזעקה באפליקציה.
+              מיפוי לוגי של עיר לאזור התגוננות וסינון אזעקות כך שרק אזעקות רלוונטיות לאזור שלך יפעילו את מנגנון האזעקה באפליקציה
             </div>
           </div>
 
@@ -938,8 +1094,7 @@
             <div class="feature-icon">🧪</div>
             <div class="feature-title">מצב תרגול</div>
             <div class="feature-text">
-              אפשרות להפעיל &quot;אזעקת תרגול&quot; ולראות מראש מה המסלול למקלט
-              הקרוב – בבית, במשרד, או בכל מקום אחר.
+              אפשרות להפעיל אזעקת תרגול ולראות מראש מה המסלול למקלט הקרוב בבית במשרד או בכל מקום אחר
             </div>
           </div>
 
@@ -947,8 +1102,7 @@
             <div class="feature-icon">🧾</div>
             <div class="feature-title">היסטוריית אזעקות במכשיר</div>
             <div class="feature-text">
-              RED ALERT LIVE שומרת לוג מקומי של האזעקות שזוהו במכשיר – בלי לשלוח
-              את היסטוריית השימוש שלך לשרת.
+              RED ALERT LIVE שומרת לוג מקומי של האזעקות שזוהו במכשיר בלי לשלוח את היסטוריית השימוש שלך לשרת
             </div>
           </div>
 
@@ -956,20 +1110,18 @@
             <div class="feature-icon">📱</div>
             <div class="feature-title">ממשק פשוט בעברית</div>
             <div class="feature-text">
-              מסך אחד ברור, אייקונים ברורים ו־UX נקי. בזמן אזעקה – אין מקום
-              ליותר מדי כפתורים.
+              מסך אחד ברור אייקונים ברורים וחוויית שימוש נקייה בזמן אזעקה אין מקום ליותר מדי כפתורים
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ✅ בתחתית: רק 3 תמונות. המוקאפ הוסר -->
     <section id="screens" class="screens-section">
       <div class="container">
-        <h2>איך זה נראה בפועל?</h2>
+        <h2>איך זה נראה בפועל</h2>
         <p class="section-intro">
-          3 תמונות מהאפליקציה: מסך מפה ומקלטים קרובים, ניווט חי, תרגול.
+          שלוש תמונות מהאפליקציה מסך מפה ומקלטים קרובים ניווט חי תרגול
         </p>
 
         <div class="grid-screens">
@@ -1005,26 +1157,25 @@
 
     <section id="audience">
       <div class="container">
-        <h2>למי RED ALERT LIVE מתאימה?</h2>
+        <h2>למי RED ALERT LIVE מתאימה</h2>
         <p class="section-intro">
-          האפליקציה מיועדת גם לשימוש אישי, וגם כפלטפורמת פיילוט לגופים
-          עירוניים או מקצועיים.
+          האפליקציה מיועדת גם לשימוש אישי וגם כפלטפורמת פיילוט לגופים עירוניים או מקצועיים
         </p>
 
         <div class="grid-3">
           <div class="card">
             <div class="audience-title">תושבים פרטיים</div>
-            <p class="feature-text">כל מי שרוצה לדעת שבזמן אזעקה יש לו כלי אחד ברור שמראה לאן הולכים, כמה זה רחוק, וכמה זמן יש להתגונן.</p>
+            <p class="feature-text">כל מי שרוצה לדעת שבזמן אזעקה יש כלי אחד ברור שמראה לאן הולכים כמה זה רחוק וכמה זמן יש להתגונן</p>
           </div>
 
           <div class="card">
-            <div class="audience-title">רשויות מקומיות / עיריות</div>
-            <p class="feature-text">פיילוטים עירוניים, בדיקות שטח, והנגשת מידע נוסף לתושבים בצורה דיגיטלית. ניתן ליצור קשר לשיתופי פעולה רחבים יותר.</p>
+            <div class="audience-title">רשויות מקומיות ועיריות</div>
+            <p class="feature-text">פיילוטים עירוניים בדיקות שטח והנגשת מידע לתושבים בצורה דיגיטלית ניתן ליצור קשר לשיתופי פעולה</p>
           </div>
 
           <div class="card">
-            <div class="audience-title">גורמי חירום / מקצוע</div>
-            <p class="feature-text">מי שרוצה להכיר פתרון טכנולוגי חדש לניהול ניווט למרחבים מוגנים – עם דגש על UX בזמן אמת ונתונים חיים מהשטח.</p>
+            <div class="audience-title">גורמי חירום ומקצוע</div>
+            <p class="feature-text">פתרון טכנולוגי לניהול ניווט למרחבים מוגנים עם דגש על חוויית שימוש בזמן אמת ונתונים מהשטח</p>
           </div>
         </div>
       </div>
@@ -1033,15 +1184,15 @@
     <section id="beta-form" class="beta-section">
       <div class="container">
         <div class="beta-card">
-          <h2>הצטרפות לגרסת הבטא / בדיקות שטח</h2>
+          <h2>הצטרפות לגרסת הבטא ובדיקות שטח</h2>
           <p class="section-intro">
-            האפליקציה נמצאת בשלב קדם־חנות (Android / iOS). השארת פרטים כאן תאפשר לנו:
+            האפליקציה נמצאת בשלב קדם חנות לאנדרואיד ולאייפון השארת פרטים כאן תאפשר לנו
           </p>
 
           <ul class="hero-list">
-            <li><span class="bullet">•</span><span>לשלוח לך קישור להורדה כשגרסת הבטא תהיה מוכנה.</span></li>
-            <li><span class="bullet">•</span><span>להזמין אותך, אם תרצה, להשתתף בפיילוט / בדיקות שטח.</span></li>
-            <li><span class="bullet">•</span><span>להבין באילו ערים ואזורים יש ביקוש גבוה יותר.</span></li>
+            <li><span class="bullet">•</span><span>לשלוח לך קישור להורדה כשגרסת הבטא תהיה מוכנה</span></li>
+            <li><span class="bullet">•</span><span>להזמין אותך להשתתף בבדיקות שטח אם תרצה</span></li>
+            <li><span class="bullet">•</span><span>להבין באילו ערים ואזורים יש ביקוש גבוה יותר</span></li>
           </ul>
 
           <form class="beta-grid" id="beta-form-form" novalidate>
@@ -1053,9 +1204,9 @@
             </div>
 
             <div class="form-group">
-              <label for="platform"><span class="required">*</span> לאיזה מכשיר?</label>
+              <label for="platform"><span class="required">*</span> לאיזה מכשיר</label>
               <select id="platform" name="platform" required>
-                <option value="">בחרו...</option>
+                <option value="">בחרו</option>
                 <option value="android">Android</option>
                 <option value="ios">iPhone</option>
                 <option value="both">שניהם</option>
@@ -1063,42 +1214,42 @@
             </div>
 
             <div class="form-group">
-              <label for="name">שם (לא חובה)</label>
-              <input id="name" name="name" type="text" placeholder="איך לפנות אליך?" autocomplete="name" />
+              <label for="name">שם לא חובה</label>
+              <input id="name" name="name" type="text" placeholder="איך לפנות אליך" autocomplete="name" />
             </div>
 
             <div class="form-group">
-              <label for="city" id="city-label">עיר / ישוב</label>
-              <input id="city" name="city" type="text" placeholder="לדוגמה: יהוד, תל אביב, באר שבע" autocomplete="address-level2" />
-              <div class="help-note" id="city-help" style="display:none;">ברשויות/גורמים מקצועיים – העיר תהיה חובה.</div>
+              <label for="city" id="city-label">עיר או ישוב</label>
+              <input id="city" name="city" type="text" placeholder="לדוגמה יהוד תל אביב באר שבע" autocomplete="address-level2" />
+              <div class="help-note" id="city-help" style="display:none;">ברשויות ובגורמים מקצועיים העיר תהיה חובה</div>
             </div>
 
             <div class="form-group">
-              <label for="role"><span class="required">*</span> מי אתם?</label>
+              <label for="role"><span class="required">*</span> מי אתם</label>
               <select id="role" name="role" required>
-                <option value="">בחרו...</option>
+                <option value="">בחרו</option>
                 <option value="resident">תושב</option>
                 <option value="municipality">רשות מקומית</option>
                 <option value="professional">גורם מקצועי</option>
                 <option value="other">אחר</option>
               </select>
-              <div class="help-note">אם אינכם תושבים – עיר ושם ארגון יהיו שדות חובה.</div>
+              <div class="help-note">אם אינכם תושבים עיר ושם ארגון יהיו שדות חובה</div>
             </div>
 
             <div class="form-group">
-              <label for="org" id="org-label">שם ארגון / רשות (אם רלוונטי)</label>
-              <input id="org" name="organization" type="text" placeholder="שם הרשות / הארגון / החברה" autocomplete="organization" />
-              <div class="help-note" id="org-help" style="display:none;">ברשויות/גורמים מקצועיים – שם ארגון יהיה חובה.</div>
+              <label for="org" id="org-label">שם ארגון או רשות אם רלוונטי</label>
+              <input id="org" name="organization" type="text" placeholder="שם הרשות או הארגון" autocomplete="organization" />
+              <div class="help-note" id="org-help" style="display:none;">ברשויות ובגורמים מקצועיים שם ארגון יהיה חובה</div>
             </div>
 
             <div class="form-group">
-              <label for="phone">טלפון ליצירת קשר (לא חובה)</label>
-              <input id="phone" name="phone" type="tel" placeholder="לדוגמה: 050-0000000" autocomplete="tel" />
+              <label for="phone">טלפון ליצירת קשר לא חובה</label>
+              <input id="phone" name="phone" type="tel" placeholder="לדוגמה 0500000000" autocomplete="tel" />
             </div>
 
             <div class="form-group" style="grid-column: 1 / -1;">
-              <label for="notes">הערות / עניין מיוחד (לדוגמה: פיילוט עירוני, שימוש ארגוני)</label>
-              <textarea id="notes" name="notes" rows="3" placeholder="ספרו לנו בקצרה איך תרצו להשתמש ב-RED ALERT LIVE"></textarea>
+              <label for="notes">הערות או עניין מיוחד לדוגמה פיילוט עירוני שימוש ארגוני</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="ספרו לנו בקצרה איך תרצו להשתמש ב RED ALERT LIVE"></textarea>
             </div>
 
             <div id="form-errors" class="form-errors"></div>
@@ -1110,8 +1261,8 @@
               </button>
 
               <p class="beta-note">
-                נשתמש בפרטים רק לצורך עדכונים על האפליקציה וגרסת הבטא.
-                לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.
+                נשתמש בפרטים רק לצורך עדכונים על האפליקציה ועל גרסת הבטא
+                לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום
               </p>
 
               <p class="beta-note" id="beta-status" style="display:none;"></p>
@@ -1125,13 +1276,10 @@
       <div class="container">
         <div class="legal-card">
           <p>
-            <strong>הבהרה:</strong> RED ALERT LIVE אינה אפליקציה רשמית של פיקוד
-            העורף, צה״ל או כל גוף מדינתי אחר. יש לפעול תמיד לפי ההנחיות
-            הרשמיות של גורמי הביטחון, ולראות באפליקציה כלי עזר נוסף בלבד.
+            <strong>הבהרה</strong> RED ALERT LIVE אינה אפליקציה רשמית של פיקוד העורף צהל או כל גוף מדינתי אחר יש לפעול תמיד לפי ההנחיות הרשמיות של גורמי הביטחון ולראות באפליקציה כלי עזר נוסף בלבד
           </p>
           <p style="margin-top: 8px;">
-            המייל והמידע שתמסרו ישמשו רק לצורך יצירת קשר ועדכונים על האפליקציה.
-            לא נעשה שימוש בפרטים לצרכי פרסום חיצוני.
+            המייל והמידע שתמסרו ישמשו רק לצורך יצירת קשר ועדכונים על האפליקציה לא נעשה שימוש בפרטים לצרכי פרסום חיצוני
           </p>
         </div>
       </div>
@@ -1142,24 +1290,31 @@
         <h2>שאלות נפוצות</h2>
         <div class="faq-list">
           <details>
-            <summary>מאיפה הגיע השם RED ALERT LIVE ?</summary>
+            <summary>מאיפה הגיע השם RED ALERT LIVE</summary>
             <p>
-              השם RED ALERT LIVE נבחר כמחווה למשחק המחשב הקלאסי Command &amp; Conquer: Red Alert.
-              באחד השלבים במשחק היריב משגר טיל בליסטי, נשמעת אזעקה, ועל המסך מופיע טיימר קצר עד לפגיעה.
+              השם נבחר כמחווה למשחק המחשב הקלאסי Command and Conquer Red Alert
+              באחד השלבים במשחק נשמעת אזעקה ועל המסך מופיע טיימר קצר עד לפגיעה
             </p>
           </details>
 
           <details>
-            <summary>האם האפליקציה כבר זמינה בחנות?</summary>
+            <summary>האם האפליקציה כבר זמינה בחנות</summary>
             <p>
-              כרגע האפליקציה בשלב קדם־חנות / בטא. מי שנרשם כאן יקבל עדכון כשגרסת בטא תהיה זמינה להורדה.
+              כרגע האפליקציה בשלב קדם חנות ובטא מי שנרשם כאן יקבל עדכון כשגרסת בטא תהיה זמינה להורדה
             </p>
           </details>
 
           <details>
-            <summary>מה קורה עם הפרטים שאני משאיר?</summary>
+            <summary>מה קורה באפליקציה בזמן אזעקה</summary>
             <p>
-              הפרטים משמשים רק כדי לעדכן אותך כשיש גרסת בטא, ולנהל רשימת מתעניינים. לא נשתף את המידע עם מפרסמים חיצוניים.
+              מתקבלת התרעה רלוונטית לאזור שלך האפליקציה מאתרת מיקום GPS שולחת נוטיפיקציה ובפתיחה מציגה שני מקלטים הכי קרובים לבחירה ואז נכנסת לניווט חי עד הגעה
+            </p>
+          </details>
+
+          <details>
+            <summary>מה קורה עם הפרטים שאני משאיר</summary>
+            <p>
+              הפרטים משמשים רק כדי לעדכן אותך כשיש גרסת בטא ולנהל רשימת מתעניינים לא נשתף את המידע עם מפרסמים חיצוניים
             </p>
           </details>
         </div>
@@ -1169,8 +1324,8 @@
 
   <footer>
     <div class="container footer-inner">
-      <div>© RED ALERT LIVE – כל הזכויות שמורות</div>
-      <div>אתר זה מנוסח בלשון זכר מטעמי נוחות בלבד אך מיועד לכל המגדרים</div>
+      <div>© RED ALERT LIVE כל הזכויות שמורות</div>
+      <div>האתר מנוסח בלשון זכר מטעמי נוחות בלבד אך מיועד לכל המגדרים</div>
       <div class="footer-links">
         <a href="mailto:support@red-alert.live">צור קשר</a>
         <a href="#beta-form">הצטרפות לבטא</a>
@@ -1182,7 +1337,7 @@
     <div class="toast-icon" id="toast-icon">✓</div>
     <div class="toast-content">
       <div class="toast-title" id="toast-title">נשלח בהצלחה</div>
-      <div class="toast-message" id="toast-message">תודה! נעדכן כשגרסת הבטא תהיה מוכנה.</div>
+      <div class="toast-message" id="toast-message">תודה נעדכן כשגרסת הבטא תהיה מוכנה</div>
     </div>
     <button class="toast-close" id="toast-close" aria-label="סגור" type="button">✕</button>
   </div>
@@ -1283,7 +1438,7 @@
         if (!submitBtn) return;
         submitBtn.disabled = isLoading;
         if (spinner) spinner.style.display = isLoading ? 'inline-block' : 'none';
-        if (submitText) submitText.textContent = isLoading ? 'שולח...' : 'שלחו לי עדכון כשגרסת הבטא מוכנה';
+        if (submitText) submitText.textContent = isLoading ? 'שולח' : 'שלחו לי עדכון כשגרסת הבטא מוכנה';
       }
 
       function clearInvalid(){
@@ -1331,25 +1486,25 @@
 
         if (!email){
           emailEl?.classList.add('invalid');
-          showFormError('נא למלא כתובת אימייל.');
+          showFormError('נא למלא כתובת אימייל');
           emailEl?.focus();
           return false;
         }
         if (!isValidEmail(email)){
           emailEl?.classList.add('invalid');
-          showFormError('האימייל לא נראה תקין. בדקו ונסו שוב.');
+          showFormError('האימייל לא נראה תקין בדקו ונסו שוב');
           emailEl?.focus();
           return false;
         }
         if (!platform){
           platformEl?.classList.add('invalid');
-          showFormError('נא לבחור סוג מכשיר (Android / iPhone).');
+          showFormError('נא לבחור סוג מכשיר');
           platformEl?.focus();
           return false;
         }
         if (!role){
           roleEl?.classList.add('invalid');
-          showFormError('נא לבחור מי אתם (תושב / רשות / גורם מקצועי).');
+          showFormError('נא לבחור מי אתם');
           roleEl?.focus();
           return false;
         }
@@ -1358,13 +1513,13 @@
           const org = (orgEl?.value || '').trim();
           if (!city){
             cityEl?.classList.add('invalid');
-            showFormError('נא למלא עיר / ישוב (חובה לרשויות/גורמים מקצועיים).');
+            showFormError('נא למלא עיר או ישוב חובה לרשויות ולגורמים מקצועיים');
             cityEl?.focus();
             return false;
           }
           if (!org){
             orgEl?.classList.add('invalid');
-            showFormError('נא למלא שם ארגון / רשות (חובה לרשויות/גורמים מקצועיים).');
+            showFormError('נא למלא שם ארגון חובה לרשויות ולגורמים מקצועיים');
             orgEl?.focus();
             return false;
           }
@@ -1388,7 +1543,7 @@
         const notes = (notesEl?.value || '').trim();
 
         const messageLines = [
-          'Beta form signup from landing page:',
+          'Beta form signup from landing page',
           '',
           `Name: ${name || 'N/A'}`,
           `Email: ${email}`,
@@ -1398,7 +1553,7 @@
           `Organization: ${organization || 'N/A'}`,
           `Phone: ${phone || 'N/A'}`,
           '',
-          'Notes:',
+          'Notes',
           notes || 'N/A',
         ];
 
@@ -1429,15 +1584,13 @@
             betaForm.reset();
             updateConditionalRequirements();
             hideFormError();
-            showToast('success', 'נשלח בהצלחה', 'תודה! נעדכן כשגרסת הבטא תהיה מוכנה.');
+            showToast('success', 'נשלח בהצלחה', 'תודה נעדכן כשגרסת הבטא תהיה מוכנה');
             document.getElementById('beta-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
           } else {
-            console.error(json || { status: res.status });
-            showToast('error', 'לא נשלח', 'אירעה שגיאה בשליחה. נסו שוב בעוד רגע.');
+            showToast('error', 'לא נשלח', 'אירעה שגיאה בשליחה נסו שוב בעוד רגע');
           }
         } catch(err){
-          console.error(err);
-          showToast('error', 'שגיאת חיבור', 'לא הצלחנו להתחבר לשרת. נסו שוב מאוחר יותר.');
+          showToast('error', 'שגיאת חיבור', 'לא הצלחנו להתחבר לשרת נסו שוב מאוחר יותר');
         } finally {
           setLoading(false);
         }
