@@ -1,6 +1,8 @@
 /* assets/app.js */
 
 /* כדי שכפתורים עם onclick="scrollToBetaForm()" יעבדו */
+console.log("app.js loaded");
+
 function scrollToBetaForm() {
   var el = document.getElementById('beta-form');
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
