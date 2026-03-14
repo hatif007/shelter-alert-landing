@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="he" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="RED ALERT LIVE – אפליקציית התרעה וניווט חכם למקלטים בזמן אזעקה. הצטרפו לגרסת הבטא והיו הראשונים לקבל גישה." />
+  <meta name="description" content="RED ALERT LIVE – כשיש אזעקה, אתה יודע לאן לרוץ. ניווט חי למקלט הקרוב בשניות. נבדק באזעקות אמת. הצטרפו לגרסת הבטא." />
 
-  <title>RED ALERT LIVE – ניווט חכם למקלטים בזמן אזעקה</title>
+  <title>RED ALERT LIVE – תדע לאן לרוץ לפני שהאזעקה מסתיימת</title>
 
   <!-- Privacy / UX -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -51,6 +51,7 @@
           <a href="#alarm-flow">בזמן אזעקה</a>
           <a href="#features">פיצרים</a>
           <a href="#screens">מסכים</a>
+          <a href="#manager">מסך מנהל</a>
           <a href="#audience">למי זה מתאים</a>
           <a href="#faq">שאלות נפוצות</a>
           <button class="btn btn-sm" type="button" data-scroll="beta">הצטרפות לבטא</button>
@@ -61,6 +62,7 @@
           <a href="#alarm-flow" role="menuitem">בזמן אזעקה</a>
           <a href="#features" role="menuitem">פיצרים</a>
           <a href="#screens" role="menuitem">מסכים</a>
+          <a href="#manager" role="menuitem">מסך מנהל</a>
           <a href="#audience" role="menuitem">למי זה מתאים</a>
           <a href="#faq" role="menuitem">שאלות נפוצות</a>
           <div class="drawer-cta">
@@ -76,31 +78,29 @@
       <div class="container hero-grid">
         <div>
           <div class="hero-badge">
-            שלב בטא קדם חנות
-            <span>מחפשים נבדקים מהשטח</span>
+            נבדק באזעקות אמת
+            <span>גרסת בטא – מקומות מוגבלים</span>
           </div>
 
-          <h1 class="hero-title">RED ALERT LIVE – התרעה וניווט חכם למקלטים בזמן אזעקה</h1>
+          <h1 class="hero-title">כשיש אזעקה – תדע לאן לרוץ לפני שהיא מסתיימת</h1>
 
           <p class="hero-subtitle">
-            ברגעי חירום אין זמן לחפש. RED ALERT LIVE מאתרת את מיקומך, מציגה את המקלטים הקרובים אליך,
-            ומנווטת אליהם לפי אזור ההתגוננות שלך.
+            RED ALERT LIVE מזהה התרעה רלוונטית לאזור שלך, מאתרת את המקלטים הקרובים ביותר ומנווטת אליהם – בלחיצה אחת, תוך שניות.
           </p>
 
           <ul class="hero-list">
-            <li><span class="bullet">•</span><span>איתור אוטומטי של מקלטים קרובים לפי GPS ומסד נתונים ארצי</span></li>
-            <li><span class="bullet">•</span><span>התאמת אזעקות לעיר ול<span dir="ltr">zone</span> שלך בלבד – פחות רעש, יותר דיוק</span></li>
-            <li><span class="bullet">•</span><span>בחירה מהירה בין שני המקלטים הקרובים ביותר ואז יציאה לניווט</span></li>
+            <li><span class="bullet">•</span><span>ניווט חי למקלט הקרוב – לא רשימה, לא בלבול, מסך אחד ברור</span></li>
+            <li><span class="bullet">•</span><span>התרעה מדויקת לפי האזור שלך בלבד – בלי רעש של אזעקות שלא רלוונטיות אליך</span></li>
+            <li><span class="bullet">•</span><span>שלושה מקורות מידע במקביל – כולל גיבוי אם השרת הרשמי עמוס</span></li>
           </ul>
 
-          <!-- ✅ הכפתור חזר -->
           <div class="email-box">
-            <div class="email-box-title">השאירו פרטים לקבלת גישה לגרסת הבטא כשנהיה מוכנים</div>
-            <button class="email-btn" type="button" data-scroll="beta">להצטרפות לגרסת הבטא</button>
+            <div class="email-box-title">הירשמו עכשיו – נשלח לכם גישה ראשונה לבטא</div>
+            <button class="email-btn" type="button" data-scroll="beta">אני רוצה גישה מוקדמת לבטא</button>
           </div>
 
           <p class="hero-note">
-            גרסת בטא מתוכננת לאנדרואיד ובהמשך גם לאייפון. להצטרפות ולבדיקות שטח – מלאו את הטופס בהמשך העמוד.
+            זמין לאנדרואיד ובהמשך גם לאייפון. האפליקציה נבדקה בשטח במהלך אזעקות אמת.
           </p>
         </div>
 
@@ -119,25 +119,25 @@
 
     <section id="how-it-works" class="problem-section">
       <div class="container">
-        <h2>מה קורה היום בזמן אזעקה</h2>
+        <h2>הרגע שהאזעקה מופעלת – מה עובר לך בראש</h2>
         <p class="section-intro">
-          ברגעים של אזעקה יש לחץ, רעש ובלבול. ברוב המקרים אנשים שואלים את עצמם שלוש שאלות פשוטות בלי שיהיה להם כלי אחד ברור שנותן תשובה.
+          שלוש שניות של פאניקה. שלוש שאלות שאין לך עליהן תשובה מיידית. RED ALERT LIVE נבנתה בדיוק לרגע הזה.
         </p>
 
         <div class="grid-3">
           <div class="card">
-            <div class="problem-card-title">🔍 איפה בכלל יש כאן מקלט</div>
-            <p class="feature-text">ברגע של אזעקה אין זמן לנחש. RED ALERT LIVE מכוונת אותך מהר למרחב המוגן גם כשאתה לא מכיר את האזור.</p>
+            <div class="problem-card-title">🔍 "איפה בכלל יש כאן מקלט?"</div>
+            <p class="feature-text">אתה ברחוב, בפארק, ברכב, בשכונה שלא מכיר. אין זמן לגוגל. RED ALERT LIVE מציגה לך את שני המקלטים הקרובים ביותר – במטרים.</p>
           </div>
 
           <div class="card">
-            <div class="problem-card-title">🧭 מה המסלול הכי מהיר</div>
-            <p class="feature-text">יש כמה אפשרויות (ממ״ד, חדר מדרגות, מקלט ציבורי). קשה לדעת מה הכי קרוב ומהו המסלול המהיר ביותר בזמן אמת.</p>
+            <div class="problem-card-title">🧭 "מה הכי קרוב ומה המסלול?"</div>
+            <p class="feature-text">ממ"ד? חדר מדרגות? מקלט ציבורי? האפליקציה מחליטה בשבילך ומנווטת ישר – בלי שאתה צריך לחשוב.</p>
           </div>
 
           <div class="card">
-            <div class="problem-card-title">⏱ כמה זמן יש לי בכלל</div>
-            <p class="feature-text">ההבדל בין אזורי התגוננות יכול להיות שניות קריטיות. בלי התאמה לעיר ול-zone קשה לדעת כמה זמן באמת יש להגיע למרחב המוגן.</p>
+            <div class="problem-card-title">⏱ "כמה זמן יש לי?"</div>
+            <p class="feature-text">כל אזור בארץ מקבל זמן התגוננות שונה – ההפרש יכול להיות משמעותי. ההתרעה מותאמת לאזור שלך בלבד, כדי שתדע בדיוק כמה זמן יש לך להגיע למקלט.</p>
           </div>
         </div>
       </div>
@@ -145,9 +145,9 @@
 
     <section id="alarm-flow" class="alarm-flow-section">
       <div class="container">
-        <h2>מה קורה באפליקציה בזמן אזעקה</h2>
+        <h2>מה קורה בפועל בזמן אזעקה</h2>
         <p class="section-intro">
-          האפליקציה מזהה התרעה רלוונטית, מאתרת את המיקום שלך ושולחת נוטיפיקציה. בלחיצה – האפליקציה נפתחת למסך חירום שמציג שני מקלטים הכי קרובים כדי שתבחר מיד ותצא לניווט.
+          מהרגע שהאזעקה נשמעת עד שאתה בפתח המקלט – 5 שלבים, כולם אוטומטיים, כולם בלי לבזבז שנייה.
         </p>
 
         <div class="flow-grid">
@@ -182,24 +182,24 @@
 
     <section id="features">
       <div class="container">
-        <h2>מה RED ALERT LIVE עושה עבורך בזמן אמת</h2>
-        <p class="section-intro">האפליקציה מחברת בין נתוני אזעקות, אזורי התגוננות, מיקום GPS ומסד נתונים של אלפי מקלטים כדי לתת לך תמונה אחת ברורה.</p>
+        <h2>מה בפנים – ולמה זה שונה</h2>
+        <p class="section-intro">לא עוד אפליקציית אזעקה שמציגה רשימת ערים. RED ALERT LIVE נבנתה מהבסיס סביב שאלה אחת: <strong>כמה שניות עד שאתה בפתח המקלט?</strong></p>
 
         <div class="grid-3">
-          <div class="card"><div class="feature-icon">📍</div><div class="feature-title">איתור מקלטים לפי GPS</div><div class="feature-text">שימוש במיקום הנוכחי שלך וב-MongoDB עם אלפי מקלטים בארץ להצגת הקרובים ביותר כולל מרחק במטרים.</div></div>
-          <div class="card"><div class="feature-icon">🧭</div><div class="feature-title">ניווט מהיר למקלט</div><div class="feature-text">בלחיצה אחת מתעדכנים המקלטים הקרובים, נבנה מסלול והאפליקציה מציגה כיוון ברור ליעד.</div></div>
-          <div class="card"><div class="feature-icon">🛡</div><div class="feature-title">התאמת אזעקות לעיר ול-zone</div><div class="feature-text">סינון כך שרק אזעקות רלוונטיות לאזור שלך יפעילו את מנגנון האזעקה באפליקציה.</div></div>
-          <div class="card"><div class="feature-icon">🧪</div><div class="feature-title">מצב תרגול</div><div class="feature-text">אפשרות להפעיל אזעקת תרגול ולראות מראש מסלול למקלט הקרוב בבית/במשרד.</div></div>
-          <div class="card"><div class="feature-icon">🧾</div><div class="feature-title">היסטוריית אזעקות במכשיר</div><div class="feature-text">שמירת לוג מקומי של האזעקות שזוהו במכשיר בלי לשלוח היסטוריית שימוש לשרת.</div></div>
-          <div class="card"><div class="feature-icon">📱</div><div class="feature-title">ממשק פשוט בעברית</div><div class="feature-text">מסך אחד ברור בזמן אזעקה – בלי עומס כפתורים.</div></div>
+          <div class="card"><div class="feature-icon">📍</div><div class="feature-title">מקלטים קרובים – במטרים</div><div class="feature-text">אלפי מקלטים מרחבי הארץ. האפליקציה מציגה את השניים הקרובים ביותר למיקומך הנוכחי עם מרחק מדויק.</div></div>
+          <div class="card"><div class="feature-icon">🧭</div><div class="feature-title">ניווט חי – לחיצה אחת</div><div class="feature-text">בוחר מקלט, יוצא לניווט. אין תפריטים, אין שאלות. האפליקציה מובילה אותך ישר ליעד.</div></div>
+          <div class="card"><div class="feature-icon">🛡</div><div class="feature-title">התרעה לאזור שלך בלבד</div><div class="feature-text">סינון לפי עיר ו-zone מדויק – תקבל התרעה רק כשהיא רלוונטית אליך. לא כשיש אזעקה בצפון ואתה בדרום.</div></div>
+          <div class="card"><div class="feature-icon">📡</div><div class="feature-title">שלושה מקורות התרעה במקביל</div><div class="feature-text">פיקוד העורף + שני מקורות נוספים. אם אחד עמוס או קורס – האחרים ממשיכים. נבדק באזעקות אמת.</div></div>
+          <div class="card"><div class="feature-icon">🧪</div><div class="feature-title">מצב תרגול</div><div class="feature-text">תרגל מסלול למקלט בבית, בעבודה, בשכונה – לפני שתצטרך אותו באמת.</div></div>
+          <div class="card"><div class="feature-icon">🔒</div><div class="feature-title">פרטיות מלאה</div><div class="feature-text">היסטוריית אזעקות נשמרת אצלך במכשיר בלבד. לא מועברת לשרת, לא משותפת.</div></div>
         </div>
       </div>
     </section>
 
     <section id="screens" class="screens-section">
       <div class="container">
-        <h2>איך זה נראה בפועל</h2>
-        <p class="section-intro">שלוש תמונות מהאפליקציה – מסך מפה ומקלטים קרובים, ניווט חי, תרגול.</p>
+        <h2>האפליקציה בפועל</h2>
+        <p class="section-intro">מסך מפה עם מקלטים, ניווט חי, מצב תרגול – ממשק שנבנה לשניות של לחץ.</p>
 
         <div class="grid-screens">
           <div class="card">
@@ -226,15 +226,56 @@
       </div>
     </section>
 
+    <section id="manager" class="alarm-flow-section">
+      <div class="container">
+        <h2>RED ALERT MANAGER – פלטפורמת ניהול מקלטים לרשויות וגופי ביטחון</h2>
+        <p class="section-intro">
+          כלי ייעודי לרשויות מקומיות, גופי ביטחון וגורמי חירום מקצועיים.
+          לא אפליקציה לאזרח – <strong>מערכת מבצעית לניהול מלאי המקלטים בשטח הרשות.</strong>
+        </p>
+
+        <div class="flow-grid">
+          <div class="steps" aria-label="יכולות מסך המנהל">
+            <div class="step"><div class="step-num">🗺</div><div class="step-body"><div class="step-title">תמונה ארצית מלמעלה</div><div class="step-desc">מפת ישראל אינטראקטיבית עם כלל המקלטים המוזנים. תצוגה לפי עיר, אזור, סוג מקלט – בלחיצה אחת.</div></div></div>
+            <div class="step"><div class="step-num">🔍</div><div class="step-body"><div class="step-title">סינון וחיפוש מתקדם</div><div class="step-desc">סינון לפי עיר, יישוב, סוג (מקלט / ממ"ד / מיגונית) וסטטוס. תצוגת רשימה לצד המפה לניהול יעיל.</div></div></div>
+            <div class="step"><div class="step-num">📋</div><div class="step-body"><div class="step-title">תיעוד מלא לכל מקלט</div><div class="step-desc">כתיבת הערות מבצעיות ישירות על כל מקלט: קיבולת, נגישות, מצב פיזי, ציוד, מגבלות כניסה.</div></div></div>
+            <div class="step"><div class="step-num">📊</div><div class="step-body"><div class="step-title">דשבורד פערי כיסוי</div><div class="step-desc">תצוגה סטטיסטית של פיזור המקלטים לפי עיר ואזור. כלי תכנון לזיהוי אזורים עם כיסוי חסר.</div></div></div>
+            <div class="step"><div class="step-num">🚧</div><div class="step-body"><div class="step-title">בפיתוח: חיבור למוקד 106</div><div class="step-desc">דיווח על מפגעים בשטח: מקלט חסום, דרך גישה מסוכנת, נזק מבני. תושבים ידווחו מהאפליקציה – הרשות תראה בזמן אמת.</div></div></div>
+          </div>
+
+          <aside class="flow-side" aria-label="למי מיועד RED ALERT MANAGER">
+            <div class="card">
+              <div class="problem-card-title">🏛 למי זה מיועד</div>
+              <div class="flow-highlight">
+                <div class="pill"><span class="dot"></span> רשויות מקומיות ועיריות</div>
+                <div class="pill"><span class="dot"></span> גופי ביטחון וחירום</div>
+                <div class="pill"><span class="dot"></span> קציני ביטחון ישובים</div>
+                <div class="pill"><span class="dot"></span> מחלקות חירום עירוניות</div>
+              </div>
+              <div class="mini-note">הגישה למערכת המנהל מוגבלת ומאובטחת – אינה זמינה לציבור הרחב</div>
+            </div>
+
+            <div class="card">
+              <div class="problem-card-title">📞 מעוניינים בפיילוט?</div>
+              <p class="feature-text">נשמח לדמו מותאם לרשות שלכם. השאירו פרטים בטופס ובחרו "גורם מקצועי" – נחזור אליכם ישירות.</p>
+              <div style="margin-top: 1rem;">
+                <button class="btn btn-sm" type="button" data-scroll="beta" style="width:100%">לתיאום דמו לרשות</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section id="audience">
       <div class="container">
-        <h2>למי RED ALERT LIVE מתאימה</h2>
-        <p class="section-intro">האפליקציה מיועדת גם לשימוש אישי וגם כפלטפורמת פיילוט לגופים עירוניים או מקצועיים.</p>
+        <h2>למי זה מיועד</h2>
+        <p class="section-intro">כל מי שחי באזור שיש בו אזעקות – ורוצה שבפעם הבאה לא יצטרך לנחש.</p>
 
         <div class="grid-3">
-          <div class="card"><div class="audience-title">תושבים פרטיים</div><p class="feature-text">כל מי שרוצה לדעת שבזמן אזעקה יש כלי אחד ברור שמראה לאן הולכים וכמה זה רחוק.</p></div>
-          <div class="card"><div class="audience-title">רשויות מקומיות ועיריות</div><p class="feature-text">פיילוטים עירוניים, בדיקות שטח והנגשת מידע לתושבים בצורה דיגיטלית.</p></div>
-          <div class="card"><div class="audience-title">גורמי חירום ומקצוע</div><p class="feature-text">פתרון טכנולוגי לניווט למרחבים מוגנים עם דגש על חוויית שימוש בזמן אמת.</p></div>
+          <div class="card"><div class="audience-title">👤 תושבים פרטיים</div><p class="feature-text">אתה, המשפחה, הילדים. כולם יודעים לאן רצים. בלי פאניקה, בלי ניחושים, בלי לבזבז שניות יקרות.</p></div>
+          <div class="card"><div class="audience-title">🏛 רשויות מקומיות</div><p class="feature-text">הנגשה דיגיטלית של מידע למקלטים לתושבים. פיילוטים עירוניים עם נתוני שטח אמיתיים.</p></div>
+          <div class="card"><div class="audience-title">🚨 גורמי חירום ומקצוע</div><p class="feature-text">כלי שטח לניווט מהיר למרחבים מוגנים, מבוסס GPS ומסד נתונים ארצי מעודכן.</p></div>
         </div>
       </div>
     </section>
@@ -242,13 +283,13 @@
     <section id="beta-form" class="beta-section">
       <div class="container">
         <div class="beta-card">
-          <h2>הצטרפות לגרסת הבטא ובדיקות שטח</h2>
-          <p class="section-intro">האפליקציה נמצאת בשלב קדם חנות לאנדרואיד ולאייפון. השארת פרטים כאן תאפשר לנו:</p>
+          <h2>השאר פרטים – קבל גישה ראשון</h2>
+          <p class="section-intro">האפליקציה בשלבי בטא סופיים. מקומות מוגבלים. מי שנרשם עכשיו יקבל:</p>
 
           <ul class="hero-list">
-            <li><span class="bullet">•</span><span>לשלוח לך קישור להורדה כשגרסת הבטא תהיה מוכנה</span></li>
-            <li><span class="bullet">•</span><span>להזמין אותך להשתתף בבדיקות שטח אם תרצה</span></li>
-            <li><span class="bullet">•</span><span>להבין באילו ערים ואזורים יש ביקוש גבוה יותר</span></li>
+            <li><span class="bullet">•</span><span>קישור ישיר להורדה – לפני שהאפליקציה תעלה לחנות</span></li>
+            <li><span class="bullet">•</span><span>אפשרות להשתתף בבדיקות שטח ולהשפיע על הפיתוח</span></li>
+            <li><span class="bullet">•</span><span>עדיפות בגישה למוצר הסופי</span></li>
           </ul>
 
           <noscript>
@@ -323,7 +364,7 @@
             <div class="beta-actions">
               <button type="submit" class="btn-primary-lg" id="submit-btn">
                 <span class="spinner" id="submit-spinner" aria-hidden="true"></span>
-                <span id="submit-text">שלחו לי עדכון כשגרסת הבטא מוכנה</span>
+                <span id="submit-text">אני רוצה גישה מוקדמת לבטא</span>
               </button>
 
               <p class="beta-note">
@@ -336,23 +377,24 @@
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <div class="legal-card">
-          <p><strong>הבהרה:</strong> RED ALERT LIVE אינה אפליקציה רשמית של פיקוד העורף/צה״ל/כל גוף מדינתי אחר. יש לפעול תמיד לפי ההנחיות הרשמיות.</p>
-          <p class="legal-spacer">המידע שתמסרו ישמש רק ליצירת קשר ועדכונים על האפליקציה – ללא פרסום חיצוני.</p>
-        </div>
-      </div>
-    </section>
-
     <section id="faq" class="faq-section">
       <div class="container">
         <h2>שאלות נפוצות</h2>
         <div class="faq-list">
-          <details><summary>מאיפה הגיע השם RED ALERT LIVE</summary><p>השם נבחר כמחווה למשחק Command and Conquer: Red Alert.</p></details>
-          <details><summary>האם האפליקציה כבר זמינה בחנות</summary><p>כרגע בשלב קדם-חנות ובטא. מי שנרשם יקבל עדכון כשגרסת בטא תהיה זמינה.</p></details>
-          <details><summary>מה קורה באפליקציה בזמן אזעקה</summary><p>מתקבלת התרעה רלוונטית, זיהוי GPS, נוטיפיקציה, בחירת שני מקלטים קרובים וניווט חי.</p></details>
-          <details><summary>מה קורה עם הפרטים שאני משאיר</summary><p>משמשים רק לעדכון על בטא וניהול רשימת מתעניינים – ללא שיתוף עם מפרסמים.</p></details>
+          <details><summary>האם האפליקציה כבר זמינה?</summary><p>האפליקציה בשלבי בטא מתקדמים ונבדקת בשטח. מי שנרשם ברשימה יקבל גישה ראשון – עוד לפני העלייה לחנות.</p></details>
+          <details><summary>האם היא נבדקה באזעקות אמת?</summary><p>כן. המערכת פועלת ונבדקה בזמן אזעקות אמת – כולל מנגנון גיבוי לשעה שהשרת הרשמי עמוס.</p></details>
+          <details><summary>מה ההבדל מאפליקציות אזעקה אחרות?</summary><p>האפליקציות הקיימות מציגות אזעקות – RED ALERT LIVE מנווטת למקלט. זו המטרה היחידה שלה. ניווט חי, שני מקלטים קרובים, מסך אחד ברור בלחיצה אחת.</p></details>
+          <details><summary>האם האפליקציה מחליפה את פיקוד העורף?</summary><p>לא. RED ALERT LIVE היא כלי עזר נוסף. יש לפעול תמיד לפי ההנחיות הרשמיות של פיקוד העורף.</p></details>
+          <details><summary>מה קורה עם הפרטים שאני משאיר?</summary><p>משמשים רק לשליחת עדכונים על האפליקציה. לא נעביר את המייל שלך לגורמים חיצוניים לצרכי פרסום.</p></details>
+          <details id="terms"><summary>תנאי שימוש והצהרת אחריות</summary>
+            <p><strong>1. אפליקציה לא רשמית</strong> — RED ALERT LIVE אינה אפליקציה רשמית של פיקוד העורף, צה"ל, מדינת ישראל, או כל גוף ממשלתי. בכל מצב חירום יש לפעול לפי הנחיות פיקוד העורף בלבד.</p>
+            <p><strong>2. הגבלת אחריות</strong> — השימוש באחריות המשתמש בלבד. האפליקציה מסופקת כפי שהיא ("AS IS"). המפתחים אינם אחראים לכל נזק ישיר, עקיף, גופני, נפשי או רכושי שייגרם עקב שימוש בה.</p>
+            <p><strong>3. דיוק המידע וניווט</strong> — מידע האזעקות עשוי להיות מושהה, חלקי או שגוי. נתוני מפות ומקלטים עשויים לשקף מציאות שונה מהשטח. האפליקציה היא כלי עזר בלבד.</p>
+            <p><strong>4. נתוני מיקום</strong> — נתוני GPS משמשים אך ורק לניווט מקומי. אינם נשמרים בשרתים ואינם מועברים לצד שלישי לצרכי פרסום. מוכפף למדיניות הפרטיות של מערכת ההפעלה.</p>
+            <p><strong>5. מגבלות שימוש</strong> — אין להשתמש באפליקציה לניהול כוחות חירום, תיאום מבצעי, שליטה ברכב אוטונומי, או כל שימוש שבו כשל עלול לגרום לסכנת חיים.</p>
+            <p><strong>6. שינויים בתנאים</strong> — המפעילים רשאים לשנות תנאים אלה בכל עת. המשך השימוש מהווה הסכמה לתנאים המעודכנים.</p>
+            <p><strong>7. יצירת קשר</strong> — <a href="mailto:support@red-alert.live">support@red-alert.live</a></p>
+          </details>
         </div>
       </div>
     </section>
@@ -365,8 +407,10 @@
       <div class="footer-links">
         <a href="mailto:support@red-alert.live">צור קשר</a>
         <a href="#beta-form">הצטרפות לבטא</a>
+        <a href="#terms">תנאי שימוש</a>
       </div>
     </div>
+
   </footer>
 
   <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
