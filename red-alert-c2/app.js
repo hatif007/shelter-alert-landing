@@ -44,6 +44,25 @@
 // Demo modal + form submit
 (function () {
   var FORMS_API_URL = 'https://red-alert-forms-service-production.up.railway.app/contact';
+  var RECAPTCHA_SITE_KEY = '6LeKyZwsAAAAAAbEGSU6yYKHJrqBxvcoz-xY8L_B';
+
+  function getRecaptchaToken(action) {
+    return new Promise(function (resolve) {
+      if (!window.grecaptcha || !window.grecaptcha.execute) {
+        resolve('');
+        return;
+      }
+      try {
+        window.grecaptcha.ready(function () {
+          window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: action })
+            .then(function (token) { resolve(token || ''); })
+            .catch(function () { resolve(''); });
+        });
+      } catch (e) {
+        resolve('');
+      }
+    });
+  }
 
   var modal = document.getElementById('demo-modal');
   var form = document.getElementById('demo-form');
@@ -161,6 +180,7 @@
       notes || 'N/A'
     ];
 
+    getRecaptchaToken('cnc_demo').then(function (recaptchaToken) {
     var payload = {
       name: name,
       email: email,
@@ -170,7 +190,8 @@
       organization: organization,
       city: city,
       phone: phone,
-      notes: notes
+      notes: notes,
+      recaptchaToken: recaptchaToken
     };
 
     fetch(FORMS_API_URL, {
@@ -195,6 +216,7 @@
       showToast('error', 'שגיאת חיבור', 'לא הצלחנו להתחבר לשרת.');
     }).then(function () {
       setLoading(false);
+    });
     });
   });
 })();

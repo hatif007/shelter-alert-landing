@@ -2,6 +2,25 @@
   'use strict';
 
   const FORMS_API_URL = 'https://red-alert-forms-service-production.up.railway.app/contact';
+  const RECAPTCHA_SITE_KEY = '6LeKyZwsAAAAAAbEGSU6yYKHJrqBxvcoz-xY8L_B';
+
+  function getRecaptchaToken(action) {
+    return new Promise((resolve) => {
+      if (!window.grecaptcha || !window.grecaptcha.execute) {
+        resolve('');
+        return;
+      }
+      try {
+        window.grecaptcha.ready(() => {
+          window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action })
+            .then((token) => resolve(token || ''))
+            .catch(() => resolve(''));
+        });
+      } catch (_) {
+        resolve('');
+      }
+    });
+  }
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -448,6 +467,7 @@
       ];
 
       payload.message = messageLines.join('\n');
+      payload.recaptchaToken = await getRecaptchaToken('beta_form');
 
       const ctrl = new AbortController();
       const timeout = setTimeout(() => ctrl.abort(), 12000);
