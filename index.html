@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -8,48 +8,69 @@
 
   <title>RED ALERT LIVE – תדע לאן לרוץ לפני שהאזעקה מסתיימת</title>
 
-  <!-- Privacy / UX -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="color-scheme" content="light" />
 
-  <!-- Favicon -->
   <link rel="icon" href="favicon.ico" />
   <link rel="icon" href="/assets/favicon.ico" />
 
-  <!-- Preconnect fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- External CSS -->
   <link rel="stylesheet" href="assets/app.css" />
 
-  <!-- reCAPTCHA v3 -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LeKyZwsAAAAAAbEGSU6yYKHJrqBxvcoz-xY8L_B" defer></script>
 </head>
 
 <body>
-  <header id="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        <img src="assets/red-alert-logo-20260115.png" data-i18n-alt="logo.alt" alt="לוגו RED ALERT LIVE" class="logo-img" />
-        <div class="logo-text-wrap">
-          <span class="logo-text-main">RED ALERT LIVE</span>
-          <span class="logo-text-sub" data-i18n="logo.sub">אפליקציה לניווט חכם למקלטים בזמן אזעקה</span>
-        </div>
+
+  <!-- Status bar -->
+  <div class="statusbar">
+    <div class="wrap row">
+      <div class="sb-left">
+        <span class="sb-pill live-app"><span class="sb-dot"></span> <span data-i18n="status.live_app">האפליקציה זמינה</span></span>
+        <span class="sb-text mono" data-i18n="status.text">v1.5.0 · Android · נבדק באזעקות אמת · גרסת iOS בפיתוח</span>
       </div>
+      <div class="sb-right">
+        <span class="sb-pill mono" id="now-clock">--:--:-- · IDT</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav / header -->
+  <header id="site-header">
+    <div class="nav-row">
+      <a href="#" class="brand" aria-label="RED ALERT LIVE">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/red-alert-logo-20260115.png" data-i18n-alt="logo.alt" alt="לוגו RED ALERT LIVE" />
+        </span>
+        <span class="brand-text">
+          <b>RED <em>ALERT</em> LIVE</b>
+          <span data-i18n="logo.sub">אפליקציה לניווט חכם למקלטים בזמן אזעקה</span>
+        </span>
+      </a>
 
       <nav data-i18n-aria="nav.nav_aria" aria-label="ניווט">
+        <div class="nav-links" id="nav-links">
+          <a href="#how-it-works" data-i18n="nav.how_it_works">איך זה עובד</a>
+          <a href="#alarm-flow" data-i18n="nav.alarm_flow">בזמן אזעקה</a>
+          <a href="#features" data-i18n="nav.features">פיצרים</a>
+          <a href="#screens" data-i18n="nav.screens">מסכים</a>
+          <a href="#sos" data-i18n="nav.sos">SOS</a>
+          <a href="#manager" data-i18n="nav.manager">מסך מנהל</a>
+          <a href="#audience" data-i18n="nav.audience">למי זה מתאים</a>
+          <a href="#faq" data-i18n="nav.faq">שאלות נפוצות</a>
+        </div>
+      </nav>
+
+      <div class="nav-cta">
         <div class="lang-switcher">
-          <button
-            id="lang-btn"
-            class="lang-btn"
-            data-i18n-aria="nav.lang_label"
-            aria-label="בחר שפה"
-            aria-haspopup="true"
-            aria-expanded="false"
-            type="button"
-          >🌐 <span id="lang-current-code">HE</span></button>
+          <button id="lang-btn" class="lang-btn"
+            data-i18n-aria="nav.lang_label" aria-label="בחר שפה"
+            aria-haspopup="true" aria-expanded="false" type="button">
+            🌐 <span id="lang-current-code">HE</span>
+          </button>
           <div id="lang-dropdown" class="lang-dropdown" role="menu">
             <button class="lang-option active" data-lang="he" role="menuitem">🇮🇱 עברית</button>
             <button class="lang-option" data-lang="en" role="menuitem">🇬🇧 English</button>
@@ -61,269 +82,579 @@
           </div>
         </div>
 
-        <button
-          id="menu-toggle"
-          class="menu-toggle"
-          data-i18n-aria="nav.menu_open"
-          aria-label="פתח תפריט"
-          aria-controls="nav-drawer"
-          aria-expanded="false"
-          type="button"
-        >☰</button>
+        <button class="btn btn-primary btn-sm" type="button" data-scroll="beta">
+          <span data-i18n="nav.join_beta">צרו קשר</span>
+        </button>
 
-        <div class="nav-links" id="nav-links">
-          <a href="#how-it-works" data-i18n="nav.how_it_works">איך זה עובד</a>
-          <a href="#alarm-flow" data-i18n="nav.alarm_flow">בזמן אזעקה</a>
-          <a href="#features" data-i18n="nav.features">פיצרים</a>
-          <a href="#screens" data-i18n="nav.screens">מסכים</a>
-          <a href="#manager" data-i18n="nav.manager">מסך מנהל</a>
-          <a href="#audience" data-i18n="nav.audience">למי זה מתאים</a>
-          <a href="#faq" data-i18n="nav.faq">שאלות נפוצות</a>
-          <button class="btn btn-sm" type="button" data-scroll="beta" data-i18n="nav.join_beta">הצטרפות לבטא</button>
-        </div>
+        <button id="menu-toggle" class="menu-toggle"
+          data-i18n-aria="nav.menu_open" aria-label="פתח תפריט"
+          aria-controls="nav-drawer" aria-expanded="false" type="button">☰</button>
+      </div>
 
-        <div id="nav-drawer" class="nav-drawer" data-i18n-aria="nav.drawer_aria" role="menu" aria-label="תפריט">
-          <a href="#how-it-works" role="menuitem" data-i18n="nav.how_it_works">איך זה עובד</a>
-          <a href="#alarm-flow" role="menuitem" data-i18n="nav.alarm_flow">בזמן אזעקה</a>
-          <a href="#features" role="menuitem" data-i18n="nav.features">פיצרים</a>
-          <a href="#screens" role="menuitem" data-i18n="nav.screens">מסכים</a>
-          <a href="#manager" role="menuitem" data-i18n="nav.manager">מסך מנהל</a>
-          <a href="#audience" role="menuitem" data-i18n="nav.audience">למי זה מתאים</a>
-          <a href="#faq" role="menuitem" data-i18n="nav.faq">שאלות נפוצות</a>
-          <div class="drawer-lang">
-            <button class="drawer-lang-option active" data-lang="he">🇮🇱</button>
-            <button class="drawer-lang-option" data-lang="en">🇬🇧</button>
-            <button class="drawer-lang-option" data-lang="ar">🇸🇦</button>
-            <button class="drawer-lang-option" data-lang="ru">🇷🇺</button>
-            <button class="drawer-lang-option" data-lang="fr">🇫🇷</button>
-            <button class="drawer-lang-option" data-lang="th">🇹🇭</button>
-            <button class="drawer-lang-option" data-lang="zh-CN">🇨🇳</button>
-          </div>
-          <div class="drawer-cta">
-            <button class="btn btn-sm" type="button" data-scroll="beta" data-i18n="nav.join_beta">הצטרפות לבטא</button>
-          </div>
+      <div id="nav-drawer" class="nav-drawer" data-i18n-aria="nav.drawer_aria" role="menu" aria-label="תפריט">
+        <a href="#how-it-works" role="menuitem" data-i18n="nav.how_it_works">איך זה עובד</a>
+        <a href="#alarm-flow" role="menuitem" data-i18n="nav.alarm_flow">בזמן אזעקה</a>
+        <a href="#features" role="menuitem" data-i18n="nav.features">פיצרים</a>
+        <a href="#screens" role="menuitem" data-i18n="nav.screens">מסכים</a>
+        <a href="#sos" role="menuitem" data-i18n="nav.sos">SOS</a>
+        <a href="#manager" role="menuitem" data-i18n="nav.manager">מסך מנהל</a>
+        <a href="#audience" role="menuitem" data-i18n="nav.audience">למי זה מתאים</a>
+        <a href="#faq" role="menuitem" data-i18n="nav.faq">שאלות נפוצות</a>
+        <div class="drawer-lang">
+          <button class="drawer-lang-option active" data-lang="he">🇮🇱</button>
+          <button class="drawer-lang-option" data-lang="en">🇬🇧</button>
+          <button class="drawer-lang-option" data-lang="ar">🇸🇦</button>
+          <button class="drawer-lang-option" data-lang="ru">🇷🇺</button>
+          <button class="drawer-lang-option" data-lang="fr">🇫🇷</button>
+          <button class="drawer-lang-option" data-lang="th">🇹🇭</button>
+          <button class="drawer-lang-option" data-lang="zh-CN">🇨🇳</button>
         </div>
-      </nav>
+        <div class="drawer-cta">
+          <button class="btn btn-primary btn-sm" type="button" data-scroll="beta" data-i18n="nav.join_beta">צרו קשר</button>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="hero-badge">
-            <span data-i18n="hero.badge_tested">נבדק באזעקות אמת</span>
-            <span data-i18n="hero.badge_beta">גרסת בטא – מקומות מוגבלים</span>
+      <div class="wrap hero-grid">
+        <div class="hero-left">
+          <div class="h-tags">
+            <span class="h-tag live-app"><span class="live-dot"></span> <span data-i18n="hero.tag_live">האפליקציה כבר באוויר</span></span>
+            <span class="h-tag"><span class="live-dot"></span> <span data-i18n="hero.badge_tested">נבדק באזעקות אמת</span></span>
+            <span class="h-tag beta"><span class="live-dot"></span> <span data-i18n="hero.tag_android">iOS בפיתוח</span></span>
           </div>
 
-          <h1 class="hero-title" data-i18n="hero.title">כשיש אזעקה – תדע לאן לרוץ לפני שהיא מסתיימת</h1>
+          <h1 class="h-title" data-i18n="hero.title">כשיש אזעקה – תדע לאן לרוץ לפני שהיא מסתיימת</h1>
 
-          <p class="hero-subtitle" data-i18n="hero.subtitle">
+          <p class="h-sub" data-i18n="hero.subtitle">
             RED ALERT LIVE מזהה התרעה רלוונטית לאזור שלך, מאתרת את המקלטים הקרובים ביותר ומנווטת אליהם – בלחיצה אחת, תוך שניות.
           </p>
 
-          <ul class="hero-list">
-            <li><span class="bullet">•</span><span data-i18n="hero.list1">ניווט חי למקלט הקרוב – לא רשימה, לא בלבול, מסך אחד ברור</span></li>
-            <li><span class="bullet">•</span><span data-i18n="hero.list2">התרעה מדויקת לפי האזור שלך בלבד – בלי רעש של אזעקות שלא רלוונטיות אליך</span></li>
-            <li><span class="bullet">•</span><span data-i18n="hero.list3">שלושה מקורות מידע במקביל – כולל גיבוי אם השרת הרשמי עמוס</span></li>
+          <ul class="h-bullets">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span data-i18n="hero.list1">ניווט חי למקלט הקרוב – לא רשימה, לא בלבול, מסך אחד ברור</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span data-i18n="hero.list2">התרעה מדויקת לפי האזור שלך בלבד – בלי רעש של אזעקות שלא רלוונטיות אליך</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span data-i18n="hero.list3">שלושה מקורות מידע במקביל – כולל גיבוי אם השרת הרשמי עמוס</span>
+            </li>
           </ul>
 
-          <div class="email-box">
-            <div class="email-box-title" data-i18n="hero.email_box_title">הירשמו עכשיו – נשלח לכם גישה ראשונה לבטא</div>
-            <button class="email-btn" type="button" data-scroll="beta" data-i18n="hero.email_btn">אני רוצה גישה מוקדמת לבטא</button>
+          <div class="h-form-note">
+            <span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 9.4 8 10 4.5-.6 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.6"/></svg> <span data-i18n="hero.note_priv">לא מועבר לצד שלישי</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="hero.note_dl">חינם להורדה לאנדרואיד</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> <span data-i18n="hero.note_real">נבדק באזעקות אמת</span></span>
           </div>
-
-          <p class="hero-note" data-i18n="hero.note">
-            זמין לאנדרואיד ובהמשך גם לאייפון. האפליקציה נבדקה בשטח במהלך אזעקות אמת.
-          </p>
         </div>
 
-        <div class="hero-image-wrapper">
-          <div class="hero-image-inner">
-            <figure class="hero-figure">
-              <img src="assets/screens/mockup.png" data-i18n-alt="hero.mockup_alt" alt="מוקאפ של האפליקציה להמחשה" />
-              <figcaption>
-                <div class="hero-caption-note" data-i18n="hero.caption_note">התמונה להמחשה בלבד</div>
-              </figcaption>
-            </figure>
+        <div class="h-stage" aria-hidden="true">
+          <div class="hero-mock">
+            <img src="assets/hero-shelter-map.png" data-i18n-alt="hero.mockup_alt" alt="מוקאפ של האפליקציה להמחשה" />
+            <div class="phone-caption" data-i18n="hero.caption_note">התמונה להמחשה בלבד</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="how-it-works" class="problem-section">
-      <div class="container">
-        <h2 data-i18n="how.title">הרגע שהאזעקה מופעלת – מה עובר לך בראש</h2>
-        <p class="section-intro" data-i18n="how.intro">
-          שלוש שניות של פאניקה. שלוש שאלות שאין לך עליהן תשובה מיידית. RED ALERT LIVE נבנתה בדיוק לרגע הזה.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <div class="problem-card-title" data-i18n="how.card1_title">🔍 "איפה בכלל יש כאן מקלט?"</div>
-            <p class="feature-text" data-i18n="how.card1_text">אתה ברחוב, בפארק, ברכב, בשכונה שלא מכיר. אין זמן לגוגל. RED ALERT LIVE מציגה לך את שני המקלטים הקרובים ביותר – במטרים.</p>
+    <!-- 3 Q cards -->
+    <section id="how-it-works" class="section">
+      <div class="wrap">
+        <div class="section-h">
+          <span class="section-tag"><span class="sq"></span> <span data-i18n="how.tag">הרגע שהאזעקה מופעלת</span></span>
+          <h2 data-i18n="how.title">הרגע שהאזעקה מופעלת – מה עובר לך בראש</h2>
+          <p class="section-sub" data-i18n="how.intro">שלוש שניות של פאניקה. שלוש שאלות שאין לך עליהן תשובה מיידית. RED ALERT LIVE נבנתה בדיוק לרגע הזה.</p>
+        </div>
+        <div class="qcards">
+          <div class="qcard">
+            <span class="q" data-i18n="how.q1">שאלה 01</span>
+            <h3>
+              <span class="ic" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <span data-i18n="how.card1_title">"איפה בכלל יש כאן מקלט?"</span>
+            </h3>
+            <p data-i18n="how.card1_text">אתה ברחוב, בפארק, ברכב, בשכונה שלא מכיר. אין זמן לגוגל. RED ALERT LIVE מציגה לך את שני המקלטים הקרובים ביותר – במטרים.</p>
           </div>
-
-          <div class="card">
-            <div class="problem-card-title" data-i18n="how.card2_title">🧭 "מה הכי קרוב ומה המסלול?"</div>
-            <p class="feature-text" data-i18n="how.card2_text">ממ"ד? חדר מדרגות? מקלט ציבורי? האפליקציה מחליטה בשבילך ומנווטת ישר – בלי שאתה צריך לחשוב.</p>
+          <div class="qcard">
+            <span class="q" data-i18n="how.q2">שאלה 02</span>
+            <h3>
+              <span class="ic" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m4 20 16-8-8-4-2 6-6 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              </span>
+              <span data-i18n="how.card2_title">"מה הכי קרוב ומה המסלול?"</span>
+            </h3>
+            <p data-i18n="how.card2_text">ממ"ד? חדר מדרגות? מקלט ציבורי? האפליקציה מחליטה בשבילך ומנווטת ישר – בלי שאתה צריך לחשוב.</p>
           </div>
-
-          <div class="card">
-            <div class="problem-card-title" data-i18n="how.card3_title">⏱ "כמה זמן יש לי?"</div>
-            <p class="feature-text" data-i18n="how.card3_text">כל אזור בארץ מקבל זמן התגוננות שונה – ההפרש יכול להיות משמעותי. ההתרעה מותאמת לאזור שלך בלבד, כדי שתדע בדיוק כמה זמן יש לך להגיע למקלט.</p>
+          <div class="qcard">
+            <span class="q" data-i18n="how.q3">שאלה 03</span>
+            <h3>
+              <span class="ic" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <span data-i18n="how.card3_title">"כמה זמן יש לי?"</span>
+            </h3>
+            <p data-i18n="how.card3_text">כל אזור בארץ מקבל זמן התגוננות שונה – ההפרש יכול להיות משמעותי. ההתרעה מותאמת לאזור שלך בלבד, כדי שתדע בדיוק כמה זמן יש לך להגיע למקלט.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="alarm-flow" class="alarm-flow-section">
-      <div class="container">
-        <h2 data-i18n="flow.title">מה קורה בפועל בזמן אזעקה</h2>
-        <p class="section-intro" data-i18n="flow.intro">
-          מהרגע שהאזעקה נשמעת עד שאתה בפתח המקלט – 5 שלבים, כולם אוטומטיים, כולם בלי לבזבז שנייה.
-        </p>
+    <!-- 5 STEPS -->
+    <section id="alarm-flow" class="section" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="section-h">
+          <span class="section-tag"><span class="sq"></span> <span data-i18n="flow.tag">בזמן אזעקה</span></span>
+          <h2 data-i18n="flow.title">מה קורה בפועל בזמן אזעקה</h2>
+          <p class="section-sub" data-i18n="flow.intro">מהרגע שהאזעקה נשמעת עד שאתה בפתח המקלט – 5 שלבים, כולם אוטומטיים, כולם בלי לבזבז שנייה.</p>
+        </div>
 
-        <div class="flow-grid">
+        <div class="steps-wrap">
           <div class="steps" data-i18n-aria="flow.steps_aria" aria-label="שלבי פעולה בזמן אזעקה">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title" data-i18n="flow.step1_title">📡 זיהוי התרעה בזמן אמת</div><div class="step-desc" data-i18n="flow.step1_desc">כשהמערכת מזהה התרעה רלוונטית לאזור שלך – מופעל תהליך חירום באפליקציה.</div></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title" data-i18n="flow.step2_title">📍 איתור מיקום מיידי (GPS)</div><div class="step-desc" data-i18n="flow.step2_desc">האפליקציה מאתרת את המיקום הנוכחי שלך ומכינה תצוגה ברורה כדי לא לבזבז שנייה.</div></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title" data-i18n="flow.step3_title">🔔 נוטיפיקציה ברורה ופתיחה בלחיצה</div><div class="step-desc" data-i18n="flow.step3_desc">בלחיצה אחת האפליקציה נפתחת ישר למסך החירום הרלוונטי בלי תפריטים מבלבלים.</div></div></div>
-            <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title" data-i18n="flow.step4_title">🏠 הצגת שני מקלטים הכי קרובים</div><div class="step-desc" data-i18n="flow.step4_desc">במקום רשימה ארוכה – מוצגים שני המקלטים הקרובים ביותר עם מרחק כדי לבחור מהר.</div></div></div>
-            <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title" data-i18n="flow.step5_title">🧭 ניווט חי עד הגעה</div><div class="step-desc" data-i18n="flow.step5_desc">לאחר בחירה האפליקציה נכנסת לניווט חי ומובילה אותך למקלט היעד בצורה ברורה.</div></div></div>
+            <div class="step">
+              <span class="num">01 / DETECT</span>
+              <span class="ic" aria-hidden="true">📡</span>
+              <div class="body"><b data-i18n="flow.step1_title">זיהוי התרעה בזמן אמת</b><p data-i18n="flow.step1_desc">כשהמערכת מזהה התרעה רלוונטית לאזור שלך – מופעל תהליך חירום באפליקציה.</p></div>
+            </div>
+            <div class="step">
+              <span class="num">02 / LOCATE</span>
+              <span class="ic" aria-hidden="true">📍</span>
+              <div class="body"><b data-i18n="flow.step2_title">איתור מיקום מיידי (GPS)</b><p data-i18n="flow.step2_desc">האפליקציה מאתרת את המיקום הנוכחי שלך ומכינה תצוגה ברורה כדי לא לבזבז שנייה.</p></div>
+            </div>
+            <div class="step">
+              <span class="num">03 / ALERT</span>
+              <span class="ic" aria-hidden="true">🔔</span>
+              <div class="body"><b data-i18n="flow.step3_title">נוטיפיקציה ברורה ופתיחה בלחיצה</b><p data-i18n="flow.step3_desc">בלחיצה אחת האפליקציה נפתחת ישר למסך החירום הרלוונטי בלי תפריטים מבלבלים.</p></div>
+            </div>
+            <div class="step">
+              <span class="num">04 / CHOOSE</span>
+              <span class="ic" aria-hidden="true">🏠</span>
+              <div class="body"><b data-i18n="flow.step4_title">הצגת שני מקלטים הכי קרובים</b><p data-i18n="flow.step4_desc">במקום רשימה ארוכה – מוצגים שני המקלטים הקרובים ביותר עם מרחק כדי לבחור מהר.</p></div>
+            </div>
+            <div class="step">
+              <span class="num">05 / NAVIGATE</span>
+              <span class="ic" aria-hidden="true">🧭</span>
+              <div class="body"><b data-i18n="flow.step5_title">ניווט חי עד הגעה</b><p data-i18n="flow.step5_desc">לאחר בחירה האפליקציה נכנסת לניווט חי ומובילה אותך למקלט היעד בצורה ברורה.</p></div>
+            </div>
           </div>
 
-          <aside class="flow-side" data-i18n-aria="flow.highlights_aria" aria-label="דגשים חשובים">
-            <div class="card">
-              <div class="problem-card-title" data-i18n="flow.highlights_title">✅ מה חשוב פה</div>
-              <div class="flow-highlight">
-                <div class="pill"><span class="dot"></span> <span data-i18n="flow.pill1">מסך אחד ברור בזמן אמת</span></div>
-                <div class="pill"><span class="dot"></span> <span data-i18n="flow.pill2">החלטה מהירה בין שני מקלטים</span></div>
-                <div class="pill"><span class="dot"></span> <span data-i18n="flow.pill3">פחות רעש – יותר דיוק לפי אזור</span></div>
-                <div class="pill warn"><span class="dot"></span> <span data-i18n="flow.pill4">בכל מקרה פועלים לפי הנחיות רשמיות</span></div>
-              </div>
+          <aside class="steps-side" data-i18n-aria="flow.highlights_aria" aria-label="דגשים חשובים">
+            <div class="side-card">
+              <h4>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="oklch(38% 0.13 150)" stroke-width="2" stroke-linecap="round"/></svg>
+                <span data-i18n="flow.highlights_title">מה חשוב פה</span>
+              </h4>
+              <ul>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="flow.pill1">מסך אחד ברור בזמן אמת</span></li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="flow.pill2">החלטה מהירה בין שני מקלטים</span></li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="flow.pill3">פחות רעש – יותר דיוק לפי אזור</span></li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="flow.pill4">בכל מקרה פועלים לפי הנחיות רשמיות</span></li>
+              </ul>
               <div class="mini-note" data-i18n="flow.mini_note">RED ALERT LIVE היא כלי עזר נוסף ולא תחליף להנחיות פיקוד העורף</div>
             </div>
 
-            <div class="card">
-              <div class="problem-card-title" data-i18n="flow.privacy_title">🛡 פרטיות ושקט נפשי</div>
-              <p class="feature-text" data-i18n="flow.privacy_text">המטרה: חוויית חירום נקייה, התראות ממוקדות ומידע ברור – בלי רעש שלא רלוונטי אליך.</p>
+            <div class="side-card dark">
+              <h4>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 9.4 8 10 4.5-.6 8-5 8-10V6l-8-4Z" stroke="oklch(82% 0.13 252)" stroke-width="1.7"/></svg>
+                <span data-i18n="flow.privacy_title">פרטיות ושקט נפשי</span>
+              </h4>
+              <p data-i18n="flow.privacy_text">המטרה: חוויית חירום נקייה, התראות ממוקדות ומידע ברור – בלי רעש שלא רלוונטי אליך.</p>
             </div>
           </aside>
         </div>
       </div>
     </section>
 
-    <section id="features">
-      <div class="container">
-        <h2 data-i18n="features.title">מה בפנים – ולמה זה שונה</h2>
-        <p class="section-intro" data-i18n-html="features.intro_html">לא עוד אפליקציית אזעקה שמציגה רשימת ערים. RED ALERT LIVE נבנתה מהבסיס סביב שאלה אחת: <strong>כמה שניות עד שאתה בפתח המקלט?</strong></p>
+    <!-- FEATURES -->
+    <section id="features" class="section" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="section-h">
+          <span class="section-tag"><span class="sq"></span> <span data-i18n="features.tag">פיצ׳רים</span></span>
+          <h2 data-i18n="features.title">מה בפנים – ולמה זה שונה</h2>
+          <p class="section-sub" data-i18n-html="features.intro_html">לא עוד אפליקציית אזעקה שמציגה רשימת ערים. RED ALERT LIVE נבנתה מהבסיס סביב שאלה אחת: <strong>כמה שניות עד שאתה בפתח המקלט?</strong></p>
+        </div>
 
-        <div class="grid-3">
-          <div class="card"><div class="feature-icon">📍</div><div class="feature-title" data-i18n="features.f1_title">מקלטים קרובים – במטרים</div><div class="feature-text" data-i18n="features.f1_text">אלפי מקלטים מרחבי הארץ. האפליקציה מציגה את השניים הקרובים ביותר למיקומך הנוכחי עם מרחק מדויק.</div></div>
-          <div class="card"><div class="feature-icon">🧭</div><div class="feature-title" data-i18n="features.f2_title">ניווט חי – לחיצה אחת</div><div class="feature-text" data-i18n="features.f2_text">בוחר מקלט, יוצא לניווט. אין תפריטים, אין שאלות. האפליקציה מובילה אותך ישר ליעד.</div></div>
-          <div class="card"><div class="feature-icon">🛡</div><div class="feature-title" data-i18n="features.f3_title">התרעה לאזור שלך בלבד</div><div class="feature-text" data-i18n="features.f3_text">סינון לפי עיר ו-zone מדויק – תקבל התרעה רק כשהיא רלוונטית אליך. לא כשיש אזעקה בצפון ואתה בדרום.</div></div>
-          <div class="card"><div class="feature-icon">📡</div><div class="feature-title" data-i18n="features.f4_title">שלושה מקורות התרעה במקביל</div><div class="feature-text" data-i18n="features.f4_text">פיקוד העורף + שני מקורות נוספים. אם אחד עמוס או קורס – האחרים ממשיכים. נבדק באזעקות אמת.</div></div>
-          <div class="card"><div class="feature-icon">🧪</div><div class="feature-title" data-i18n="features.f5_title">מצב תרגול</div><div class="feature-text" data-i18n="features.f5_text">תרגל מסלול למקלט בבית, בעבודה, בשכונה – לפני שתצטרך אותו באמת.</div></div>
-          <div class="card"><div class="feature-icon">🔒</div><div class="feature-title" data-i18n="features.f6_title">פרטיות מלאה</div><div class="feature-text" data-i18n="features.f6_text">היסטוריית אזעקות נשמרת אצלך במכשיר בלבד. לא מועברת לשרת, לא משותפת.</div></div>
+        <div class="feat-grid">
+          <div class="feat hero-feat">
+            <span class="shield" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <h3>
+                <span data-i18n="features.f0_title">המשך עבודה גם כשהמיקום לא מדויק</span>
+                <span class="unique" data-i18n="features.f0_pill">FEATURED · ישראל</span>
+              </h3>
+              <p data-i18n="features.f0_text">בזמן הפרעות לוויינים או חוסר דיוק GPS, האפליקציה ממשיכה לקבל התרעות לפי אזורי הגיאוגרפיה של פיקוד העורף, מאפשרת בחירה ידנית של עיר למציאת מקלט, ומסתמכת על שירותי המיקום של מערכת ההפעלה – כולל רשת סלולרית ו-Wi-Fi.</p>
+            </div>
+            <div class="layers">
+              <div class="layer"><span class="dot"></span><span data-i18n="features.f0_l1">התרעות לפי אזור פיקוד העורף</span></div>
+              <div class="layer"><span class="dot"></span><span data-i18n="features.f0_l2">בחירה ידנית של עיר</span></div>
+              <div class="layer"><span class="dot"></span><span data-i18n="features.f0_l3">רשת סלולרית · Wi-Fi</span></div>
+            </div>
+          </div>
+          <div class="feat">
+            <span class="ic" aria-hidden="true">📍</span>
+            <h3 data-i18n="features.f1_title">מקלטים קרובים – במטרים</h3>
+            <p data-i18n="features.f1_text">אלפי מקלטים מרחבי הארץ. האפליקציה מציגה את השניים הקרובים ביותר למיקומך הנוכחי עם מרחק מדויק.</p>
+          </div>
+          <div class="feat">
+            <span class="ic" aria-hidden="true">🧭</span>
+            <h3 data-i18n="features.f2_title">ניווט חי – לחיצה אחת</h3>
+            <p data-i18n="features.f2_text">בוחר מקלט, יוצא לניווט. אין תפריטים, אין שאלות. האפליקציה מובילה אותך ישר ליעד.</p>
+          </div>
+          <div class="feat">
+            <span class="ic" aria-hidden="true">🛡</span>
+            <h3 data-i18n="features.f3_title">התרעה לאזור שלך בלבד</h3>
+            <p data-i18n="features.f3_text">סינון לפי עיר ו-zone מדויק – תקבל התרעה רק כשהיא רלוונטית אליך. לא כשיש אזעקה בצפון ואתה בדרום.</p>
+          </div>
+          <div class="feat">
+            <span class="ic" aria-hidden="true">📡</span>
+            <h3 data-i18n="features.f4_title">שלושה מקורות התרעה במקביל</h3>
+            <p data-i18n="features.f4_text">פיקוד העורף + שני מקורות נוספים. אם אחד עמוס או קורס – האחרים ממשיכים. נבדק באזעקות אמת.</p>
+          </div>
+          <div class="feat">
+            <span class="ic" aria-hidden="true">🧪</span>
+            <h3 data-i18n="features.f5_title">מצב תרגול</h3>
+            <p data-i18n="features.f5_text">תרגל מסלול למקלט בבית, בעבודה, בשכונה – לפני שתצטרך אותו באמת.</p>
+          </div>
+          <div class="feat">
+            <span class="ic" aria-hidden="true">🔒</span>
+            <h3 data-i18n="features.f6_title">פרטיות מלאה</h3>
+            <p data-i18n="features.f6_text">היסטוריית אזעקות נשמרת אצלך במכשיר בלבד. לא מועברת לשרת, לא משותפת.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="screens" class="screens-section">
-      <div class="container">
-        <h2 data-i18n="screens.title">האפליקציה בפועל</h2>
-        <p class="section-intro" data-i18n="screens.intro">מסך מפה עם מקלטים, ניווט חי, מצב תרגול – ממשק שנבנה לשניות של לחץ.</p>
+    <!-- SCREENS -->
+    <section id="screens" class="section screens-section" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="section-h">
+          <span class="section-tag"><span class="sq"></span> <span data-i18n="screens.tag">האפליקציה בפועל</span></span>
+          <h2 data-i18n="screens.title">האפליקציה בפועל</h2>
+          <p class="section-sub" data-i18n="screens.intro">מסך מפה עם מקלטים, ניווט חי, מצב תרגול – ממשק שנבנה לשניות של לחץ.</p>
+        </div>
 
-        <div class="grid-screens">
-          <div class="card">
-            <figure class="screen-figure">
-              <div class="screen-img-wrap"><img class="screen-img" src="assets/screens/map_shelters.png" data-i18n-alt="screens.s1_alt" alt="מסך מפה ומקלטים קרובים" /></div>
-              <figcaption class="screen-caption" data-i18n="screens.s1_caption">מסך מפה ומקלטים קרובים</figcaption>
-            </figure>
+        <div class="screens">
+          <div class="screen-card">
+            <h3 data-i18n="screens.s1_caption">מסך מפה ומקלטים קרובים</h3>
+            <p data-i18n="screens.s1_text">רשימת המקלטים הקרובים אליך – עם זמן הליכה, מרחק וכפתור גדול שמתחיל ניווט עכשיו.</p>
+            <div class="screen-shot">
+              <img src="assets/screen-shelters.png" data-i18n-alt="screens.s1_alt" alt="מסך מפה ומקלטים קרובים" />
+            </div>
           </div>
-
-          <div class="card">
-            <figure class="screen-figure">
-              <div class="screen-img-wrap"><img class="screen-img" src="assets/screens/live_navigation.png" data-i18n-alt="screens.s2_alt" alt="ניווט חי" /></div>
-              <figcaption class="screen-caption" data-i18n="screens.s2_caption">ניווט חי</figcaption>
-            </figure>
+          <div class="screen-card">
+            <h3 data-i18n="screens.s2_caption">היסטוריית אזעקות</h3>
+            <p data-i18n="screens.s2_text">תיעוד מלא של כל האירועים – חדירת רחפנים, טילים, חדירות מחבלים ועוד.</p>
+            <div class="screen-shot">
+              <img src="assets/screen-history.png" data-i18n-alt="screens.s2_alt" alt="היסטוריית אזעקות" />
+            </div>
           </div>
-
-          <div class="card">
-            <figure class="screen-figure">
-              <div class="screen-img-wrap"><img class="screen-img" src="assets/screens/drill.png" data-i18n-alt="screens.s3_alt" alt="תרגול" /></div>
-              <figcaption class="screen-caption" data-i18n="screens.s3_caption">תרגול</figcaption>
-            </figure>
+          <div class="screen-card">
+            <h3 data-i18n="screens.s3_caption">הודעת חירום ואיש קשר</h3>
+            <p data-i18n="screens.s3_text">שליחת הודעת חירום עם המיקום המדויק שלך לאיש הקשר שבחרת – בלחיצה אחת.</p>
+            <div class="screen-shot">
+              <img src="assets/screen-emergency.png" data-i18n-alt="screens.s3_alt" alt="הודעת חירום" />
+            </div>
+          </div>
+          <div class="screen-card">
+            <h3 data-i18n="screens.s4_caption">ניווט חי</h3>
+            <p data-i18n="screens.s4_text">Street View ומפה משולבים – הוראות תפנית ברורות, מטרים מדויקים וזמן הגעה למקלט.</p>
+            <div class="screen-shot">
+              <img src="assets/screen-navigation.png" data-i18n-alt="screens.s4_alt" alt="ניווט חי" />
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="manager" class="alarm-flow-section">
-      <div class="container">
-        <h2 data-i18n="manager.title">RED ALERT MANAGER – פלטפורמת ניהול מקלטים לרשויות וגופי ביטחון</h2>
-        <p class="section-intro" data-i18n-html="manager.intro_html">
-          כלי ייעודי לרשויות מקומיות, גופי ביטחון וגורמי חירום מקצועיים.
-          לא אפליקציה לאזרח – <strong>מערכת מבצעית לניהול מלאי המקלטים בשטח הרשות.</strong>
-        </p>
-
-        <div class="flow-grid">
-          <div class="steps" data-i18n-aria="manager.steps_aria" aria-label="יכולות מסך המנהל">
-            <div class="step"><div class="step-num">🗺</div><div class="step-body"><div class="step-title" data-i18n="manager.step1_title">תמונה ארצית מלמעלה</div><div class="step-desc" data-i18n="manager.step1_desc">מפת ישראל אינטראקטיבית עם כלל המקלטים המוזנים. תצוגה לפי עיר, אזור, סוג מקלט – בלחיצה אחת.</div></div></div>
-            <div class="step"><div class="step-num">🔍</div><div class="step-body"><div class="step-title" data-i18n="manager.step2_title">סינון וחיפוש מתקדם</div><div class="step-desc" data-i18n="manager.step2_desc">סינון לפי עיר, יישוב, סוג (מקלט / ממ"ד / מיגונית) וסטטוס. תצוגת רשימה לצד המפה לניהול יעיל.</div></div></div>
-            <div class="step"><div class="step-num">📋</div><div class="step-body"><div class="step-title" data-i18n="manager.step3_title">תיעוד מלא לכל מקלט</div><div class="step-desc" data-i18n="manager.step3_desc">כתיבת הערות מבצעיות ישירות על כל מקלט: קיבולת, נגישות, מצב פיזי, ציוד, מגבלות כניסה.</div></div></div>
-            <div class="step"><div class="step-num">📊</div><div class="step-body"><div class="step-title" data-i18n="manager.step4_title">דשבורד פערי כיסוי</div><div class="step-desc" data-i18n="manager.step4_desc">תצוגה סטטיסטית של פיזור המקלטים לפי עיר ואזור. כלי תכנון לזיהוי אזורים עם כיסוי חסר.</div></div></div>
-            <div class="step"><div class="step-num">🚧</div><div class="step-body"><div class="step-title" data-i18n="manager.step5_title">בפיתוח: חיבור למוקד 106</div><div class="step-desc" data-i18n="manager.step5_desc">דיווח על מפגעים בשטח: מקלט חסום, דרך גישה מסוכנת, נזק מבני. תושבים ידווחו מהאפליקציה – הרשות תראה בזמן אמת.</div></div></div>
+    <!-- SOS coming soon -->
+    <section id="sos" class="section" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="sos-band">
+          <div class="sos-left">
+            <span class="sos-pill mono"><span class="sos-dot"></span> <span data-i18n="sos.pill">בפיתוח · גרסה הבאה</span></span>
+            <h2 data-i18n="sos.title">כפתור <em>SOS</em> – קריאת מצוקה ישירות למוקדי החירום בישראל.</h2>
+            <p class="section-sub" data-i18n="sos.sub">בלחיצה ארוכה אחת, האפליקציה משדרת את המיקום המדויק ואת סוג האירוע אל מוקד הקריאה הקרוב והרלוונטי. אינטגרציה מתוכננת מול 100, 101, 102 ומוקדי 106 העירוניים.</p>
+            <div class="sos-rails">
+              <div class="rail"><span class="rnum mono">100</span><span class="rname" data-i18n="sos.rail1">משטרת ישראל</span></div>
+              <div class="rail"><span class="rnum mono">101</span><span class="rname" data-i18n="sos.rail2">מד״א</span></div>
+              <div class="rail"><span class="rnum mono">102</span><span class="rname" data-i18n="sos.rail3">כבאות והצלה</span></div>
+              <div class="rail"><span class="rnum mono">106</span><span class="rname" data-i18n="sos.rail4">מוקדים עירוניים</span></div>
+            </div>
+            <ul class="sos-bullets">
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="sos.b1"><b>זיהוי אוטומטי של סוג האירוע</b> – רפואי, ביטחוני, אש, סכנה כללית.</span></li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="sos.b2"><b>מיקום מדויק עם CEP מאומת</b> – לא רק כתובת, גם קומה ובניין.</span></li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="sos.b3"><b>אישור קליטה כפול מהמוקד</b> – תדע שהקריאה התקבלה.</span></li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="sos.b4"><b>תיעוד מלא של האירוע</b> – למעקב המשך ולביקורת.</span></li>
+            </ul>
+            <p class="sos-note" data-i18n="sos.note">בתיאום עם גופי ההצלה. תאריך השקה משוער: גרסה 2.0. אינו תחליף לחיוג ישיר למוקדי חירום.</p>
           </div>
+          <div class="sos-right">
+            <div class="sos-mockup">
+              <span class="sos-dev-badge">
+                <span class="pulse-dot"></span>
+                <span data-i18n="sos.dev_badge">בפיתוח · גרסה 2.0</span>
+              </span>
+              <img src="assets/sos-app-mockup.png" data-i18n-alt="sos.mock_alt" alt="RED ALERT LIVE SOS – תצוגה מוקדמת של מסך המצוקה" />
+              <span class="sos-mockup-caption mono" data-i18n="sos.mock_caption">תצוגה מוקדמת · Mockup</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <aside class="flow-side" data-i18n-aria="manager.audience_aria" aria-label="למי מיועד RED ALERT MANAGER">
-            <div class="card">
-              <div class="problem-card-title" data-i18n="manager.audience_title">🏛 למי זה מיועד</div>
-              <div class="flow-highlight">
-                <div class="pill"><span class="dot"></span> <span data-i18n="manager.pill1">רשויות מקומיות ועיריות</span></div>
-                <div class="pill"><span class="dot"></span> <span data-i18n="manager.pill2">גופי ביטחון וחירום</span></div>
-                <div class="pill"><span class="dot"></span> <span data-i18n="manager.pill3">קציני ביטחון ישובים</span></div>
-                <div class="pill"><span class="dot"></span> <span data-i18n="manager.pill4">מחלקות חירום עירוניות</span></div>
+    <!-- LANGUAGES -->
+    <section id="languages" class="section" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="section-h">
+          <span class="section-tag"><span class="sq"></span> <span data-i18n="languages.tag">שפות</span></span>
+          <h2 data-i18n="languages.title">בחירה של 7 שפות – מתאימה לכל מי שגר בישראל.</h2>
+          <p class="section-sub" data-i18n="languages.intro">RED ALERT LIVE היא אפליקציית ההתרעה הראשונה שתומכת ב-7 שפות מלאות – כולל סוגי ההתרעות, שמות הערים, ניווט, ותמיכה ב-RTL/LTR אוטומטית.</p>
+        </div>
+
+        <div class="lang-stage">
+          <!-- Lang picker -->
+          <div class="lang-picker">
+            <div class="lang-picker-h">
+              <span class="lang-globe" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.6"/>
+                  <ellipse cx="12" cy="12" rx="4" ry="9.5" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M2.5 12h19M12 2.5v19" stroke="currentColor" stroke-width="1.6"/>
+                </svg>
+              </span>
+              <div>
+                <div class="lang-picker-title" data-i18n="languages.picker_title">אין צורך לדעת עברית או לקרוא ערבית</div>
+                <div class="lang-picker-sub" data-i18n="languages.picker_sub">7 שפות מלאות – כל שנייה של חיפוש או תרגום היא שנייה ששווה חיים.</div>
               </div>
-              <div class="mini-note" data-i18n="manager.mini_note">הגישה למערכת המנהל מוגבלת ומאובטחת – אינה זמינה לציבור הרחב</div>
             </div>
 
-            <div class="card">
-              <div class="problem-card-title" data-i18n="manager.demo_title">📞 מעוניינים בפיילוט?</div>
-              <p class="feature-text" data-i18n="manager.demo_text">נשמח לדמו מותאם לרשות שלכם. השאירו פרטים בטופס ובחרו "גורם מקצועי" – נחזור אליכם ישירות.</p>
-              <div style="margin-top: 1rem;">
-                <button class="btn btn-sm" type="button" data-scroll="beta" style="width:100%" data-i18n="manager.demo_btn">לתיאום דמו לרשות</button>
+            <div class="lang-stat-strip">
+              <div class="lang-stat">
+                <span class="lang-stat-n">~ 28%</span>
+                <span class="lang-stat-l" data-i18n="languages.stat1">מתושבי ישראל לא דוברים עברית כשפת אם</span>
+              </div>
+              <div class="lang-stat">
+                <span class="lang-stat-n">3 RTL</span>
+                <span class="lang-stat-l" data-i18n="languages.stat2">עברית · ערבית · התאמה אוטומטית של הממשק</span>
               </div>
             </div>
-          </aside>
+
+            <div class="lang-list" role="radiogroup" aria-label="בחירת שפה">
+              <button class="lang-item is-active" data-lang="he" role="radio" aria-checked="true">
+                <span class="lang-flag">🇮🇱</span>
+                <span class="lang-name"><span class="lang-native">עברית</span><span class="lang-en">Hebrew</span></span>
+                <span class="lang-dir">RTL</span>
+              </button>
+              <button class="lang-item" data-lang="en" role="radio" aria-checked="false">
+                <span class="lang-flag">🇬🇧</span>
+                <span class="lang-name"><span class="lang-native">English</span><span class="lang-en">English</span></span>
+                <span class="lang-dir">LTR</span>
+              </button>
+              <button class="lang-item" data-lang="ar" role="radio" aria-checked="false">
+                <span class="lang-flag">🇸🇦</span>
+                <span class="lang-name"><span class="lang-native">العربية</span><span class="lang-en">Arabic</span></span>
+                <span class="lang-dir">RTL</span>
+              </button>
+              <button class="lang-item" data-lang="ru" role="radio" aria-checked="false">
+                <span class="lang-flag">🇷🇺</span>
+                <span class="lang-name"><span class="lang-native">Русский</span><span class="lang-en">Russian</span></span>
+                <span class="lang-dir">LTR</span>
+              </button>
+              <button class="lang-item" data-lang="fr" role="radio" aria-checked="false">
+                <span class="lang-flag">🇫🇷</span>
+                <span class="lang-name"><span class="lang-native">Français</span><span class="lang-en">French</span></span>
+                <span class="lang-dir">LTR</span>
+              </button>
+              <button class="lang-item" data-lang="th" role="radio" aria-checked="false">
+                <span class="lang-flag">🇹🇭</span>
+                <span class="lang-name"><span class="lang-native">ภาษาไทย</span><span class="lang-en">Thai</span></span>
+                <span class="lang-dir">LTR</span>
+              </button>
+              <button class="lang-item" data-lang="zh-CN" role="radio" aria-checked="false">
+                <span class="lang-flag">🇨🇳</span>
+                <span class="lang-name"><span class="lang-native">中文</span><span class="lang-en">Chinese</span></span>
+                <span class="lang-dir">LTR</span>
+              </button>
+            </div>
+
+            <div class="lang-bullets">
+              <div class="lang-bullet">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <span data-i18n-html="languages.bullet1"><b>סוגי ההתרעות</b> מתורגמים – לא רק "Alert"</span>
+              </div>
+              <div class="lang-bullet">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <span data-i18n-html="languages.bullet2"><b>הוראות ניווט</b> בשפת המשתמש – ימינה, שמאלה, מטרים</span>
+              </div>
+              <div class="lang-bullet">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <span data-i18n-html="languages.bullet3"><b>החלפה תוך כדי התרעה</b> – בלי יציאה מאפליקציה</span>
+              </div>
+            </div>
+
+            <div class="lang-foot">
+              <span class="lang-foot-dot"></span>
+              <span data-i18n="languages.foot">תיירים, עובדים זרים, סטודנטים, סבא וסבתא – כולם מקבלים את אותה ההגנה.</span>
+            </div>
+          </div>
+
+          <!-- Phone screenshot -->
+          <div class="lang-phone-wrap">
+            <div class="lang-real">
+              <div class="lang-real-glow"></div>
+              <img src="assets/lang-screen.png" data-i18n-alt="languages.screen_alt" alt="מסך בחירת שפה באפליקציית RED ALERT LIVE" class="lang-real-img" />
+            </div>
+          </div>
+
+          <!-- Proof column -->
+          <div class="lang-proof">
+            <div class="lang-proof-card">
+              <div class="lang-proof-num">7</div>
+              <div class="lang-proof-lbl" data-i18n="languages.proof1_lbl">שפות מלאות</div>
+              <div class="lang-proof-sub" data-i18n="languages.proof1_sub">כולל ערבית עברית רוסית – שלוש שפות RTL/LTR</div>
+            </div>
+            <div class="lang-proof-card">
+              <div class="lang-proof-num">100%</div>
+              <div class="lang-proof-lbl" data-i18n="languages.proof2_lbl">תרגום ההתרעות</div>
+              <div class="lang-proof-sub" data-i18n="languages.proof2_sub">סוג האירוע · שם האזור · הוראות פעולה</div>
+            </div>
+            <div class="lang-proof-card">
+              <div class="lang-proof-num">0ms</div>
+              <div class="lang-proof-lbl" data-i18n="languages.proof3_lbl">זמן החלפה</div>
+              <div class="lang-proof-sub" data-i18n="languages.proof3_sub">החלפה אוטומטית גם בזמן אזעקה</div>
+            </div>
+            <div class="lang-proof-bottom">
+              <div class="lang-proof-tag" data-i18n="languages.proof_tag">ייחודי בישראל</div>
+              <div class="lang-proof-text" data-i18n="languages.proof_text">אפליקציות ההתרעה הקיימות תומכות ב-1–2 שפות לכל היותר. RED ALERT LIVE היא הראשונה שתומכת ב-7 שפות עם תרגום מלא של סוגי ההתרעות.</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="audience">
-      <div class="container">
-        <h2 data-i18n="audience.title">למי זה מיועד</h2>
-        <p class="section-intro" data-i18n="audience.intro">כל מי שחי באזור שיש בו אזעקות – ורוצה שבפעם הבאה לא יצטרך לנחש.</p>
+    <!-- MANAGER -->
+    <section id="manager" class="section" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="manager">
+          <div class="manager-inner">
+            <div class="manager-h">
+              <div>
+                <span class="section-tag"><span class="sq"></span> <span data-i18n="manager.tag">RED ALERT MANAGER</span></span>
+                <h2 data-i18n="manager.title">פלטפורמת ניהול מקלטים <em>לרשויות וגופי ביטחון</em>.</h2>
+              </div>
+              <p class="section-sub" data-i18n="manager.intro">כלי ייעודי לרשויות מקומיות, גופי ביטחון וגורמי חירום מקצועיים. לא אפליקציה לאזרח – מערכת מבצעית לניהול מלאי המקלטים בשטח הרשות.</p>
+            </div>
 
-        <div class="grid-3">
-          <div class="card"><div class="audience-title" data-i18n="audience.a1_title">👤 תושבים פרטיים</div><p class="feature-text" data-i18n="audience.a1_text">אתה, המשפחה, הילדים. כולם יודעים לאן רצים. בלי פאניקה, בלי ניחושים, בלי לבזבז שניות יקרות.</p></div>
-          <div class="card"><div class="audience-title" data-i18n="audience.a2_title">🏛 רשויות מקומיות</div><p class="feature-text" data-i18n="audience.a2_text">הנגשה דיגיטלית של מידע למקלטים לתושבים. פיילוטים עירוניים עם נתוני שטח אמיתיים.</p></div>
-          <div class="card"><div class="audience-title" data-i18n="audience.a3_title">🚨 גורמי חירום ומקצוע</div><p class="feature-text" data-i18n="audience.a3_text">כלי שטח לניווט מהיר למרחבים מוגנים, מבוסס GPS ומסד נתונים ארצי מעודכן.</p></div>
+            <div class="manager-grid">
+              <div class="manager-caps">
+                <div class="mcap wide">
+                  <span class="ic" aria-hidden="true">🗺</span>
+                  <h3 data-i18n="manager.step1_title">תמונה ארצית מלמעלה</h3>
+                  <p data-i18n="manager.step1_desc">מפת ישראל אינטראקטיבית עם כלל המקלטים המוזנים. תצוגה לפי עיר, אזור, סוג מקלט – בלחיצה אחת.</p>
+                </div>
+                <div class="mcap">
+                  <span class="ic" aria-hidden="true">🔍</span>
+                  <h3 data-i18n="manager.step2_title">סינון וחיפוש מתקדם</h3>
+                  <p data-i18n="manager.step2_desc">סינון לפי עיר, יישוב, סוג (מקלט / ממ"ד / מיגונית) וסטטוס. תצוגת רשימה לצד המפה לניהול יעיל.</p>
+                </div>
+                <div class="mcap">
+                  <span class="ic" aria-hidden="true">📋</span>
+                  <h3 data-i18n="manager.step3_title">תיעוד מלא לכל מקלט</h3>
+                  <p data-i18n="manager.step3_desc">כתיבת הערות מבצעיות ישירות על כל מקלט: קיבולת, נגישות, מצב פיזי, ציוד, מגבלות כניסה.</p>
+                </div>
+                <div class="mcap">
+                  <span class="ic" aria-hidden="true">📊</span>
+                  <h3 data-i18n="manager.step4_title">דשבורד פערי כיסוי</h3>
+                  <p data-i18n="manager.step4_desc">תצוגה סטטיסטית של פיזור המקלטים לפי עיר ואזור. כלי תכנון לזיהוי אזורים עם כיסוי חסר.</p>
+                </div>
+                <div class="mcap dev wide">
+                  <span class="pill mono" data-i18n="manager.step5_pill">בפיתוח · Q3 2026</span>
+                  <span class="ic" aria-hidden="true">🚧</span>
+                  <h3 data-i18n="manager.step5_title">חיבור למוקד 106</h3>
+                  <p data-i18n="manager.step5_desc">דיווח על מפגעים בשטח: מקלט חסום, דרך גישה מסוכנת, נזק מבני. תושבים ידווחו מהאפליקציה – הרשות תראה בזמן אמת.</p>
+                </div>
+              </div>
+
+              <div class="manager-side">
+                <div class="mside-card">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V8l7-5 7 5v13" stroke="oklch(82% 0.13 252)" stroke-width="1.7"/></svg>
+                    <span data-i18n="manager.audience_title">למי זה מיועד</span>
+                  </h4>
+                  <ul>
+                    <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="manager.pill1">רשויות מקומיות ועיריות</span></li>
+                    <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="manager.pill2">גופי ביטחון וחירום</span></li>
+                    <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="manager.pill3">קציני ביטחון ישובים</span></li>
+                    <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> <span data-i18n="manager.pill4">מחלקות חירום עירוניות</span></li>
+                  </ul>
+                  <div class="mini-note" data-i18n="manager.mini_note">הגישה למערכת המנהל מוגבלת ומאובטחת – אינה זמינה לציבור הרחב</div>
+                </div>
+                <div class="mside-card cta">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" stroke="oklch(82% 0.13 252)" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                    <span data-i18n="manager.demo_title">מעוניינים בפיילוט?</span>
+                  </h4>
+                  <p data-i18n="manager.demo_text">נשמח לדמו מותאם לרשות שלכם. השאירו פרטים בטופס ובחרו "גורם מקצועי" – נחזור אליכם ישירות.</p>
+                  <button class="btn-demo" type="button" data-scroll="beta"><span data-i18n="manager.demo_btn">לתיאום דמו לרשות</span> <span class="arrow">→</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- AUDIENCES -->
+    <section id="audience" class="section" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="section-h">
+          <span class="section-tag"><span class="sq"></span> <span data-i18n="audience.tag">למי זה מיועד</span></span>
+          <h2 data-i18n="audience.title">למי זה מיועד</h2>
+          <p class="section-sub" data-i18n="audience.intro">כל מי שחי באזור שיש בו אזעקות – ורוצה שבפעם הבאה לא יצטרך לנחש.</p>
+        </div>
+        <div class="auds">
+          <div class="aud">
+            <span class="ic" aria-hidden="true">👤</span>
+            <h3 data-i18n="audience.a1_title">תושבים פרטיים</h3>
+            <p data-i18n="audience.a1_text">אתה, המשפחה, הילדים. כולם יודעים לאן רצים. בלי פאניקה, בלי ניחושים, בלי לבזבז שניות יקרות.</p>
+          </div>
+          <div class="aud">
+            <span class="ic" aria-hidden="true">🏛</span>
+            <h3 data-i18n="audience.a2_title">רשויות מקומיות</h3>
+            <p data-i18n="audience.a2_text">הנגשה דיגיטלית של מידע למקלטים לתושבים. פיילוטים עירוניים עם נתוני שטח אמיתיים.</p>
+          </div>
+          <div class="aud">
+            <span class="ic" aria-hidden="true">🚨</span>
+            <h3 data-i18n="audience.a3_title">גורמי חירום ומקצוע</h3>
+            <p data-i18n="audience.a3_text">כלי שטח לניווט מהיר למרחבים מוגנים, מבוסס GPS ומסד נתונים ארצי מעודכן.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BETA FORM -->
     <section id="beta-form" class="beta-section">
-      <div class="container">
+      <div class="wrap">
         <div class="beta-card">
-          <h2 data-i18n="beta.title">השאר פרטים – קבל גישה ראשון</h2>
-          <p class="section-intro" data-i18n="beta.intro">האפליקציה בשלבי בטא סופיים. מקומות מוגבלים. מי שנרשם עכשיו יקבל:</p>
-
+          <div class="beta-card-left">
+          <h2 data-i18n="beta.title">צרו קשר – שותפויות, הדרכות ודיווחים</h2>
+          <p class="section-intro" data-i18n="beta.intro">האפליקציה כבר חיה בייצור על Android. הטופס נועד עבורכם אם אתם רוצים:</p>
           <ul class="hero-list">
-            <li><span class="bullet">•</span><span data-i18n="beta.list1">קישור ישיר להורדה – לפני שהאפליקציה תעלה לחנות</span></li>
-            <li><span class="bullet">•</span><span data-i18n="beta.list2">אפשרות להשתתף בבדיקות שטח ולהשפיע על הפיתוח</span></li>
-            <li><span class="bullet">•</span><span data-i18n="beta.list3">עדיפות בגישה למוצר הסופי</span></li>
+            <li><span class="bullet">•</span><span data-i18n="beta.list1">ליצור קשר לשיתופי פעולה, להציע רעיונות או לדווח על תקלות</span></li>
+            <li><span class="bullet">•</span><span data-i18n="beta.list2">לקבוע הדרכת Zoom לארגונים, חברות אבטחה ורשויות</span></li>
+            <li><span class="bullet">•</span><span data-i18n="beta.list3">לקבל עדכון כשגרסת iOS תהיה מוכנה</span></li>
           </ul>
 
           <noscript>
@@ -351,6 +682,7 @@
                 <option value="android" data-i18n="beta.platform_android">Android</option>
                 <option value="ios" data-i18n="beta.platform_ios">iPhone</option>
                 <option value="both" data-i18n="beta.platform_both">שניהם</option>
+                <option value="other" data-i18n="beta.platform_other">אחר</option>
               </select>
             </div>
 
@@ -397,58 +729,128 @@
 
             <div class="beta-actions">
               <button type="submit" class="btn-primary-lg" id="submit-btn">
-                <span class="spinner" id="submit-spinner" aria-hidden="true"></span>
-                <span id="submit-text" data-i18n="beta.submit">אני רוצה גישה מוקדמת לבטא</span>
+                <span class="spinner" id="submit-spinner" aria-hidden="true" style="display:none"></span>
+                <span id="submit-text" data-i18n="beta.submit">שלחו פרטים</span>
               </button>
-
-              <p class="beta-note" data-i18n="beta.note">
-                נשתמש בפרטים רק לצורך עדכונים על האפליקציה ועל גרסת הבטא.
-                לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.
-              </p>
+              <p class="beta-note" data-i18n="beta.note">נשתמש בפרטים רק כדי לחזור אליכם בנוגע לפנייה. לא נעביר את המייל שלכם לגורמים אחרים לצרכי פרסום.</p>
             </div>
           </form>
+          </div>
+
+          <div class="beta-android">
+            <div class="top">
+              <span class="glyph" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9c0-3.3 2.7-6 6-6s6 2.7 6 6v9H6V9Z" fill="oklch(82% 0.16 145)"/>
+                  <circle cx="9" cy="6" r=".9" fill="#0c0d10"/>
+                  <circle cx="15" cy="6" r=".9" fill="#0c0d10"/>
+                  <path d="M5 4 7 6M19 4 17 6" stroke="oklch(82% 0.16 145)" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <div>
+                <b data-i18n="android.title">Get it on Android</b>
+                <span data-i18n="android.sub">Google Play · APK</span>
+              </div>
+            </div>
+            <div class="qr">
+              <a href="https://play.google.com/store/apps/details?id=live.redalert.redalertlive" target="_blank" rel="noopener" aria-label="הורדה ב-Google Play">
+                <img src="assets/qr-android.png" alt="QR להורדה מ-Google Play" />
+              </a>
+              <div>
+                <b data-i18n="android.qr_title">סרקו להורדה</b>
+                <span class="mono">play.google.com/...</span>
+              </div>
+            </div>
+            <div class="ios-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span data-i18n="android.ios_note">גרסת iOS בפיתוח · להירשם לעדכונים</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="faq-section">
-      <div class="container">
-        <h2 data-i18n="faq.title">שאלות נפוצות</h2>
+    <!-- FAQ -->
+    <section id="faq" class="section" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="section-h">
+          <span class="section-tag"><span class="sq"></span> <span data-i18n="faq.tag">שאלות נפוצות</span></span>
+          <h2 data-i18n="faq.title">שאלות נפוצות</h2>
+        </div>
         <div class="faq-list">
-          <details><summary data-i18n="faq.q1">האם האפליקציה כבר זמינה?</summary><p data-i18n="faq.a1">האפליקציה בשלבי בטא מתקדמים ונבדקת בשטח. מי שנרשם ברשימה יקבל גישה ראשון – עוד לפני העלייה לחנות.</p></details>
-          <details><summary data-i18n="faq.q2">האם היא נבדקה באזעקות אמת?</summary><p data-i18n="faq.a2">כן. המערכת פועלת ונבדקה בזמן אזעקות אמת – כולל מנגנון גיבוי לשעה שהשרת הרשמי עמוס.</p></details>
-          <details><summary data-i18n="faq.q3">מה ההבדל מאפליקציות אזעקה אחרות?</summary><p data-i18n="faq.a3">האפליקציות הקיימות מציגות אזעקות – RED ALERT LIVE מנווטת למקלט. זו המטרה היחידה שלה. ניווט חי, שני מקלטים קרובים, מסך אחד ברור בלחיצה אחת.</p></details>
-          <details><summary data-i18n="faq.q4">האם האפליקציה מחליפה את פיקוד העורף?</summary><p data-i18n="faq.a4">לא. RED ALERT LIVE היא כלי עזר נוסף. יש לפעול תמיד לפי ההנחיות הרשמיות של פיקוד העורף.</p></details>
-          <details><summary data-i18n="faq.q5">מה קורה עם הפרטים שאני משאיר?</summary><p data-i18n="faq.a5">משמשים רק לשליחת עדכונים על האפליקציה. לא נעביר את המייל שלך לגורמים חיצוניים לצרכי פרסום.</p></details>
-          <details id="terms">
-            <summary data-i18n="faq.q6">תנאי שימוש והצהרת אחריות</summary>
-            <div data-i18n-html="faq.a6_html">
-              <p><strong>1. אפליקציה לא רשמית</strong> — RED ALERT LIVE אינה אפליקציה רשמית של פיקוד העורף, צה"ל, מדינת ישראל, או כל גוף ממשלתי. בכל מצב חירום יש לפעול לפי הנחיות פיקוד העורף בלבד.</p>
-              <p><strong>2. הגבלת אחריות</strong> — השימוש באחריות המשתמש בלבד. האפליקציה מסופקת כפי שהיא ("AS IS"). המפתחים אינם אחראים לכל נזק ישיר, עקיף, גופני, נפשי או רכושי שייגרם עקב שימוש בה.</p>
-              <p><strong>3. דיוק המידע וניווט</strong> — מידע האזעקות עשוי להיות מושהה, חלקי או שגוי. נתוני מפות ומקלטים עשויים לשקף מציאות שונה מהשטח. האפליקציה היא כלי עזר בלבד.</p>
-              <p><strong>4. נתוני מיקום</strong> — נתוני GPS משמשים אך ורק לניווט מקומי. אינם נשמרים בשרתים ואינם מועברים לצד שלישי לצרכי פרסום. מוכפף למדיניות הפרטיות של מערכת ההפעלה.</p>
-              <p><strong>5. מגבלות שימוש</strong> — אין להשתמש באפליקציה לניהול כוחות חירום, תיאום מבצעי, שליטה ברכב אוטונומי, או כל שימוש שבו כשל עלול לגרום לסכנת חיים.</p>
-              <p><strong>6. שינויים בתנאים</strong> — המפעילים רשאים לשנות תנאים אלה בכל עת. המשך השימוש מהווה הסכמה לתנאים המעודכנים.</p>
-              <p><strong>7. יצירת קשר</strong> — <a href="mailto:support@red-alert.live">support@red-alert.live</a></p>
-            </div>
+          <details>
+            <summary data-i18n="faq.q1">האם האפליקציה כבר זמינה?</summary>
+            <p data-i18n="faq.a1">האפליקציה בשלבי בטא מתקדמים ונבדקת בשטח. מי שנרשם ברשימה יקבל גישה ראשון – עוד לפני העלייה לחנות.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q2">האם היא נבדקה באזעקות אמת?</summary>
+            <p data-i18n="faq.a2">כן. המערכת פועלת ונבדקה בזמן אזעקות אמת – כולל מנגנון גיבוי לשעה שהשרת הרשמי עמוס.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q3">מה ההבדל מאפליקציות אזעקה אחרות?</summary>
+            <p data-i18n="faq.a3">האפליקציות הקיימות מציגות אזעקות – RED ALERT LIVE מנווטת למקלט. זו המטרה היחידה שלה. ניווט חי, שני מקלטים קרובים, מסך אחד ברור בלחיצה אחת.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q4">האם האפליקציה מחליפה את פיקוד העורף?</summary>
+            <p data-i18n="faq.a4">לא. RED ALERT LIVE היא כלי עזר נוסף. יש לפעול תמיד לפי ההנחיות הרשמיות של פיקוד העורף.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q5">מה קורה עם הפרטים שאני משאיר?</summary>
+            <p data-i18n="faq.a5">משמשים רק לשליחת עדכונים על האפליקציה. לא נעביר את המייל שלך לגורמים חיצוניים לצרכי פרסום.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- DISCLAIMER (standalone) -->
+    <section class="section" style="padding-top: 0; padding-bottom: 56px;">
+      <div class="wrap">
+        <details id="terms" class="disclaimer">
+          <summary>
+            <span class="dis-summary-title" data-i18n="faq.q6">תנאי שימוש והצהרת אחריות</span>
+            <span class="dis-summary-hint" data-i18n="faq.q6_hint">לחצו לפתיחה</span>
+            <svg class="dis-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <ol>
+            <li><div><b data-i18n="faq.t1_t">אפליקציה לא רשמית</b><span data-i18n="faq.t1_p">RED ALERT LIVE אינה אפליקציה רשמית של פיקוד העורף, צה"ל, מדינת ישראל, או כל גוף ממשלתי. בכל מצב חירום יש לפעול לפי הנחיות פיקוד העורף בלבד.</span></div></li>
+            <li><div><b data-i18n="faq.t2_t">הגבלת אחריות</b><span data-i18n="faq.t2_p">השימוש באחריות המשתמש בלבד. האפליקציה מסופקת כפי שהיא ("AS IS"). המפתחים אינם אחראים לכל נזק ישיר, עקיף, גופני, נפשי או רכושי שייגרם עקב שימוש בה.</span></div></li>
+            <li><div><b data-i18n="faq.t3_t">דיוק המידע וניווט</b><span data-i18n="faq.t3_p">מידע האזעקות עשוי להיות מושהה, חלקי או שגוי. נתוני מפות ומקלטים עשויים לשקף מציאות שונה מהשטח. האפליקציה היא כלי עזר בלבד.</span></div></li>
+            <li><div><b data-i18n="faq.t4_t">נתוני מיקום</b><span data-i18n="faq.t4_p">נתוני GPS משמשים אך ורק לניווט מקומי. אינם נשמרים בשרתים ואינם מועברים לצד שלישי לצרכי פרסום.</span></div></li>
+            <li><div><b data-i18n="faq.t5_t">מגבלות שימוש</b><span data-i18n="faq.t5_p">אין להשתמש באפליקציה לניהול כוחות חירום, תיאום מבצעי, שליטה ברכב אוטונומי, או כל שימוש שבו כשל עלול לגרום לסכנת חיים.</span></div></li>
+            <li><div><b data-i18n="faq.t6_t">שינויים בתנאים</b><span data-i18n="faq.t6_p">המפעילים רשאים לשנות תנאים אלה בכל עת. המשך השימוש מהווה הסכמה לתנאים המעודכנים.</span></div></li>
+          </ol>
+          <div class="contact"><span data-i18n="faq.t_contact">יצירת קשר</span>: <a href="mailto:support@red-alert.live">support@red-alert.live</a></div>
+        </details>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container footer-inner">
-      <div data-i18n="footer.copyright">© RED ALERT LIVE – כל הזכויות שמורות</div>
-      <div data-i18n="footer.gender_note">האתר מנוסח בלשון זכר מטעמי נוחות בלבד אך מיועד לכל המגדרים</div>
-      <div class="footer-links">
-        <a href="mailto:support@red-alert.live" data-i18n="footer.contact">צור קשר</a>
-        <a href="#beta-form" data-i18n="footer.join_beta">הצטרפות לבטא</a>
-        <a href="#terms" data-i18n="footer.terms">תנאי שימוש</a>
+    <div class="wrap">
+      <div class="foot-row">
+        <a href="#" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="assets/red-alert-logo-20260115.png" alt="" />
+          </span>
+          <span class="brand-text">
+            <b>RED <em>ALERT</em> LIVE</b>
+            <span data-i18n="logo.sub">אפליקציה לניווט חכם למקלטים בזמן אזעקה</span>
+          </span>
+        </a>
+        <div class="foot-links">
+          <a href="mailto:support@red-alert.live" data-i18n="footer.contact">צור קשר</a>
+          <a href="#beta-form" data-i18n="footer.join_beta">הצטרפות לבטא</a>
+          <a href="#terms" data-i18n="footer.terms">תנאי שימוש</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span data-i18n="footer.copyright">© RED ALERT LIVE – כל הזכויות שמורות</span>
+        <span data-i18n="footer.gender_note">האתר מנוסח בלשון זכר מטעמי נוחות בלבד אך מיועד לכל המגדרים</span>
       </div>
     </div>
   </footer>
 
+  <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
     <div class="toast-icon" id="toast-icon">✓</div>
     <div class="toast-content">
@@ -458,7 +860,7 @@
     <button class="toast-close" id="toast-close" data-i18n-aria="toast.close" aria-label="סגור" type="button">✕</button>
   </div>
 
-  <!-- Floating language button (desktop) -->
+  <!-- Floating language FAB (desktop) -->
   <div class="lang-fab" id="lang-fab">
     <button class="lang-fab-btn" id="lang-fab-btn" aria-haspopup="true" aria-expanded="false" type="button">
       🌐 <span id="lang-fab-code">HE</span>

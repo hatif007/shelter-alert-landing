@@ -317,6 +317,30 @@
       });
     });
 
+    // Live clock in status bar
+    const clockEl = $('#now-clock');
+    if (clockEl) {
+      const tick = () => {
+        const d = new Date();
+        clockEl.textContent = d.toTimeString().slice(0, 8) + ' · IDT';
+      };
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    // Smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href').slice(1);
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
     // Toast
     const toast = $('#toast');
     const toastIcon = $('#toast-icon');
