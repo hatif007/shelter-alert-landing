@@ -85,6 +85,23 @@
   var toastMsg = document.getElementById('toast-msg');
   var toastTimer = null;
 
+  var successOverlay = document.getElementById('success-overlay');
+  var successTimer = null;
+  function showSuccessOverlay() {
+    if (!successOverlay) return;
+    successOverlay.classList.add('show');
+    if (successTimer) clearTimeout(successTimer);
+    successTimer = setTimeout(function () {
+      successOverlay.classList.remove('show');
+    }, 5000);
+  }
+  if (successOverlay) {
+    successOverlay.addEventListener('click', function () {
+      successOverlay.classList.remove('show');
+      if (successTimer) clearTimeout(successTimer);
+    });
+  }
+
   function open() {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -206,7 +223,7 @@
       if (result.ok && result.json && result.json.ok) {
         form.reset();
         close();
-        showToast('success', 'הבקשה נשלחה', 'תודה! נחזור אליכם בקרוב.');
+        showSuccessOverlay();
       } else {
         console.error(result.json || { status: result.status });
         showToast('error', 'שליחה נכשלה', 'אירעה שגיאה. נסו שוב בעוד רגע.');
