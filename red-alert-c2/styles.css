@@ -1000,25 +1000,157 @@ a { color: inherit; text-decoration: none; }
   border-bottom-color: var(--red);
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
+
+/* Large tablet / small laptop */
+@media (max-width: 1100px) {
+  .slide-shell.with-mockup { grid-template-columns: 1fr; gap: 22px; }
+  .mockup-inner { min-height: 320px; }
+  .mockup-figure { min-height: 240px; }
+  .hero { padding: 50px 28px 60px; }
+  .hero-title { font-size: clamp(40px, 7vw, 88px); }
+  .section { padding: 90px 28px; }
+  .section-tight { padding: 70px 28px; }
+  .section-cta { padding: 110px 28px 60px; }
+}
+
+/* Tablet (existing 980 + extras) */
 @media (max-width: 980px) {
   .hero-stats, .problem-grid, .roles-grid, .civ-grid, .sos-steps {
     grid-template-columns: repeat(2, 1fr);
   }
   .future-grid { grid-template-columns: 1fr; }
+  .ai-cols { grid-template-columns: 1fr; gap: 16px; }
   .pipeline { flex-direction: column; }
   .pipe-arrow { transform: rotate(-90deg); margin: 4px auto; }
   .topbar-mid { display: none; }
+  .hero-paragraphs { font-size: 15px; }
+  .hero-banner { font-size: 15px; padding: 10px 18px; }
+  .pull-quote { font-size: 15px; padding: 14px 16px; }
+  .modal { max-width: 92vw; }
+  .modal-body { padding: 18px 22px 22px; }
+  .modal-head { padding: 18px 22px 14px; }
+  .success-card { padding: 36px 32px; }
 }
+
+/* Small tablet / large phone */
+@media (max-width: 720px) {
+  .hero-title { font-size: clamp(34px, 8vw, 56px); }
+  .hero-actions { gap: 8px; flex-wrap: wrap; }
+  .hero-meta { padding: 6px 12px; gap: 6px; flex-wrap: wrap; justify-content: center; }
+  .quote-mark { font-size: 44px; right: 18px; }
+  .quote-bar { padding: 18px 56px 18px 24px; font-size: 16px; }
+  .pull-quote { font-size: 14.5px; padding: 12px 14px; }
+  .speaker { font-size: 13px; padding: 12px 14px; }
+  .slide-h { font-size: clamp(20px, 5.6vw, 28px); }
+  .slide-lede { font-size: 14.5px; }
+  .roles-grid { grid-template-columns: 1fr; }
+  .civ-grid { grid-template-columns: 1fr; }
+  .ab-sep { display: none; }
+  .authority-bar { gap: 12px; padding: 18px 22px; font-size: 15px; }
+  .responsibility-trail { gap: 8px; font-size: 12px; padding: 14px 18px; }
+}
+
+/* Phone (existing 600 + extras) */
 @media (max-width: 600px) {
   .hero-stats, .problem-grid, .roles-grid, .civ-grid, .sos-steps {
     grid-template-columns: 1fr;
   }
   .solution-bullets { grid-template-columns: 1fr; }
   .cta-pillars { grid-template-columns: 1fr; }
-  .section { padding: 70px 20px; }
+  .section { padding: 64px 20px; }
+  .section-tight { padding: 50px 20px; }
+  .section-cta { padding: 90px 20px 50px; }
   .hero { padding: 40px 20px 60px; }
   .topbar { padding: 8px 14px; font-size: 10px; }
+  .hero-title { font-size: clamp(28px, 9vw, 44px); }
+  .hero-meta { font-size: 12px; padding: 6px 12px; }
+  .hero-paragraphs { font-size: 14.5px; line-height: 1.65; }
+  .hero-banner { font-size: 14px; padding: 9px 16px; }
+  .hero-actions .btn { padding: 10px 18px; font-size: 13px; }
+  .modal-title { font-size: 22px; }
+  .modal-body { padding: 16px 20px 20px; }
+  .modal-head { padding: 16px 20px 14px; }
+  .form-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .form-actions .btn { width: 100%; justify-content: center; }
+  .form-actions .note { width: 100%; flex: 0 0 auto; }
+  .field input, .field select, .field textarea { padding: 10px 12px; font-size: 14px; }
+  .success-card { padding: 32px 26px; max-width: calc(100vw - 24px); }
+  .success-check { width: 84px; height: 84px; margin-bottom: 16px; }
+  .success-title { font-size: 22px; }
+  .success-sub { font-size: 14px; }
+  .pipeline { padding: 18px; gap: 4px; }
+  .pipe-step { padding: 12px 10px; min-width: 0; }
+  .pipe-step-t { font-size: 14px; }
+  .pipe-step-d { font-size: 10.5px; }
+  .pipe-step-i { font-size: 9px; }
+  .channel-card { padding: 14px 16px; gap: 12px; }
+  .channel-num { font-size: 22px; min-width: 50px; }
+  .channel-t { font-size: 15px; }
+  .channel-d { font-size: 12px; }
+  .cta-title { font-size: clamp(32px, 10vw, 56px); margin: 18px 0 22px; }
+  .cta-sub { font-size: 16px; }
+  .cta-bigline { font-size: clamp(20px, 6vw, 28px); margin: 40px auto 24px; }
+  .cta-stamp-text { font-size: 11px; }
+  .quote-bar { font-size: 15px; padding: 16px 50px 16px 20px; }
+  .quote-mark { font-size: 38px; right: 14px; top: 6px; }
+}
+
+/* Small phone */
+@media (max-width: 480px) {
+  .hero { padding: 32px 16px 50px; }
+  .section { padding: 48px 16px; }
+  .section-tight { padding: 36px 16px; }
+  .section-cta { padding: 70px 16px 40px; }
+  .hero-title { font-size: clamp(24px, 10vw, 38px); }
+  .hero-eyebrow { font-size: 10.5px; padding: 5px 10px; gap: 6px; }
+  .hero-meta .sep { display: none; }
+  .hero-meta { gap: 6px; font-size: 11.5px; }
+  .hero-banner { font-size: 13.5px; padding: 8px 14px; }
+  .hero-paragraphs { font-size: 14px; }
+  .topbar { padding: 8px 10px; font-size: 9.5px; gap: 8px; }
+  .topbar .container { gap: 10px; }
+  .topbar-right .sep { display: none; }
+  .slide-num { font-size: 11px; padding: 5px 10px; gap: 8px; }
+  .slide-num .num { width: 20px; height: 20px; font-size: 11px; }
+  .slide-h { font-size: clamp(19px, 6vw, 24px); }
+  .slide-lede { font-size: 14px; }
+  .bullets li { font-size: 13.5px; padding: 9px 11px; gap: 8px; }
+  .pull-quote { font-size: 13.5px; padding: 12px 14px; }
+  .speaker { font-size: 12.5px; padding: 11px 13px; }
+  .speaker .speaker-label { font-size: 10px; }
+  .card { padding: 12px; }
+  .card-title { font-size: 13.5px; gap: 6px; }
+  .card-text { font-size: 12.5px; }
+  .card-ic { width: 26px; height: 26px; font-size: 12.5px; }
+  .modal { max-height: calc(100vh - 16px); width: calc(100vw - 12px); border-radius: 0; border-left: 0; border-right: 0; }
+  .modal-head { padding: 14px 16px 12px; }
+  .modal-body { padding: 14px 16px 18px; }
+  .modal-title { font-size: 19px; }
+  .modal-eyebrow { font-size: 10px; }
+  .form-grid { gap: 10px; }
+  .field label { font-size: 11px; }
+  .success-card { padding: 26px 20px; max-width: calc(100vw - 20px); }
+  .success-check { width: 76px; height: 76px; margin-bottom: 14px; }
+  .success-check svg { width: 56px; height: 56px; }
+  .success-title { font-size: 20px; }
+  .success-sub { font-size: 13.5px; }
+  .toast { left: 10px; right: 10px; padding: 10px 12px; max-width: calc(100vw - 20px); min-width: 0; }
+  .toast-title { font-size: 13px; }
+  .toast-message { font-size: 12px; }
+  .toast-icon { width: 26px; height: 26px; font-size: 13px; }
+  .pipeline { padding: 14px; gap: 3px; }
+  .pipe-step { padding: 10px 8px; }
+  .channel-num { font-size: 20px; min-width: 44px; }
+  .channel-t { font-size: 14px; }
+  .cta-title { font-size: clamp(28px, 11vw, 44px); margin: 14px 0 18px; }
+  .cta-sub { font-size: 14.5px; line-height: 1.6; }
+  .cta-bigline { font-size: clamp(18px, 6.5vw, 24px); }
+  .cta-pillar { padding: 18px 14px; }
+  .cta-pillar-n { font-size: 30px; }
+  .cta-pillar-t { font-size: 12px; }
+  .cta-stamp-text { font-size: 10.5px; }
+  .footer-inner { gap: 6px; font-size: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
