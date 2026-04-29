@@ -285,8 +285,8 @@
   "footer.join_beta": "הצטרפות לבטא",
   "footer.terms": "תנאי שימוש",
 
-  "toast.success_title": "נשלח בהצלחה",
-  "toast.success_message": "תודה – נעדכן כשגרסת הבטא תהיה מוכנה",
+  "toast.success_title": "תודה – הפרטים נשלחו",
+  "toast.success_message": "נחזור אליכם בקרוב בנוגע לפנייתכם.",
   "toast.close": "סגור",
 
   "form.error_email_required": "נא למלא כתובת אימייל",
